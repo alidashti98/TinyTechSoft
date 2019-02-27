@@ -1,0 +1,8 @@
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\bin\Release\TinyTech.BasicInformation.exe.config
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\bin\Release\TinyTech.BasicInformation.exe
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\bin\Release\TinyTech.BasicInformation.pdb
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\obj\Release\TinyTech.BasicInformation.Properties.Resources.resources
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\obj\Release\TinyTech.BasicInformation.csproj.GenerateResource.cache
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\obj\Release\TinyTech.BasicInformation.csproj.CoreCompileInputs.cache
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\obj\Release\TinyTech.BasicInformation.exe
+D:\TinyTech\TinyTech\TinyTech.BasicInformation\obj\Release\TinyTech.BasicInformation.pdb

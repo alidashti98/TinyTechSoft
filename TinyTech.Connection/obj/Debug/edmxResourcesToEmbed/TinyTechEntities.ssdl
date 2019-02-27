@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TinyTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BankAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="AccountOwner" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="BankNameID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Balance" Type="money" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Branch" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="AccountTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankAccountType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BuyBody">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="BuyID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="BuyID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BuyDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="BuyID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="BuyID" Type="int" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="VisitorID" Type="int" Nullable="false" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="RegionID" Type="int" Nullable="false" />
+    <Property Name="PathID" Type="int" Nullable="false" />
+    <Property Name="NumberInPath" Type="int" Nullable="false" />
+    <Property Name="Image" Type="image" />
+    <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="BlackList" Type="bit" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Special" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="CreateUserID" Type="int" Nullable="false" />
+    <Property Name="CreateVisitorID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="EconomicCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="AllowedFactorCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="DefaultSailPrice" Type="int" Nullable="false" />
+    <Property Name="IsParrent" Type="bit" Nullable="false" />
+    <Property Name="ParrentID" Type="int" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FiscalYear">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="DatabaseName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="UnitID" Type="int" Nullable="false" />
+    <Property Name="UnitCount" Type="int" Nullable="false" />
+    <Property Name="UnitInventory" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="SingleInventory" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Image" Type="image" />
+    <Property Name="ReOrderPointCount" Type="int" Nullable="false" />
+    <Property Name="PackageInventory" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="PackageID" Type="int" Nullable="false" />
+    <Property Name="UnitWeight" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="UnitVolume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="AverageBuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="CreateUSerID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="SingleMinimumOrderCount" Type="int" Nullable="false" />
+    <Property Name="UnitTransportPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="BlackList" Type="bit" Nullable="false" />
+    <Property Name="TaxesPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="SingleCount" Type="int" Nullable="false" />
+    <Property Name="PackageCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Gain" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsActivityType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsCode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Default" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="CanNegative" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="IsParrent" Type="bit" Nullable="false" />
+    <Property Name="ParrentID" Type="int" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsUnit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsWarehouse">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+      <PropertyRef Name="GoodsID" />
+    </Key>
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="UnitInventory" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="SingleInventory" Type="int" Nullable="false" />
+    <Property Name="PackageInventory" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoodsWarehouseActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="SingleCount" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="PackageCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Gain" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Path">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="RegionID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personnel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="PersonnelTypeID" Type="int" Nullable="false" />
+    <Property Name="Salary" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Image" Type="image" />
+    <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="CreateUserID" Type="int" Nullable="false" />
+    <Property Name="IsSupervisor" Type="bit" Nullable="false" />
+    <Property Name="SupervisorID" Type="int" Nullable="false" />
+    <Property Name="SupervisorPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="CashRewardPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="FaildCheckPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonnelActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonnelID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonnelType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SailBody">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="SailID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="SailID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="VisitorID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SailDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="SailID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="SailID" Type="int" Nullable="false" />
+    <Property Name="GoodsID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="varbinary" MaxLength="500" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Manager" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BankAccount_BankAccountType">
+    <End Role="BankAccountType" Type="Self.BankAccountType" Multiplicity="1" />
+    <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccountType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankAccount_BankName">
+    <End Role="BankName" Type="Self.BankName" Multiplicity="1" />
+    <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankName">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BankAccount">
+        <PropertyRef Name="BankNameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuyBody_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="BuyBody" Type="Self.BuyBody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BuyBody">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuyDetail_BuyBody">
+    <End Role="BuyBody" Type="Self.BuyBody" Multiplicity="1" />
+    <End Role="BuyDetail" Type="Self.BuyDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BuyBody">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="BuyID" />
+      </Principal>
+      <Dependent Role="BuyDetail">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="BuyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuyDetail_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="BuyDetail" Type="Self.BuyDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BuyDetail">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_CustomerGroup">
+    <End Role="CustomerGroup" Type="Self.CustomerGroup" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Personnel">
+    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personnel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="VisitorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerActivity_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerActivity" Type="Self.CustomerActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerActivity">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Goods_GoodsGroup">
+    <End Role="GoodsGroup" Type="Self.GoodsGroup" Multiplicity="1" />
+    <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsGroup">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Goods">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Goods_GoodsUnit">
+    <End Role="GoodsUnit" Type="Self.GoodsUnit" Multiplicity="1" />
+    <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsUnit">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Goods">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Goods_GoodsUnit__Package">
+    <End Role="GoodsUnit" Type="Self.GoodsUnit" Multiplicity="1" />
+    <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsUnit">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Goods">
+        <PropertyRef Name="PackageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsActivity_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="GoodsActivity" Type="Self.GoodsActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsActivity">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsActivity_GoodsActivityType">
+    <End Role="GoodsActivityType" Type="Self.GoodsActivityType" Multiplicity="1" />
+    <End Role="GoodsActivity" Type="Self.GoodsActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsActivityType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsActivity">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsActivity_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="GoodsActivity" Type="Self.GoodsActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsActivity">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsCode_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="GoodsCode" Type="Self.GoodsCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsCode">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouse_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="GoodsWarehouse" Type="Self.GoodsWarehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouse">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouse_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="GoodsWarehouse" Type="Self.GoodsWarehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouse">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouseActivity_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="GoodsWarehouseActivity" Type="Self.GoodsWarehouseActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouseActivity">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouseActivity_GoodsActivityType">
+    <End Role="GoodsActivityType" Type="Self.GoodsActivityType" Multiplicity="1" />
+    <End Role="GoodsWarehouseActivity" Type="Self.GoodsWarehouseActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoodsActivityType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouseActivity">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouseActivity_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="GoodsWarehouseActivity" Type="Self.GoodsWarehouseActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouseActivity">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsWarehouseActivity_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="GoodsWarehouseActivity" Type="Self.GoodsWarehouseActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoodsWarehouseActivity">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Path_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="Path" Type="Self.Path" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Path">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personnel_PersonnelType">
+    <End Role="PersonnelType" Type="Self.PersonnelType" Multiplicity="1" />
+    <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonnelType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Personnel">
+        <PropertyRef Name="PersonnelTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonnelActivity_Personnel">
+    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+    <End Role="PersonnelActivity" Type="Self.PersonnelActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personnel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PersonnelActivity">
+        <PropertyRef Name="PersonnelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Region" Type="Self.Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SailBody_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SailBody">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SailBody_Personnel">
+    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
+    <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personnel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SailBody">
+        <PropertyRef Name="VisitorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SailDetail_Goods">
+    <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+    <End Role="SailDetail" Type="Self.SailDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SailDetail">
+        <PropertyRef Name="GoodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SailDetail_SailBody">
+    <End Role="SailBody" Type="Self.SailBody" Multiplicity="1" />
+    <End Role="SailDetail" Type="Self.SailDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SailBody">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="SailID" />
+      </Principal>
+      <Dependent Role="SailDetail">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="SailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Security_User_Security_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TinyTechModelStoreContainer">
+    <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankAccountType" EntityType="Self.BankAccountType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankName" EntityType="Self.BankName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BuyBody" EntityType="Self.BuyBody" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BuyDetail" EntityType="Self.BuyDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerActivity" EntityType="Self.CustomerActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerGroup" EntityType="Self.CustomerGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FiscalYear" EntityType="Self.FiscalYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsActivity" EntityType="Self.GoodsActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsActivityType" EntityType="Self.GoodsActivityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsCode" EntityType="Self.GoodsCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsGroup" EntityType="Self.GoodsGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsUnit" EntityType="Self.GoodsUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsWarehouse" EntityType="Self.GoodsWarehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoodsWarehouseActivity" EntityType="Self.GoodsWarehouseActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Path" EntityType="Self.Path" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personnel" EntityType="Self.Personnel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonnelActivity" EntityType="Self.PersonnelActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonnelType" EntityType="Self.PersonnelType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SailBody" EntityType="Self.SailBody" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SailDetail" EntityType="Self.SailDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BankAccount_BankAccountType" Association="Self.FK_BankAccount_BankAccountType">
+      <End Role="BankAccountType" EntitySet="BankAccountType" />
+      <End Role="BankAccount" EntitySet="BankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankAccount_BankName" Association="Self.FK_BankAccount_BankName">
+      <End Role="BankName" EntitySet="BankName" />
+      <End Role="BankAccount" EntitySet="BankAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuyBody_Customer" Association="Self.FK_BuyBody_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="BuyBody" EntitySet="BuyBody" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuyDetail_BuyBody" Association="Self.FK_BuyDetail_BuyBody">
+      <End Role="BuyBody" EntitySet="BuyBody" />
+      <End Role="BuyDetail" EntitySet="BuyDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuyDetail_Goods" Association="Self.FK_BuyDetail_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="BuyDetail" EntitySet="BuyDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Province" Association="Self.FK_City_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_CustomerGroup" Association="Self.FK_Customer_CustomerGroup">
+      <End Role="CustomerGroup" EntitySet="CustomerGroup" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Personnel" Association="Self.FK_Customer_Personnel">
+      <End Role="Personnel" EntitySet="Personnel" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerActivity_Customer" Association="Self.FK_CustomerActivity_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerActivity" EntitySet="CustomerActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Goods_GoodsGroup" Association="Self.FK_Goods_GoodsGroup">
+      <End Role="GoodsGroup" EntitySet="GoodsGroup" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Goods_GoodsUnit" Association="Self.FK_Goods_GoodsUnit">
+      <End Role="GoodsUnit" EntitySet="GoodsUnit" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Goods_GoodsUnit__Package" Association="Self.FK_Goods_GoodsUnit__Package">
+      <End Role="GoodsUnit" EntitySet="GoodsUnit" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsActivity_Goods" Association="Self.FK_GoodsActivity_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="GoodsActivity" EntitySet="GoodsActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsActivity_GoodsActivityType" Association="Self.FK_GoodsActivity_GoodsActivityType">
+      <End Role="GoodsActivityType" EntitySet="GoodsActivityType" />
+      <End Role="GoodsActivity" EntitySet="GoodsActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsActivity_User" Association="Self.FK_GoodsActivity_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="GoodsActivity" EntitySet="GoodsActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsCode_Goods" Association="Self.FK_GoodsCode_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="GoodsCode" EntitySet="GoodsCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouse_Goods" Association="Self.FK_GoodsWarehouse_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="GoodsWarehouse" EntitySet="GoodsWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouse_Warehouse" Association="Self.FK_GoodsWarehouse_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="GoodsWarehouse" EntitySet="GoodsWarehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouseActivity_Goods" Association="Self.FK_GoodsWarehouseActivity_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="GoodsWarehouseActivity" EntitySet="GoodsWarehouseActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouseActivity_GoodsActivityType" Association="Self.FK_GoodsWarehouseActivity_GoodsActivityType">
+      <End Role="GoodsActivityType" EntitySet="GoodsActivityType" />
+      <End Role="GoodsWarehouseActivity" EntitySet="GoodsWarehouseActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouseActivity_User" Association="Self.FK_GoodsWarehouseActivity_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="GoodsWarehouseActivity" EntitySet="GoodsWarehouseActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsWarehouseActivity_Warehouse" Association="Self.FK_GoodsWarehouseActivity_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="GoodsWarehouseActivity" EntitySet="GoodsWarehouseActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Path_Region" Association="Self.FK_Path_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Path" EntitySet="Path" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personnel_PersonnelType" Association="Self.FK_Personnel_PersonnelType">
+      <End Role="PersonnelType" EntitySet="PersonnelType" />
+      <End Role="Personnel" EntitySet="Personnel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonnelActivity_Personnel" Association="Self.FK_PersonnelActivity_Personnel">
+      <End Role="Personnel" EntitySet="Personnel" />
+      <End Role="PersonnelActivity" EntitySet="PersonnelActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Region" EntitySet="Region" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SailBody_Customer" Association="Self.FK_SailBody_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="SailBody" EntitySet="SailBody" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SailBody_Personnel" Association="Self.FK_SailBody_Personnel">
+      <End Role="Personnel" EntitySet="Personnel" />
+      <End Role="SailBody" EntitySet="SailBody" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SailDetail_Goods" Association="Self.FK_SailDetail_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="SailDetail" EntitySet="SailDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SailDetail_SailBody" Association="Self.FK_SailDetail_SailBody">
+      <End Role="SailBody" EntitySet="SailBody" />
+      <End Role="SailDetail" EntitySet="SailDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Security_User_Security_UserRole" Association="Self.FK_Security_User_Security_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

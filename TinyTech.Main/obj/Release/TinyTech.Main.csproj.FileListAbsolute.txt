@@ -1,0 +1,14 @@
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.Main.exe.config
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.Main.exe
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.Main.pdb
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.UI.exe
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.UI.pdb
+D:\TinyTech\TinyTech\TinyTech.Main\bin\Release\TinyTech.UI.exe.config
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.csprojResolveAssemblyReference.cache
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.Login.resources
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.Properties.Resources.resources
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.csproj.GenerateResource.cache
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.csproj.CoreCompileInputs.cache
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.csproj.CopyComplete
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.exe
+D:\TinyTech\TinyTech\TinyTech.Main\obj\Release\TinyTech.Main.pdb
