@@ -35,6 +35,7 @@ D:\Project\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.SqlServer.
 D:\Project\TinyTechSoft\TinyTech.Connection\bin\Debug\FastMember.dll
 D:\Project\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.xml
 D:\Project\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csprojAssemblyReference.cache
 D:\Project\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csproj.CoreCompileInputs.cache
 D:\Project\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csproj.CopyComplete
 D:\Project\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.dll
