@@ -181,14 +181,13 @@ namespace TinyTech.UI.UserControl
             this.dateControlRegion.Location = new System.Drawing.Point(585, 27);
             this.dateControlRegion.Name = "dateControlRegion";
             this.dateControlRegion.NextControl = this.chkProvince;
-            this.dateControlRegion.NowShamsi10Cahracter = "1397/06/14";
+            this.dateControlRegion.ShamsiNow = "1397/06/14";
             this.dateControlRegion.NowShamsi8Character = "97/06/14";
             this.dateControlRegion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dateControlRegion.Size = new System.Drawing.Size(120, 20);
             this.dateControlRegion.TabIndex = 0;
             this.dateControlRegion.Text = "dateControl1";
             this.dateControlRegion.Value10Cahracter = null;
-            this.dateControlRegion.Value8Character = null;
             // 
             // chkProvince
             // 
@@ -591,7 +590,7 @@ namespace TinyTech.UI.UserControl
         {
             if (FormValidate())
             {
-                var result = @class.RegionDefinition(txtRegionName.Text, int.Parse(txtCityName.Tag.ToString()), txtDescription.Text, dateControlRegion.Shamsi10CharacteriValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.RegionDefinition(txtRegionName.Text, int.Parse(txtCityName.Tag.ToString()), txtDescription.Text, dateControlRegion.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

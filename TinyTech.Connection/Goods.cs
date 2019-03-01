@@ -41,8 +41,8 @@ namespace TinyTech.Connection
         public decimal UnitVolume { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal AverageBuyPrice { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public int CreateUSerID { get; set; }
+        public string CreateDate { get; set; }
+        public int CreateUserID { get; set; }
         public string Description { get; set; }
         public int SingleMinimumOrderCount { get; set; }
         public decimal UnitTransportPrice { get; set; }

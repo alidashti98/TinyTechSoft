@@ -237,14 +237,13 @@ namespace TinyTech.BasicInformation
             this.dateControlBankAccount.Location = new System.Drawing.Point(584, 24);
             this.dateControlBankAccount.Name = "dateControlBankAccount";
             this.dateControlBankAccount.NextControl = this.txtBankAccountNumber;
-            this.dateControlBankAccount.NowShamsi10Cahracter = "1397/06/14";
+            this.dateControlBankAccount.ShamsiNow = "1397/06/14";
             this.dateControlBankAccount.NowShamsi8Character = "97/06/14";
             this.dateControlBankAccount.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dateControlBankAccount.Size = new System.Drawing.Size(120, 20);
             this.dateControlBankAccount.TabIndex = 0;
             this.dateControlBankAccount.Text = "dateControl1";
             this.dateControlBankAccount.Value10Cahracter = null;
-            this.dateControlBankAccount.Value8Character = null;
             // 
             // txtBankAccountNumber
             // 
@@ -502,7 +501,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.BankAccountDefinition(txtBankAccountNumber.Text, txtDescription.Text, dateControlBankAccount.Shamsi10CharacteriValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.BankAccountDefinition(txtBankAccountNumber.Text, txtDescription.Text, dateControlBankAccount.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

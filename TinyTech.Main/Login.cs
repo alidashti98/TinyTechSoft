@@ -28,6 +28,7 @@ namespace TinyTech.Main
         private UI.Control.Label.Label lblVersion;
         ConnectionClasses @class = new ConnectionClasses();
         private Container components = null;
+
         #endregion
 
         protected override void Dispose(bool disposing)
@@ -341,6 +342,7 @@ namespace TinyTech.Main
             {
                 lblVersion.Text = ConnectionInfo.Version;
                 SetData();
+                
                 ConnectionInfo.ServerName = GetInfoServerName;
                 ConnectionInfo.DatabaseName = GetInfoDatabaseName;
                 DB_Connection = new TinyTechEntities();

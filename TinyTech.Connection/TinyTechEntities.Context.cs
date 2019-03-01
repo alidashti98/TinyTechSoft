@@ -18,10 +18,10 @@ namespace TinyTech.Connection
     public partial class TinyTechEntities : DbContext
     {
         public TinyTechEntities()
-            : base(ConnectionInfo.BuildConnectionString())
+            : base("name=TinyTechEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

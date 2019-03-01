@@ -19,8 +19,8 @@ namespace TinyTech.Connection
         public int GoodsID { get; set; }
         public bool Active { get; set; }
         public int TypeID { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.DateTime ServerDate { get; set; }
+        public string Date { get; set; }
+        public string ServerDate { get; set; }
         public decimal UnitCount { get; set; }
         public int SingleCount { get; set; }
         public string Description { get; set; }

@@ -35,7 +35,7 @@ namespace TinyTech.Connection
         public int PersonnelTypeID { get; set; }
         public decimal Salary { get; set; }
         public byte[] Image { get; set; }
-        public System.DateTime CreateDate { get; set; }
+        public string CreateDate { get; set; }
         public int CreateUserID { get; set; }
         public bool IsSupervisor { get; set; }
         public int SupervisorID { get; set; }

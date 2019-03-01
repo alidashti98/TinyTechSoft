@@ -174,7 +174,7 @@
           <ScalarProperty Name="UnitTransportPrice" ColumnName="UnitTransportPrice" />
           <ScalarProperty Name="SingleMinimumOrderCount" ColumnName="SingleMinimumOrderCount" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CreateUSerID" ColumnName="CreateUSerID" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
           <ScalarProperty Name="AverageBuyPrice" ColumnName="AverageBuyPrice" />
           <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
@@ -427,6 +427,7 @@
       <EntityTypeMapping TypeName="TinyTechModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />

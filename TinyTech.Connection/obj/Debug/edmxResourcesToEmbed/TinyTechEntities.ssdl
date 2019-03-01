@@ -10,11 +10,11 @@
     <Property Name="BankNameID" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="Balance" Type="money" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Branch" Type="nvarchar" MaxLength="4000" Nullable="false" />
@@ -32,8 +32,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BankName">
@@ -46,8 +46,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BuyBody">
@@ -81,8 +81,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Customer">
@@ -111,7 +111,7 @@
     <Property Name="BlackList" Type="bit" Nullable="false" />
     <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Special" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CreateUserID" Type="int" Nullable="false" />
     <Property Name="CreateVisitorID" Type="int" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="false" />
@@ -143,8 +143,8 @@
     <Property Name="ParrentID" Type="int" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FiscalYear">
@@ -177,8 +177,8 @@
     <Property Name="UnitVolume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="AverageBuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="CreateDate" Type="date" Nullable="false" />
-    <Property Name="CreateUSerID" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreateUserID" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="SingleMinimumOrderCount" Type="int" Nullable="false" />
     <Property Name="UnitTransportPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
@@ -193,14 +193,14 @@
     <Property Name="GoodsID" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="SingleCount" Type="int" Nullable="false" />
     <Property Name="PackageCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="Gain" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Gain" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="TypeID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GoodsActivityType">
@@ -235,8 +235,8 @@
     <Property Name="ParrentID" Type="int" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GoodsUnit">
@@ -249,8 +249,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GoodsWarehouse">
@@ -273,8 +273,8 @@
     <Property Name="GoodsID" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="TypeID" Type="int" Nullable="false" />
-    <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="SingleCount" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
@@ -294,8 +294,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Personnel">
@@ -315,7 +315,7 @@
     <Property Name="PersonnelTypeID" Type="int" Nullable="false" />
     <Property Name="Salary" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Image" Type="image" />
-    <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CreateUserID" Type="int" Nullable="false" />
     <Property Name="IsSupervisor" Type="bit" Nullable="false" />
     <Property Name="SupervisorID" Type="int" Nullable="false" />
@@ -351,8 +351,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Region">
@@ -366,8 +366,8 @@
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SailBody">
@@ -405,11 +405,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="Password" Type="varbinary" MaxLength="500" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Password" Type="varbinary" MaxLength="4000" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="image" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UserRole">
@@ -417,7 +418,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
@@ -809,6 +810,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="UDF_Gregorian_To_Persian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDF_Julian_To_Gregorian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="jdn" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="UDF_Persian_To_Julian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bigint">
+    <Parameter Name="iYear" Type="int" Mode="In" />
+    <Parameter Name="iMonth" Type="int" Mode="In" />
+    <Parameter Name="iDay" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="TinyTechModelStoreContainer">
     <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BankAccountType" EntityType="Self.BankAccountType" Schema="dbo" store:Type="Tables" />

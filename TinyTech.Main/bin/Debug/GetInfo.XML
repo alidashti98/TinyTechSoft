@@ -2,6 +2,6 @@
 <TinyTech>
   <Connection>
 	<Server>.</Server>
-    <Database>TinyTech</Database>
+	<Database>TinyTech</Database>
   </Connection>
 </TinyTech>

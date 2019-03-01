@@ -15,11 +15,11 @@
           <Property Name="BankNameID" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Balance" Type="money" Nullable="false" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Branch" Type="nvarchar" MaxLength="4000" Nullable="false" />
@@ -37,8 +37,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BankName">
@@ -51,8 +51,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BuyBody">
@@ -86,8 +86,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
@@ -116,7 +116,7 @@
           <Property Name="BlackList" Type="bit" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Special" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateUserID" Type="int" Nullable="false" />
           <Property Name="CreateVisitorID" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
@@ -148,8 +148,8 @@
           <Property Name="ParrentID" Type="int" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FiscalYear">
@@ -182,8 +182,8 @@
           <Property Name="UnitVolume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="BuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="AverageBuyPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="CreateDate" Type="date" Nullable="false" />
-          <Property Name="CreateUSerID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreateUserID" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="SingleMinimumOrderCount" Type="int" Nullable="false" />
           <Property Name="UnitTransportPrice" Type="decimal" Precision="18" Scale="3" Nullable="false" />
@@ -198,14 +198,14 @@
           <Property Name="GoodsID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="SingleCount" Type="int" Nullable="false" />
           <Property Name="PackageCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="Gain" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Gain" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsActivityType">
@@ -240,8 +240,8 @@
           <Property Name="ParrentID" Type="int" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsUnit">
@@ -254,8 +254,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsWarehouse">
@@ -278,8 +278,8 @@
           <Property Name="GoodsID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
-          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ServerDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="UnitCount" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="SingleCount" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
@@ -299,8 +299,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Personnel">
@@ -320,7 +320,7 @@
           <Property Name="PersonnelTypeID" Type="int" Nullable="false" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Image" Type="image" />
-          <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateUserID" Type="int" Nullable="false" />
           <Property Name="IsSupervisor" Type="bit" Nullable="false" />
           <Property Name="SupervisorID" Type="int" Nullable="false" />
@@ -356,8 +356,8 @@
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
@@ -371,8 +371,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SailBody">
@@ -410,11 +410,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Password" Type="varbinary" MaxLength="500" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Password" Type="varbinary" MaxLength="4000" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRole">
@@ -422,7 +423,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
@@ -814,6 +815,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="UDF_Gregorian_To_Persian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDF_Julian_To_Gregorian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="jdn" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UDF_Persian_To_Julian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bigint">
+          <Parameter Name="iYear" Type="int" Mode="In" />
+          <Parameter Name="iMonth" Type="int" Mode="In" />
+          <Parameter Name="iDay" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="TinyTechModelStoreContainer">
           <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccountType" EntityType="Self.BankAccountType" Schema="dbo" store:Type="Tables" />
@@ -1154,11 +1166,11 @@
           <Property Name="BankNameID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Branch" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
@@ -1178,8 +1190,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BankAccount" Relationship="TinyTechModel.FK_BankAccount_BankAccountType" FromRole="BankAccountType" ToRole="BankAccount" />
         </EntityType>
@@ -1193,8 +1205,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BankAccount" Relationship="TinyTechModel.FK_BankAccount_BankName" FromRole="BankName" ToRole="BankAccount" />
         </EntityType>
@@ -1233,8 +1245,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Province" Relationship="TinyTechModel.FK_City_Province" FromRole="City" ToRole="Province" />
           <NavigationProperty Name="Region" Relationship="TinyTechModel.FK_Region_City" FromRole="City" ToRole="Region" />
@@ -1265,7 +1277,7 @@
           <Property Name="BlackList" Type="Boolean" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Special" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreateUserID" Type="Int32" Nullable="false" />
           <Property Name="CreateVisitorID" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
@@ -1303,8 +1315,8 @@
           <Property Name="ParrentID" Type="Int32" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_Customer_CustomerGroup" FromRole="CustomerGroup" ToRole="Customer" />
         </EntityType>
@@ -1338,8 +1350,8 @@
           <Property Name="UnitVolume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="BuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="AverageBuyPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CreateUSerID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="SingleMinimumOrderCount" Type="Int32" Nullable="false" />
           <Property Name="UnitTransportPrice" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
@@ -1363,14 +1375,14 @@
           <Property Name="GoodsID" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ServerDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="UnitCount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="SingleCount" Type="Int32" Nullable="false" />
           <Property Name="PackageCount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="Gain" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gain" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Goods" Relationship="TinyTechModel.FK_GoodsActivity_Goods" FromRole="GoodsActivity" ToRole="Goods" />
           <NavigationProperty Name="GoodsActivityType" Relationship="TinyTechModel.FK_GoodsActivity_GoodsActivityType" FromRole="GoodsActivity" ToRole="GoodsActivityType" />
@@ -1411,8 +1423,8 @@
           <Property Name="ParrentID" Type="Int32" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Goods" Relationship="TinyTechModel.FK_Goods_GoodsGroup" FromRole="GoodsGroup" ToRole="Goods" />
         </EntityType>
@@ -1426,8 +1438,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Goods" Relationship="TinyTechModel.FK_Goods_GoodsUnit" FromRole="GoodsUnit" ToRole="Goods" />
           <NavigationProperty Name="Goods1" Relationship="TinyTechModel.FK_Goods_GoodsUnit__Package" FromRole="GoodsUnit" ToRole="Goods" />
@@ -1454,8 +1466,8 @@
           <Property Name="GoodsID" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ServerDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="UnitCount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="SingleCount" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
@@ -1479,8 +1491,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Region" Relationship="TinyTechModel.FK_Path_Region" FromRole="Path" ToRole="Region" />
         </EntityType>
@@ -1501,7 +1513,7 @@
           <Property Name="PersonnelTypeID" Type="Int32" Nullable="false" />
           <Property Name="Salary" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreateUserID" Type="Int32" Nullable="false" />
           <Property Name="IsSupervisor" Type="Boolean" Nullable="false" />
           <Property Name="SupervisorID" Type="Int32" Nullable="false" />
@@ -1543,8 +1555,8 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="TinyTechModel.FK_City_Province" FromRole="Province" ToRole="City" />
         </EntityType>
@@ -1559,8 +1571,8 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="TinyTechModel.FK_Region_City" FromRole="Region" ToRole="City" />
           <NavigationProperty Name="Path" Relationship="TinyTechModel.FK_Path_Region" FromRole="Region" ToRole="Path" />
@@ -1605,11 +1617,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="Binary" Nullable="false" MaxLength="500" FixedLength="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Binary" Nullable="false" MaxLength="4000" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoodsActivity" Relationship="TinyTechModel.FK_GoodsActivity_User" FromRole="User" ToRole="GoodsActivity" />
           <NavigationProperty Name="GoodsWarehouseActivity" Relationship="TinyTechModel.FK_GoodsWarehouseActivity_User" FromRole="User" ToRole="GoodsWarehouseActivity" />
@@ -1620,7 +1633,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="TinyTechModel.FK_Security_User_Security_UserRole" FromRole="UserRole" ToRole="User" />
@@ -2194,7 +2207,7 @@
                 <ScalarProperty Name="UnitTransportPrice" ColumnName="UnitTransportPrice" />
                 <ScalarProperty Name="SingleMinimumOrderCount" ColumnName="SingleMinimumOrderCount" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreateUSerID" ColumnName="CreateUSerID" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="AverageBuyPrice" ColumnName="AverageBuyPrice" />
                 <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
@@ -2447,6 +2460,7 @@
             <EntityTypeMapping TypeName="TinyTechModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

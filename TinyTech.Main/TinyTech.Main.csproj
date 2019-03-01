@@ -127,5 +127,12 @@
       <Name>TinyTech.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Setting.png" />
+    <None Include="Resources\Exit1.png" />
+    <None Include="Resources\Bank.png" />
+    <None Include="Resources\Backup.png" />
+    <Content Include="Resources\Exit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

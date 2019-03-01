@@ -18,14 +18,14 @@ namespace TinyTech.Connection
         public int GoodsID { get; set; }
         public bool Active { get; set; }
         public string Description { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.DateTime ServerDate { get; set; }
+        public string Date { get; set; }
+        public string ServerDate { get; set; }
         public int UserID { get; set; }
         public decimal UnitCount { get; set; }
         public int SingleCount { get; set; }
         public decimal PackageCount { get; set; }
         public decimal Price { get; set; }
-        public string Gain { get; set; }
+        public decimal Gain { get; set; }
         public int TypeID { get; set; }
     
         public virtual Goods Goods { get; set; }

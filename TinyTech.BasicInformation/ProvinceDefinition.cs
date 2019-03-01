@@ -162,14 +162,13 @@ namespace TinyTech.BasicInformation
             this.dateControlProvince.Location = new System.Drawing.Point(563, 27);
             this.dateControlProvince.Name = "dateControlProvince";
             this.dateControlProvince.NextControl = this.txtProvinceName;
-            this.dateControlProvince.NowShamsi10Cahracter = "1397/06/14";
+            this.dateControlProvince.ShamsiNow = "1397/06/14";
             this.dateControlProvince.NowShamsi8Character = "97/06/14";
             this.dateControlProvince.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dateControlProvince.Size = new System.Drawing.Size(120, 20);
             this.dateControlProvince.TabIndex = 0;
             this.dateControlProvince.Text = "dateControl1";
             this.dateControlProvince.Value10Cahracter = null;
-            this.dateControlProvince.Value8Character = null;
             // 
             // txtProvinceName
             // 
@@ -459,7 +458,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.ProvinceDefinition(txtProvinceName.Text, txtDescription.Text, dateControlProvince.Shamsi10CharacteriValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.ProvinceDefinition(txtProvinceName.Text, txtDescription.Text, dateControlProvince.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

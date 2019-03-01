@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity.Core.EntityClient;
+using System.Drawing;
 
 namespace TinyTech.Connection
 {
@@ -11,21 +12,11 @@ namespace TinyTech.Connection
         public static string Version = $"تايني تك سافت (T.T.S) نسخه {ConnectionClasses.CurrentVersion()} - تاريخ بروزرساني 1397/05/11";
         public static string LoggedInUserName;
         public static int LoggedInUserId;
+        public static Color BackgroudColor = Color.FromArgb(3, 103, 135);
 
         public static string BuildConnectionString()
         {
-            var connString = string.Concat(new string[]
-            {
-                "data source=",
-                ServerName,
-                ";initial catalog=",
-                DatabaseName,
-                ";persist security info=True;user id=",
-                StaticUserName,
-                ";password=",
-                StaticPassword,
-                ";multipleactiveresultsets=True;application name=EntityFramework&quot;"
-            });
+            var connString = string.Concat("data source=", ServerName, ";initial catalog=", DatabaseName, ";persist security info=True;user id=", StaticUserName, ";password=", StaticPassword, ";multipleactiveresultsets=True;application name=EntityFramework&quot;");
             return new EntityConnectionStringBuilder
             {
                 Metadata = "res://*/",
@@ -36,17 +27,7 @@ namespace TinyTech.Connection
 
         public static string BuildConnectionStringOld()
         {
-            var connString = string.Concat(new string[]
-            {
-                "data source=",
-                ServerName,
-                ";initial catalog=",
-                DatabaseName,
-                ";persist security info=True;user id=",
-                StaticUserName,
-                ";password=",
-                StaticPassword
-            });
+            var connString = string.Concat("data source=", ServerName, ";initial catalog=", DatabaseName, ";persist security info=True;user id=", StaticUserName, ";password=", StaticPassword);
             return connString;
         }
     }

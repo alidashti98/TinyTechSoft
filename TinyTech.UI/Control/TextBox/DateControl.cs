@@ -9,10 +9,9 @@ namespace TinyTech.UI.Control.TextBox
     public class DateControl : System.Windows.Forms.Control
     {
         public System.Windows.Forms.Control NextControl { get; set; }
-        public string NowShamsi10Cahracter { get; set; }
+        public string ShamsiNow { get; set; }
         public string NowShamsi8Character { get; set; }
         public string Value10Cahracter { get; set; }
-        public string Value8Character { get; set; }
         public bool CanGoForward { get; set; }
         public bool CanGoBackward { get; set; }
 
@@ -31,10 +30,10 @@ namespace TinyTech.UI.Control.TextBox
             BackColor = Color.White;
             CanGoBackward = true;
             CanGoForward = false;
-            Wrapper = new FlowLayoutPanel();
-            Wrapper.FlowDirection = FlowDirection.LeftToRight;
-            Wrapper.Margin = Padding.Empty;
-            Wrapper.Dock = DockStyle.Fill;
+            Wrapper = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight, Margin = Padding.Empty, Dock = DockStyle.Fill
+            };
             Year = new NumericTextBox();
             YearMonth = new TinyTech.UI.Control.Label.Label();
             Month = new NumericTextBox();
@@ -126,7 +125,7 @@ namespace TinyTech.UI.Control.TextBox
             }
         }
 
-        public string Shamsi10CharacteriValue()
+        public string ShamsiValue()
         {
             return string.Concat(Year.Text, "/", Month.Text, "/", Day.Text);
         }
@@ -307,8 +306,7 @@ namespace TinyTech.UI.Control.TextBox
             {
                 text += dayOfMonth.ToString();
             }
-            NowShamsi10Cahracter = text;
-            NowShamsi8Character = text.Substring(2, 8);
+            ShamsiNow = text;
             return text;
         }
 
@@ -335,31 +333,6 @@ namespace TinyTech.UI.Control.TextBox
                 DateControl.Day.Text = dayOfMonth.ToString();
             }
             DateControl.Year.Text = year.ToString();
-        }
-
-        public static void SetDateControl8Char(ref DateControl DateControl, string date8Char)
-        {
-            date8Char = date8Char.Trim();
-            var num = int.Parse(date8Char.Substring(3, 2));
-            var num2 = int.Parse(date8Char.Substring(6, 2));
-            var num3 = 1300 + int.Parse(date8Char.Substring(0, 2));
-            if (num < 10)
-            {
-                DateControl.Month.Text = "0" + num;
-            }
-            else
-            {
-                DateControl.Month.Text = num.ToString();
-            }
-            if (num2 < 10)
-            {
-                DateControl.Day.Text = "0" + num2;
-            }
-            else
-            {
-                DateControl.Day.Text = num2.ToString();
-            }
-            DateControl.Year.Text = num3.ToString();
         }
 
         public void SetTextBoxWidthAndHeight(System.Windows.Forms.TextBox textBox, int maxLength)

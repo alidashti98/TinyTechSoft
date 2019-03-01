@@ -162,14 +162,13 @@ namespace TinyTech.BasicInformation
             this.dateControlGoodsUnit.Location = new System.Drawing.Point(567, 27);
             this.dateControlGoodsUnit.Name = "dateControlGoodsUnit";
             this.dateControlGoodsUnit.NextControl = this.txtGoodsUnitName;
-            this.dateControlGoodsUnit.NowShamsi10Cahracter = "1397/06/14";
+            this.dateControlGoodsUnit.ShamsiNow = "1397/06/14";
             this.dateControlGoodsUnit.NowShamsi8Character = "97/06/14";
             this.dateControlGoodsUnit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dateControlGoodsUnit.Size = new System.Drawing.Size(120, 20);
             this.dateControlGoodsUnit.TabIndex = 0;
             this.dateControlGoodsUnit.Text = "dateControl1";
             this.dateControlGoodsUnit.Value10Cahracter = null;
-            this.dateControlGoodsUnit.Value8Character = null;
             // 
             // txtGoodsUnitName
             // 
@@ -459,7 +458,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.GoodsUnitDefinition(txtGoodsUnitName.Text, txtDescription.Text, dateControlGoodsUnit.Shamsi10CharacteriValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.GoodsUnitDefinition(txtGoodsUnitName.Text, txtDescription.Text, dateControlGoodsUnit.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

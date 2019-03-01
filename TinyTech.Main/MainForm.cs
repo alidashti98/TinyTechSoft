@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -276,21 +277,21 @@ namespace TinyTech.Main
             // ToolStripMenuItemBankName
             // 
             this.ToolStripMenuItemBankName.Name = "ToolStripMenuItemBankName";
-            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemBankName.Text = "تعريف نام بانك";
             this.ToolStripMenuItemBankName.Click += new System.EventHandler(this.ToolStripMenuItemBankName_Click);
             // 
             // ToolStripMenuItemAccount
             // 
             this.ToolStripMenuItemAccount.Name = "ToolStripMenuItemAccount";
-            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemAccount.Text = "تعريف شماره حساب";
             this.ToolStripMenuItemAccount.Click += new System.EventHandler(this.ToolStripMenuItemAccount_Click);
             // 
             // ToolStripMenuItemCheckBook
             // 
             this.ToolStripMenuItemCheckBook.Name = "ToolStripMenuItemCheckBook";
-            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemCheckBook.Text = "تعريف دسته چك";
             // 
             // ToolStripMenuItemDailyInformation
@@ -348,14 +349,14 @@ namespace TinyTech.Main
             // 
             // lblDateTime
             // 
-            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblDateTime.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblDateTime.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
-            this.lblDateTime.ForeColor = System.Drawing.Color.Green;
-            this.lblDateTime.Location = new System.Drawing.Point(3, 3);
+            this.lblDateTime.ForeColor = System.Drawing.Color.Yellow;
+            this.lblDateTime.Location = new System.Drawing.Point(0, 0);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDateTime.Size = new System.Drawing.Size(184, 72);
+            this.lblDateTime.Size = new System.Drawing.Size(184, 75);
             this.lblDateTime.TabIndex = 3;
             this.lblDateTime.Text = "زمان جاري سيستم";
             this.lblDateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -376,12 +377,14 @@ namespace TinyTech.Main
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "صفحه اصلي";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -402,6 +405,13 @@ namespace TinyTech.Main
             pnlTop.Controls.Add(menuMainForm);
             pnlMain.Controls.Add(tabControlMain);
             pnlBottom.Controls.Add(lblDateTime);
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            menuMainForm.BackColor = ConnectionInfo.BackgroudColor;
+            pnlBottom.BackColor = ConnectionInfo.BackgroudColor;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -449,7 +459,7 @@ namespace TinyTech.Main
         private void timer1_Tick(object sender, EventArgs e)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fa-IR");
-            lblDateTime.Text = $"{DateTime.Now.ToString("HH:mm:ss")}\n{Date.NowShamsi10Cahracter}\n{FullPersianDate.ToLongDateString()}";
+            lblDateTime.Text = $"{DateTime.Now.ToString("HH:mm:ss")}\n{Date.ShamsiNow}\n{FullPersianDate.ToLongDateString()}";
         }
 
         private void ToolStripMenuItemProvince_Click(object sender, EventArgs e)

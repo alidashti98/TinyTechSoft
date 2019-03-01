@@ -44,7 +44,7 @@ namespace TinyTech.Connection
         public bool BlackList { get; set; }
         public string Code { get; set; }
         public bool Special { get; set; }
-        public System.DateTime CreateDate { get; set; }
+        public string CreateDate { get; set; }
         public int CreateUserID { get; set; }
         public int CreateVisitorID { get; set; }
         public int Status { get; set; }

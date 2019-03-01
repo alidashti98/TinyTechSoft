@@ -19,3 +19,13 @@ D:\Project\TinyTech\TinyTech\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.
 D:\Project\TinyTech\TinyTech\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.CopyComplete
 D:\Project\TinyTech\TinyTech\TinyTech.Setting\obj\Debug\TinyTech.Setting.dll
 D:\Project\TinyTech\TinyTech\TinyTech.Setting\obj\Debug\TinyTech.Setting.pdb
+D:\Project\TinyTechSoft\TinyTech.Setting\bin\Debug\TinyTech.Setting.dll
+D:\Project\TinyTechSoft\TinyTech.Setting\bin\Debug\TinyTech.Setting.pdb
+D:\Project\TinyTechSoft\TinyTech.Setting\bin\Debug\CEWorld.Convert.dll
+D:\Project\TinyTechSoft\TinyTech.Setting\bin\Debug\FastMember.dll
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.Properties.Resources.resources
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.GenerateResource.cache
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.CoreCompileInputs.cache
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.CopyComplete
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.dll
+D:\Project\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.pdb
