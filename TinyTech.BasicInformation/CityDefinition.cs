@@ -20,7 +20,6 @@ namespace TinyTech.BasicInformation
         private UI.Control.UIElement.GroupBox groupBoxCityDefinition;
         private UI.Control.UIElement.Panel pnlButtons;
         private UI.Control.Button.RefreshButton btnRefresh;
-        private UI.Control.Button.EditButton btnEdit;
         private UI.Control.Button.CancelButton btnCancel;
         private UI.Control.Button.SaveButton btnSave;
         private UI.Control.UIElement.Panel pnlMain;
@@ -79,7 +78,6 @@ namespace TinyTech.BasicInformation
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblCityName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
-            this.btnEdit = new TinyTech.UI.Control.Button.EditButton();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCity)).BeginInit();
             this.pnlCityDefinition.SuspendLayout();
@@ -173,9 +171,9 @@ namespace TinyTech.BasicInformation
             this.dateControlCity.Location = new System.Drawing.Point(565, 27);
             this.dateControlCity.Name = "dateControlCity";
             this.dateControlCity.NextControl = this.chkProvince;
-            this.dateControlCity.ShamsiNow = "1397/06/14";
             this.dateControlCity.NowShamsi8Character = "97/06/14";
             this.dateControlCity.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateControlCity.ShamsiNow = "1397/06/14";
             this.dateControlCity.Size = new System.Drawing.Size(120, 20);
             this.dateControlCity.TabIndex = 0;
             this.dateControlCity.Text = "dateControl1";
@@ -269,7 +267,7 @@ namespace TinyTech.BasicInformation
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(261, 3);
+            this.btnSave.Location = new System.Drawing.Point(175, 3);
             this.btnSave.Margin = new System.Windows.Forms.Padding(10);
             this.btnSave.Name = "btnSave";
             this.btnSave.NextControl = this.btnRefresh;
@@ -376,32 +374,14 @@ namespace TinyTech.BasicInformation
             // 
             this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlButtons.Controls.Add(this.btnRefresh);
-            this.pnlButtons.Controls.Add(this.btnEdit);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
             this.pnlButtons.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.pnlButtons.Location = new System.Drawing.Point(6, 137);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(345, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(259, 40);
             this.pnlButtons.TabIndex = 4;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(175, 3);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.NextControl = null;
-            this.btnEdit.Size = new System.Drawing.Size(81, 34);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "ويرايش";
-            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // CityDefinition
             // 
@@ -433,7 +413,6 @@ namespace TinyTech.BasicInformation
             txtCityName.Enabled = false;
             txtDescription.Enabled = false;
             btnSave.Enabled = false;
-            btnEdit.Enabled = false;
             btnRefresh.Enabled = false;
         }
 
@@ -449,7 +428,6 @@ namespace TinyTech.BasicInformation
             dgvCity.DataSource = CityListDataTable(cityList);
             SetGridView();
             txtCityID.Text = CalculateMaxId().ToString();
-            btnEdit.Enabled = false;
             chkProvince.Focus();
         }
 

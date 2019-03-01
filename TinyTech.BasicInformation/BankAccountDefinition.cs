@@ -17,7 +17,6 @@ namespace TinyTech.BasicInformation
         private UI.Control.UIElement.GroupBox groupBoxBankAccountDefinition;
         private UI.Control.UIElement.Panel pnlButtons;
         private UI.Control.Button.RefreshButton btnRefresh;
-        private UI.Control.Button.EditButton btnEdit;
         private UI.Control.Button.CancelButton btnCancel;
         private UI.Control.Button.SaveButton btnSave;
         private UI.Control.UIElement.Panel pnlMain;
@@ -74,7 +73,6 @@ namespace TinyTech.BasicInformation
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblBankAccountName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
-            this.btnEdit = new TinyTech.UI.Control.Button.EditButton();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBankAccount)).BeginInit();
             this.pnlBankAccountDefinition.SuspendLayout();
@@ -87,10 +85,10 @@ namespace TinyTech.BasicInformation
             this.pnlMain.Controls.Add(this.dgvBankAccount);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlMain.Location = new System.Drawing.Point(0, 253);
+            this.pnlMain.Location = new System.Drawing.Point(0, 179);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlMain.Size = new System.Drawing.Size(800, 247);
+            this.pnlMain.Size = new System.Drawing.Size(800, 321);
             this.pnlMain.TabIndex = 1;
             // 
             // dgvBankAccount
@@ -109,7 +107,7 @@ namespace TinyTech.BasicInformation
             this.dgvBankAccount.RowHeadersVisible = false;
             this.dgvBankAccount.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvBankAccount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBankAccount.Size = new System.Drawing.Size(800, 247);
+            this.dgvBankAccount.Size = new System.Drawing.Size(800, 321);
             this.dgvBankAccount.TabIndex = 1;
             // 
             // pnlBankAccountDefinition
@@ -120,7 +118,7 @@ namespace TinyTech.BasicInformation
             this.pnlBankAccountDefinition.Location = new System.Drawing.Point(0, 0);
             this.pnlBankAccountDefinition.Name = "pnlBankAccountDefinition";
             this.pnlBankAccountDefinition.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlBankAccountDefinition.Size = new System.Drawing.Size(800, 253);
+            this.pnlBankAccountDefinition.Size = new System.Drawing.Size(800, 179);
             this.pnlBankAccountDefinition.TabIndex = 0;
             // 
             // groupBoxBankAccountDefinition
@@ -139,7 +137,7 @@ namespace TinyTech.BasicInformation
             this.groupBoxBankAccountDefinition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxBankAccountDefinition.Location = new System.Drawing.Point(0, 0);
             this.groupBoxBankAccountDefinition.Name = "groupBoxBankAccountDefinition";
-            this.groupBoxBankAccountDefinition.Size = new System.Drawing.Size(800, 253);
+            this.groupBoxBankAccountDefinition.Size = new System.Drawing.Size(800, 179);
             this.groupBoxBankAccountDefinition.TabIndex = 0;
             this.groupBoxBankAccountDefinition.TabStop = false;
             this.groupBoxBankAccountDefinition.Text = "تعريف شماره حساب";
@@ -184,7 +182,7 @@ namespace TinyTech.BasicInformation
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(261, 3);
+            this.btnSave.Location = new System.Drawing.Point(176, 3);
             this.btnSave.Margin = new System.Windows.Forms.Padding(10);
             this.btnSave.Name = "btnSave";
             this.btnSave.NextControl = this.btnRefresh;
@@ -202,7 +200,7 @@ namespace TinyTech.BasicInformation
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(89, 3);
+            this.btnRefresh.Location = new System.Drawing.Point(90, 3);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NextControl = this.btnCancel;
@@ -219,7 +217,7 @@ namespace TinyTech.BasicInformation
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnCancel.ForeColor = System.Drawing.Color.Gray;
-            this.btnCancel.Location = new System.Drawing.Point(3, 3);
+            this.btnCancel.Location = new System.Drawing.Point(4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.NextControl = this.dateControlBankAccount;
             this.btnCancel.Size = new System.Drawing.Size(81, 34);
@@ -237,9 +235,9 @@ namespace TinyTech.BasicInformation
             this.dateControlBankAccount.Location = new System.Drawing.Point(584, 24);
             this.dateControlBankAccount.Name = "dateControlBankAccount";
             this.dateControlBankAccount.NextControl = this.txtBankAccountNumber;
-            this.dateControlBankAccount.ShamsiNow = "1397/06/14";
             this.dateControlBankAccount.NowShamsi8Character = "97/06/14";
             this.dateControlBankAccount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateControlBankAccount.ShamsiNow = "1397/06/14";
             this.dateControlBankAccount.Size = new System.Drawing.Size(120, 20);
             this.dateControlBankAccount.TabIndex = 0;
             this.dateControlBankAccount.Text = "dateControl1";
@@ -355,32 +353,14 @@ namespace TinyTech.BasicInformation
             // 
             this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlButtons.Controls.Add(this.btnRefresh);
-            this.pnlButtons.Controls.Add(this.btnEdit);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
             this.pnlButtons.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.pnlButtons.Location = new System.Drawing.Point(6, 88);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(345, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(260, 40);
             this.pnlButtons.TabIndex = 3;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(175, 3);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.NextControl = null;
-            this.btnEdit.Size = new System.Drawing.Size(81, 34);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "ويرايش";
-            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // BankAccountDefinition
             // 
@@ -421,7 +401,6 @@ namespace TinyTech.BasicInformation
             SetGridView();
             txtBankAccountID.Text = CalculateMaxId().ToString();
             txtBankAccountNumber.Focus();
-            btnEdit.Enabled = false;
         }
 
         private void FillAccountType()
