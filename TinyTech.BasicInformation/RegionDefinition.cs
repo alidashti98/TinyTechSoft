@@ -19,7 +19,6 @@ namespace TinyTech.UI.UserControl
         private Control.UIElement.GroupBox groupBoxRegionDefinition;
         private Control.UIElement.Panel pnlButtons;
         private Control.Button.RefreshButton btnRefresh;
-        private Control.Button.EditButton btnEdit;
         private Control.Button.CancelButton btnCancel;
         private Control.Button.SaveButton btnSave;
         private Control.UIElement.Panel pnlMain;
@@ -84,7 +83,6 @@ namespace TinyTech.UI.UserControl
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblRegionName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
-            this.btnEdit = new TinyTech.UI.Control.Button.EditButton();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).BeginInit();
             this.pnlRegionDefinition.SuspendLayout();
@@ -181,9 +179,9 @@ namespace TinyTech.UI.UserControl
             this.dateControlRegion.Location = new System.Drawing.Point(585, 27);
             this.dateControlRegion.Name = "dateControlRegion";
             this.dateControlRegion.NextControl = this.chkProvince;
-            this.dateControlRegion.ShamsiNow = "1397/06/14";
             this.dateControlRegion.NowShamsi8Character = "97/06/14";
             this.dateControlRegion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateControlRegion.ShamsiNow = "1397/06/14";
             this.dateControlRegion.Size = new System.Drawing.Size(120, 20);
             this.dateControlRegion.TabIndex = 0;
             this.dateControlRegion.Text = "dateControl1";
@@ -322,7 +320,7 @@ namespace TinyTech.UI.UserControl
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(261, 3);
+            this.btnSave.Location = new System.Drawing.Point(176, 3);
             this.btnSave.Margin = new System.Windows.Forms.Padding(10);
             this.btnSave.Name = "btnSave";
             this.btnSave.NextControl = this.btnRefresh;
@@ -340,7 +338,7 @@ namespace TinyTech.UI.UserControl
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(89, 3);
+            this.btnRefresh.Location = new System.Drawing.Point(90, 3);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NextControl = this.btnCancel;
@@ -357,7 +355,7 @@ namespace TinyTech.UI.UserControl
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnCancel.ForeColor = System.Drawing.Color.Gray;
-            this.btnCancel.Location = new System.Drawing.Point(3, 3);
+            this.btnCancel.Location = new System.Drawing.Point(4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.NextControl = this.dateControlRegion;
             this.btnCancel.Size = new System.Drawing.Size(81, 34);
@@ -429,32 +427,14 @@ namespace TinyTech.UI.UserControl
             // 
             this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlButtons.Controls.Add(this.btnRefresh);
-            this.pnlButtons.Controls.Add(this.btnEdit);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
             this.pnlButtons.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.pnlButtons.Location = new System.Drawing.Point(7, 167);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(345, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(260, 40);
             this.pnlButtons.TabIndex = 5;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.Green;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(175, 3);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(10);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.NextControl = null;
-            this.btnEdit.Size = new System.Drawing.Size(81, 34);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "ويرايش";
-            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // RegionDefinition
             // 
@@ -486,7 +466,6 @@ namespace TinyTech.UI.UserControl
             txtRegionName.Enabled = false;
             txtDescription.Enabled = false;
             btnSave.Enabled = false;
-            btnEdit.Enabled = false;
             btnRefresh.Enabled = false;
         }
 
@@ -502,7 +481,6 @@ namespace TinyTech.UI.UserControl
             dgvRegion.DataSource = RegionListDataTable(RegionList);
             SetGridView();
             txtRegionID.Text = CalculateMaxId().ToString();
-            btnEdit.Enabled = false;
             chkProvince.Focus();
         }
 
