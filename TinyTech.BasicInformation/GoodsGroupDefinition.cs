@@ -18,6 +18,7 @@ namespace TinyTech.BasicInformation
         private UI.Control.UIElement.GroupBox groupBoxGoodsGroupDefinition;
         private UI.Control.UIElement.Panel pnlButtons;
         private UI.Control.Button.RefreshButton btnRefresh;
+        private UI.Control.Button.EditButton btnEdit;
         private UI.Control.Button.CancelButton btnCancel;
         private UI.Control.Button.SaveButton btnSave;
         private UI.Control.UIElement.Panel pnlMain;
@@ -79,6 +80,7 @@ namespace TinyTech.BasicInformation
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblGoodsGroupName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
+            this.btnEdit = new TinyTech.UI.Control.Button.EditButton();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGoodsGroup)).BeginInit();
             this.pnlGoodsGroupDefinition.SuspendLayout();
@@ -172,9 +174,9 @@ namespace TinyTech.BasicInformation
             this.dateControlGoodsGroup.Location = new System.Drawing.Point(571, 27);
             this.dateControlGoodsGroup.Name = "dateControlGoodsGroup";
             this.dateControlGoodsGroup.NextControl = this.txtGoodsGroupName;
+            this.dateControlGoodsGroup.ShamsiNow = "1397/06/14";
             this.dateControlGoodsGroup.NowShamsi8Character = "97/06/14";
             this.dateControlGoodsGroup.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateControlGoodsGroup.ShamsiNow = "1397/06/14";
             this.dateControlGoodsGroup.Size = new System.Drawing.Size(120, 20);
             this.dateControlGoodsGroup.TabIndex = 0;
             this.dateControlGoodsGroup.Text = "dateControl1";
@@ -251,7 +253,7 @@ namespace TinyTech.BasicInformation
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(175, 3);
+            this.btnSave.Location = new System.Drawing.Point(261, 3);
             this.btnSave.Margin = new System.Windows.Forms.Padding(10);
             this.btnSave.Name = "btnSave";
             this.btnSave.NextControl = this.btnRefresh;
@@ -392,14 +394,32 @@ namespace TinyTech.BasicInformation
             // 
             this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlButtons.Controls.Add(this.btnRefresh);
+            this.pnlButtons.Controls.Add(this.btnEdit);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
             this.pnlButtons.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.pnlButtons.Location = new System.Drawing.Point(6, 123);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(259, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(345, 40);
             this.pnlButtons.TabIndex = 4;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.BackColor = System.Drawing.Color.Green;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(175, 3);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(10);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.NextControl = null;
+            this.btnEdit.Size = new System.Drawing.Size(81, 34);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "ويرايش";
+            this.btnEdit.UseVisualStyleBackColor = false;
             // 
             // GoodsGroupDefinition
             // 
@@ -441,6 +461,7 @@ namespace TinyTech.BasicInformation
             SetGridView();
             txtGoodsGroupID.Text = CalculateMaxId().ToString();
             txtGoodsGroupName.Focus();
+            btnEdit.Enabled = false;
             radioCanNegative.Checked = true;
         }
 
