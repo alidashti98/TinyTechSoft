@@ -416,9 +416,9 @@ namespace TinyTech.BasicInformation
             btnRefresh.Enabled = false;
         }
 
-        private DataTable CityListDataTable(List<City> cityList)
+        private DataTable CityListDataTable(List<ConnectionClasses.CityList> cityList)
         {
-            var dataTable = ToolBox<City>.GetDataTable(cityList);
+            var dataTable = ToolBox<ConnectionClasses.CityList>.GetDataTable(cityList);
             return dataTable;
         }
 

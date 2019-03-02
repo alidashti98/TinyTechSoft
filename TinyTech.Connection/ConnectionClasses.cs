@@ -115,19 +115,72 @@ namespace TinyTech.Connection
 
         #region CityList
 
-        public List<City> GetCity()
+        public class CityList
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public int ProvinceID { get; set; }
+            public string Description { get; set; }
+            public bool Active { get; set; }
+            public string CLientDate { get; set; }
+            public string ServerDate { get; set; }
+            public string CLientTime { get; set; }
+            public string ServerTime { get; set; }
+            public int UserID { get; set; }
+            public string ProvinceName { get; set; }
+
+
+            public CityList()
+            {
+
+            }
+        }
+
+        public List<CityList> GetCity()
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.City.AsNoTracking().ToList();
+                var cityList = (from i in DB_Connection.City.AsNoTracking().ToList()
+                                     select new CityList
+                                     {
+                                         ID = i.ID,
+                                         Name = i.Name,
+                                         ProvinceID = i.ProvinceID,
+                                         Description = i.Description,
+                                         Active = i.Active,
+                                         CLientDate = i.ClientDate,
+                                         ServerDate = i.ServerDate,
+                                         CLientTime = i.ClientTime,
+                                         ServerTime = i.ServerTime,
+                                         UserID = i.UserID,
+                                         ProvinceName = i.Province.Name,
+
+
+                                     }).Distinct().ToList();
+
+                return cityList;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.ToString());
+                MessageBox.Show("Inventory Error\n\n" + ex.Message);
                 return null;
             }
         }
+
+        //public List<City> GetCity()
+        //{
+        //    try
+        //    {
+        //        DB_Connection = new TinyTechEntities();
+        //        return DB_Connection.City.AsNoTracking().ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.InnerException?.ToString());
+        //        return null;
+        //    }
+        //}
 
         #endregion
 
