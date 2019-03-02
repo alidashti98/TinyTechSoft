@@ -509,7 +509,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.CityDefinition(txtCityName.Text, int.Parse(txtProvinceName.Tag.ToString()), txtDescription.Text, dateControlCity.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.CityDefinition(txtCityName.Text, int.Parse(txtProvinceName.Tag.ToString()), txtDescription.Text, dateControlCity.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

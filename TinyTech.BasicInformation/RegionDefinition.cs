@@ -568,7 +568,7 @@ namespace TinyTech.UI.UserControl
         {
             if (FormValidate())
             {
-                var result = @class.RegionDefinition(txtRegionName.Text, int.Parse(txtCityName.Tag.ToString()), txtDescription.Text, dateControlRegion.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.RegionDefinition(txtRegionName.Text, int.Parse(txtCityName.Tag.ToString()), txtDescription.Text, dateControlRegion.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

@@ -437,7 +437,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.GoodsUnitDefinition(txtGoodsUnitName.Text, txtDescription.Text, dateControlGoodsUnit.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.GoodsUnitDefinition(txtGoodsUnitName.Text, txtDescription.Text, dateControlGoodsUnit.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {

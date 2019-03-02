@@ -506,8 +506,7 @@ namespace TinyTech.Connection
             return version;
         }
 
-        public int GoodsGroupDefinition(string name, bool canNegative, string description, string clientDate,
-            string serverDate, int userID, bool isParrent = false, int parrentID = 0) //Save Error => 0
+        public int GoodsGroupDefinition(string name, bool canNegative, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID, bool isParrent = false, int parrentID = 0) //Save Error => 0
         {
             try
             {
@@ -527,6 +526,8 @@ namespace TinyTech.Connection
                                 ParrentID = parrentID,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID,
                             };
                             dbConnection.GoodsGroup.Add(goodsGroup);
@@ -551,8 +552,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int GoodsUnitDefinition(string name, string description, string clientDate, string serverDate,
-            int userID) //Save Error => 0
+        public int GoodsUnitDefinition(string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
             {
@@ -569,6 +569,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID
                             };
                             dbConnection.GoodsUnit.Add(goodsUnit);
@@ -636,8 +638,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int CustomerGroupDefinition(string name, int defaultSailPrice, string description, string clientDate,
-            string serverDate, int userID, bool isParrent = false, int parrentID = 0) //Save Error => 0
+        public int CustomerGroupDefinition(string name, int defaultSailPrice, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID, bool isParrent = false, int parrentID = 0) //Save Error => 0
         {
             try
             {
@@ -657,6 +658,8 @@ namespace TinyTech.Connection
                                 ParrentID = parrentID,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID
                             };
                             dbConnection.CustomerGroup.Add(customerGroup);
@@ -681,8 +684,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int ProvinceDefinition(string name, string description, string clientDate, string serverDate,
-            int userID) //Save Error => 0
+        public int ProvinceDefinition(string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
             {
@@ -699,6 +701,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID,
                             };
                             dbConnection.Province.Add(province);
@@ -723,8 +727,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int BankAccountDefinition(string bankAccountNumber, string description, string clientDate,
-            string serverDate, int userID) //Save Error => 0
+        public int BankAccountDefinition(string bankAccountNumber, string description, string clientDate, string clientTime, string serverTime, string serverDate, int userID) //Save Error => 0
         {
             try
             {
@@ -741,6 +744,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID,
                             };
                             dbConnection.BankAccount.Add(bankAccount);
@@ -765,8 +770,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int CityDefinition(string name, int provinceId, string description, string clientDate, string serverDate,
-            int userID) //Save Error => 0
+        public int CityDefinition(string name, int provinceId, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
             {
@@ -784,6 +788,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID,
                             };
                             dbConnection.City.Add(city);
@@ -808,8 +814,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int RegionDefinition(string name, int cityId, string description, string clientDate, string serverDate,
-            int userID) //Save Error => 0
+        public int RegionDefinition(string name, int cityId, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
             {
@@ -827,6 +832,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID,
                             };
                             dbConnection.Region.Add(region);
@@ -851,8 +858,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int PathDefinition(string name, int regionId, string description, string clientDate, string serverDate,
-            int userID) //Save Error => 0
+        public int PathDefinition(string name, int regionId, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
             {
@@ -870,6 +876,8 @@ namespace TinyTech.Connection
                                 Active = true,
                                 ClientDate = clientDate,
                                 ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
                                 UserID = userID
                             };
                             dbConnection.Path.Add(path);

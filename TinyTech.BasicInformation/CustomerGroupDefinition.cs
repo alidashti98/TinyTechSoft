@@ -484,7 +484,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.CustomerGroupDefinition(txtGroupName.Text, cmbPrice.SelectedIndex + 1, txtDescription.Text, dateControlCustomerGroup.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), ConnectionInfo.LoggedInUserId);
+                var result = @class.CustomerGroupDefinition(txtGroupName.Text, cmbPrice.SelectedIndex + 1, txtDescription.Text, dateControlCustomerGroup.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {
