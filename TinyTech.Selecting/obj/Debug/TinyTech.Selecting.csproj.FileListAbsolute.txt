@@ -66,3 +66,5 @@ D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csproj.C
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csproj.CopyComplete
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.dll
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.pdb
+D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankAccountTypeSelect.resources
+D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankNameSelect.resources

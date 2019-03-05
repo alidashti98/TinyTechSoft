@@ -97,3 +97,4 @@ D:\Project\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInform
 D:\Project\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.csproj.CopyComplete
 D:\Project\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.dll
 D:\Project\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.pdb
+D:\Project\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.BankAccountTypeDefinition.resources

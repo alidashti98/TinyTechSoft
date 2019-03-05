@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankNameSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CitySelect.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -55,6 +58,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BankAccountTypeSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ProvinceSelect.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -63,11 +69,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BankNameSelect.resx">
+      <DependentUpon>BankNameSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CitySelect.resx">
       <DependentUpon>CitySelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PathSelect.resx">
       <DependentUpon>PathSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankAccountTypeSelect.resx">
+      <DependentUpon>BankAccountTypeSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProvinceSelect.resx">
       <DependentUpon>ProvinceSelect.cs</DependentUpon>

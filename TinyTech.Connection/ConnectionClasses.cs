@@ -34,7 +34,9 @@ namespace TinyTech.Connection
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.ToString());
+                MessageBox.Show($"GetFiscalYear\n\n{ex.InnerException}");
+
+                ;
                 return null;
             }
         }
@@ -142,45 +144,31 @@ namespace TinyTech.Connection
             {
                 DB_Connection = new TinyTechEntities();
                 var cityList = (from i in DB_Connection.City.AsNoTracking().ToList()
-                                     select new CityList
-                                     {
-                                         ID = i.ID,
-                                         Name = i.Name,
-                                         ProvinceID = i.ProvinceID,
-                                         Description = i.Description,
-                                         Active = i.Active,
-                                         CLientDate = i.ClientDate,
-                                         ServerDate = i.ServerDate,
-                                         CLientTime = i.ClientTime,
-                                         ServerTime = i.ServerTime,
-                                         UserID = i.UserID,
-                                         ProvinceName = i.Province.Name,
+                                select new CityList
+                                {
+                                    ID = i.ID,
+                                    Name = i.Name,
+                                    ProvinceID = i.ProvinceID,
+                                    Description = i.Description,
+                                    Active = i.Active,
+                                    CLientDate = i.ClientDate,
+                                    ServerDate = i.ServerDate,
+                                    CLientTime = i.ClientTime,
+                                    ServerTime = i.ServerTime,
+                                    UserID = i.UserID,
+                                    ProvinceName = i.Province.Name,
 
 
-                                     }).Distinct().ToList();
+                                }).Distinct().ToList();
 
                 return cityList;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Inventory Error\n\n" + ex.Message);
+                MessageBox.Show($"GetCity\n\n{ex.Message}");
                 return null;
             }
         }
-
-        //public List<City> GetCity()
-        //{
-        //    try
-        //    {
-        //        DB_Connection = new TinyTechEntities();
-        //        return DB_Connection.City.AsNoTracking().ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.InnerException?.ToString());
-        //        return null;
-        //    }
-        //}
 
         #endregion
 
@@ -258,16 +246,69 @@ namespace TinyTech.Connection
 
         #region BankAccountList
 
-        public List<BankAccount> GetBankAccount()
+        public class BankAccountList
+        {
+            public int ID { get; set; }
+            public string AccountNumber { get; set; }
+            public string AccountOwner { get; set; }
+            public int BankNameID { get; set; }
+            public string Description { get; set; }
+            public bool Active { get; set; }
+            public decimal Balance { get; set; }
+            public string CLientDate { get; set; }
+            public string ServerDate { get; set; }
+            public string CLientTime { get; set; }
+            public string ServerTime { get; set; }
+            public int UserID { get; set; }
+            public string Address { get; set; }
+            public string Branch { get; set; }
+            public string Phone1 { get; set; }
+            public string Phone2 { get; set; }
+            public int AccountTypeID { get; set; }
+            public string BankNameName { get; set; }
+            public string AccountTypeName { get; set; }
+
+            public BankAccountList()
+            {
+
+            }
+        }
+
+        public List<BankAccountList> GetBankAccount()
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.BankAccount.AsNoTracking().ToList();
+                var bankAccountList = (from i in DB_Connection.BankAccount.AsNoTracking().ToList()
+                                       select new BankAccountList
+                                       {
+                                           ID = i.ID,
+                                           AccountNumber = i.AccountNumber,
+                                           AccountOwner = i.AccountOwner,
+                                           BankNameID = i.BankNameID,
+                                           Description = i.Description,
+                                           Active = i.Active,
+                                           Balance = i.Balance,
+                                           CLientDate = i.ClientDate,
+                                           ServerDate = i.ServerDate,
+                                           CLientTime = i.ClientTime,
+                                           ServerTime = i.ServerTime,
+                                           UserID = i.UserID,
+                                           Address = i.Address,
+                                           Branch = i.Branch,
+                                           Phone1 = i.Phone1,
+                                           Phone2 = i.Phone2,
+                                           AccountTypeID = i.AccountTypeID,
+                                           BankNameName = i.BankName.Name,
+                                           AccountTypeName = i.BankAccountType.Name,
+
+                                       }).Distinct().ToList();
+
+                return bankAccountList;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException?.ToString());
+                MessageBox.Show("BankAccount Error\n\n" + ex.Message);
                 return null;
             }
         }
@@ -506,15 +547,8 @@ namespace TinyTech.Connection
                 };
                 var result = c1.ExecuteScalar();
                 conn.Close();
-                return result.ToString().Substring(0,8);
+                return result.ToString().Substring(0, 8);
             }
-        }
-
-        public static string ClientTime()
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("fa-IR");
-            var clientTime = $"{DateTime.Now:HH:mm:ss}";
-            return clientTime;
         }
 
         public int CheckLoginInfo(string username,
@@ -780,7 +814,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int BankAccountDefinition(string bankAccountNumber, string description, string clientDate, string clientTime, string serverTime, string serverDate, int userID) //Save Error => 0
+        public int BankAccountDefinition(string bankAccountNumber, string bankAccountOwner, int bankNameID, string description, decimal debt, decimal crediting, string clientDate, string serverDate, string clientTime, string serverTime, int userID, string address, string branch, string phone1, string phone2, int accountTypeID) //Save Error => 0
         {
             try
             {
@@ -793,6 +827,57 @@ namespace TinyTech.Connection
                             var bankAccount = new BankAccount()
                             {
                                 AccountNumber = bankAccountNumber,
+                                AccountOwner = bankAccountOwner,
+                                BankNameID = bankNameID,
+                                Description = description,
+                                Active = true,
+                                Balance = debt - crediting,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                                Address = address,
+                                Branch = branch,
+                                Phone1 = phone1,
+                                Phone2 = phone2,
+                                AccountTypeID = accountTypeID,
+                            };
+                            dbConnection.BankAccount.Add(bankAccount);
+
+                            dbConnection.SaveChanges();
+                            dbTran.Commit();
+                            return bankAccount.ID;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return 0;
+            }
+        }
+
+        public int BankAccountTypeDefinition(string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankAccountType = new BankAccountType()
+                            {
+                                Name = name,
                                 Description = description,
                                 Active = true,
                                 ClientDate = clientDate,
@@ -801,11 +886,11 @@ namespace TinyTech.Connection
                                 ServerTime = serverTime,
                                 UserID = userID,
                             };
-                            dbConnection.BankAccount.Add(bankAccount);
+                            dbConnection.BankAccountType.Add(bankAccountType);
 
                             dbConnection.SaveChanges();
                             dbTran.Commit();
-                            return bankAccount.ID;
+                            return bankAccountType.ID;
                         }
                         catch (Exception e)
                         {

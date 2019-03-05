@@ -54,6 +54,7 @@ namespace TinyTech.Main
         private ToolStripMenuItem ToolStripMenuItemAccount;
         private ToolStripMenuItem ToolStripMenuItemCheckBook;
         private UI.Control.Label.Label lblUserInfo;
+        private ToolStripMenuItem ToolStripMenuItemBankType;
         private Container components = null;
         #endregion
 
@@ -105,6 +106,7 @@ namespace TinyTech.Main
             this.lblUserInfo = new TinyTech.UI.Control.Label.Label();
             this.lblDateTime = new TinyTech.UI.Control.Label.Label();
             this.timer1 = new TinyTech.UI.Control.UIElement.Timer();
+            this.ToolStripMenuItemBankType = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
             this.menuMainForm.SuspendLayout();
@@ -179,7 +181,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemRegion,
             this.ToolStripMenuItemPath});
             this.ToolStripMenuItemLocation.Name = "ToolStripMenuItemLocation";
-            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemLocation.Text = "مكان";
             // 
             // ToolStripMenuItemProvince
@@ -216,7 +218,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemCustomerGroup,
             this.ToolStripMenuItemCustomer});
             this.ToolStripMenuItemCustomerMenu.Name = "ToolStripMenuItemCustomerMenu";
-            this.ToolStripMenuItemCustomerMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemCustomerMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemCustomerMenu.Text = "طرف حساب";
             // 
             // ToolStripMenuItemCustomerGroup
@@ -240,63 +242,64 @@ namespace TinyTech.Main
             this.ToolStripMenuItemGoods,
             this.ToolStripMenuItemGoodsBarcode});
             this.ToolStripMenuItemGoodsMenu.Name = "ToolStripMenuItemGoodsMenu";
-            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsMenu.Text = "كالا";
             // 
             // ToolStripMenuItemGoodsUnit
             // 
             this.ToolStripMenuItemGoodsUnit.Name = "ToolStripMenuItemGoodsUnit";
-            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsUnit.Text = "تعريف واحد كالا";
             this.ToolStripMenuItemGoodsUnit.Click += new System.EventHandler(this.ToolStripMenuItemGoodsUnit_Click);
             // 
             // ToolStripMenuItemGoodsGroup
             // 
             this.ToolStripMenuItemGoodsGroup.Name = "ToolStripMenuItemGoodsGroup";
-            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsGroup.Text = "تعريف گروه كالا";
             this.ToolStripMenuItemGoodsGroup.Click += new System.EventHandler(this.ToolStripMenuItemGoodsGroup_Click);
             // 
             // ToolStripMenuItemGoods
             // 
             this.ToolStripMenuItemGoods.Name = "ToolStripMenuItemGoods";
-            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoods.Text = "تعريف كالا";
             // 
             // ToolStripMenuItemGoodsBarcode
             // 
             this.ToolStripMenuItemGoodsBarcode.Name = "ToolStripMenuItemGoodsBarcode";
-            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsBarcode.Text = "تعريف باركد كالا";
             // 
             // ToolStripMenuItemBankMenu
             // 
             this.ToolStripMenuItemBankMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemBankName,
+            this.ToolStripMenuItemBankType,
             this.ToolStripMenuItemAccount,
             this.ToolStripMenuItemCheckBook});
             this.ToolStripMenuItemBankMenu.Name = "ToolStripMenuItemBankMenu";
-            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBankMenu.Text = "بانك";
             // 
             // ToolStripMenuItemBankName
             // 
             this.ToolStripMenuItemBankName.Name = "ToolStripMenuItemBankName";
-            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBankName.Text = "تعريف نام بانك";
             this.ToolStripMenuItemBankName.Click += new System.EventHandler(this.ToolStripMenuItemBankName_Click);
             // 
             // ToolStripMenuItemAccount
             // 
             this.ToolStripMenuItemAccount.Name = "ToolStripMenuItemAccount";
-            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemAccount.Text = "تعريف شماره حساب";
             this.ToolStripMenuItemAccount.Click += new System.EventHandler(this.ToolStripMenuItemAccount_Click);
             // 
             // ToolStripMenuItemCheckBook
             // 
             this.ToolStripMenuItemCheckBook.Name = "ToolStripMenuItemCheckBook";
-            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemCheckBook.Text = "تعريف دسته چك";
             // 
             // ToolStripMenuItemDailyInformation
@@ -386,6 +389,13 @@ namespace TinyTech.Main
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // ToolStripMenuItemBankType
+            // 
+            this.ToolStripMenuItemBankType.Name = "ToolStripMenuItemBankType";
+            this.ToolStripMenuItemBankType.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBankType.Text = "تعريف نوع حساب";
+            this.ToolStripMenuItemBankType.Click += new System.EventHandler(this.ToolStripMenuItemBankType_Click);
             // 
             // MainForm
             // 
@@ -533,14 +543,20 @@ namespace TinyTech.Main
 
         private void ToolStripMenuItemAccount_Click(object sender, EventArgs e)
         {
-            //var bankAccountDefinition = new BankAccountDefinition();
-            //tab.AddNewTab(tabControlMain, bankAccountDefinition);
+            var bankAccountDefinition = new BankAccountDefinition();
+            tab.AddNewTab(tabControlMain, bankAccountDefinition);
         }
 
         private void menuMainForm_DoubleClick(object sender, EventArgs e)
         {
             WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
             CenterToScreen();
+        }
+
+        private void ToolStripMenuItemBankType_Click(object sender, EventArgs e)
+        {
+            var bankAccountTypeDefinition = new BankAccountTypeDefinition();
+            tab.AddNewTab(tabControlMain, bankAccountTypeDefinition);
         }
     }
 }

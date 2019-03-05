@@ -61,6 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankAccountTypeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BankAccountDefinition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +92,9 @@
     <Compile Include="RegionDefinition.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <EmbeddedResource Include="BankAccountTypeDefinition.resx">
+      <DependentUpon>BankAccountTypeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BankAccountDefinition.resx">
       <DependentUpon>BankAccountDefinition.cs</DependentUpon>
     </EmbeddedResource>
