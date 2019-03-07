@@ -57,8 +57,10 @@ D:\Project\TinyTechSoft\TinyTech.Selecting\bin\Debug\TinyTech.UI.pdb
 D:\Project\TinyTechSoft\TinyTech.Selecting\bin\Debug\TinyTech.UI.dll.config
 D:\Project\TinyTechSoft\TinyTech.Selecting\bin\Debug\EntityFramework.xml
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csprojAssemblyReference.cache
+D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankNameSelect.resources
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.CitySelect.resources
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.PathSelect.resources
+D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankAccountTypeSelect.resources
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.ProvinceSelect.resources
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.RegionSelect.resources
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csproj.GenerateResource.cache
@@ -66,5 +68,3 @@ D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csproj.C
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.csproj.CopyComplete
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.dll
 D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.pdb
-D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankAccountTypeSelect.resources
-D:\Project\TinyTechSoft\TinyTech.Selecting\obj\Debug\TinyTech.Selecting.BankNameSelect.resources
