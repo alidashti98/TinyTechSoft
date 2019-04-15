@@ -347,8 +347,8 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />

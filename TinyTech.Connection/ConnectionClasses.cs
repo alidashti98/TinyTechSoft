@@ -35,8 +35,6 @@ namespace TinyTech.Connection
             catch (Exception ex)
             {
                 MessageBox.Show($"GetFiscalYear\n\n{ex.InnerException}");
-
-                ;
                 return null;
             }
         }

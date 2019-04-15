@@ -18,7 +18,7 @@ namespace TinyTech.Connection
     public partial class TinyTechEntities : DbContext
     {
         public TinyTechEntities()
-            : base("name=TinyTechEntities")
+            : base(ConnectionInfo.BuildConnectionString())
         {
         }
     
