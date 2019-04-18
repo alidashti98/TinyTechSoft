@@ -34,7 +34,15 @@ namespace TinyTech.Connection
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"GetFiscalYear\n\n{ex.InnerException}");
+                if (ex.InnerException.ToString().Contains("0x80131904"))
+                {
+                    throw;
+                    //MessageBox.Show("خطا در ارتباط با پايگاه داده\n\nلطفا وضعيت سرويس هاي پايگاه داده و نام سرور را بررسي كنيد","GetFiscalYear Error",MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1,MessageBoxOptions.RightAlign);
+                }
+                else
+                {
+                    MessageBox.Show($"GetFiscalYear\n\n{ex.InnerException}");
+                }
                 return null;
             }
         }
@@ -549,8 +557,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int CheckLoginInfo(string username,
-                string password) //Correct UserName And Password => 0 , Invalid UserName => 1 , Invalid Password => 2
+        public int CheckLoginInfo(string username,string password) //Correct UserName And Password => 0 , Invalid UserName => 1 , Invalid Password => 2
         {
             var userInfo = GetUserInfo(0).FirstOrDefault(i => i.UserName == username);
             if (userInfo == null)

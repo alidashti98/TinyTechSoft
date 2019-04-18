@@ -19,8 +19,8 @@ namespace TinyTech.Main
         private UI.Control.Label.Label lblUserName;
         private UI.Control.Label.Label lblPassword;
         private UI.Control.Label.Label lblFiscalYear;
-        private string GetInfoServerName;
-        private string GetInfoDatabaseName;
+        private string ConnectionInfoServerName;
+        private string ConnectionInfoDatabaseName;
         TinyTechEntities DB_Connection = new TinyTechEntities();
         private UI.Control.Button.OkButton btnLogin;
         private UI.Control.Button.ExitButton btnExit;
@@ -252,7 +252,7 @@ namespace TinyTech.Main
 
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void LoginProcess()
         {
             try
             {
@@ -273,16 +273,21 @@ namespace TinyTech.Main
             }
         }
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            LoginProcess();
+        }
+
         private bool CheckNewConnection()
         {
             try
             {
-                var connectionTest = DB_Connection.FiscalYear.AsNoTracking().ToList();
+                var connectionTest = @class.GetFiscalYear().ToList();
                 return connectionTest.Count > 0;
             }
             catch (Exception e)
             {
-                CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در اتصال به ديتابيس\n\n{e.Message}", "e");
+                ConnectionErrorMessage();
                 Login_Load(null, null);
             }
 
@@ -328,6 +333,12 @@ namespace TinyTech.Main
                 txtPassword.Focus();
                 return false;
             }
+            if (cmbFiscalYear.SelectedValue == null)
+            {
+                CustomMessageForm.CustomMessageBox.Show("خطا !", $"لطفا دوره مالي مورد نظر را انتخاب كنيد", "e");
+                cmbFiscalYear.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -336,23 +347,28 @@ namespace TinyTech.Main
             Application.Exit();
         }
 
+        private void ConnectionErrorMessage()
+        {
+            CustomMessageForm.CustomMessageBox.Show("خطا در ارتباط با ديتابيس !", $"لطفا نام سرور، نام ديتابيس و وضعيت سرويس هاي ديتابيس را بررسي كنيد\nدر صورت برطرف نشدن مشكل با پشتيباني تماس بگيريد\nنام سرور: {ConnectionInfo.ServerName}\nنام ديتابيس: {ConnectionInfo.DatabaseName}", "e");
+        }
+
         private void Login_Load(object sender, EventArgs e)
         {
             try
             {
                 lblVersion.Text = ConnectionInfo.Version;
                 SetData();
-                
-                ConnectionInfo.ServerName = GetInfoServerName;
-                ConnectionInfo.DatabaseName = GetInfoDatabaseName;
+
+                ConnectionInfo.ServerName = ConnectionInfoServerName;
+                ConnectionInfo.DatabaseName = ConnectionInfoDatabaseName;
                 DB_Connection = new TinyTechEntities();
-                cmbFiscalYear.DataSource = @class.GetFiscalYear().Where(i => i.Active).ToList();
+                cmbFiscalYear.DataSource = @class.GetFiscalYear().ToList();
                 cmbFiscalYear.DisplayMember = "DisplayName";
                 cmbFiscalYear.ValueMember = "ID";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                CustomMessageForm.CustomMessageBox.Show("خطا !", $"{ex.Message}", "e");
+                ConnectionErrorMessage();
             }
         }
 
@@ -360,7 +376,7 @@ namespace TinyTech.Main
         {
             try
             {
-                var reader = new XmlTextReader("GetInfo.XML");
+                var reader = new XmlTextReader("ConnectionInfo.XML");
                 while (reader.Read())
                 {
                     if (reader.NodeType != XmlNodeType.Element) continue;
@@ -368,11 +384,11 @@ namespace TinyTech.Main
                     {
                         case "Server":
                             reader.Read();
-                            GetInfoServerName = reader.Value;
+                            ConnectionInfoServerName = reader.Value;
                             break;
                         case "Database":
                             reader.Read();
-                            GetInfoDatabaseName = reader.Value;
+                            ConnectionInfoDatabaseName = reader.Value;
                             break;
                     }
                 }

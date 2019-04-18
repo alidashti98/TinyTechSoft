@@ -534,7 +534,7 @@ namespace TinyTech.BasicInformation
 
         private void PathDefinition_Load(object sender, EventArgs e)
         {
-            var pathList = @class.GetPath().Where(i => i.Active).ToList();
+            var pathList = @class.GetPath().ToList();
             dgvPath.DataSource = PathListDataTable(pathList);
             SetGridView();
             txtPathID.Text = CalculateMaxId().ToString();
@@ -667,7 +667,7 @@ namespace TinyTech.BasicInformation
 
         private void txtPathName_TextChanged(object sender, EventArgs e)
         {
-            var pathList = @class.GetPath().Where(i => i.Active && i.Name.Contains(txtPathName.Text)).ToList();
+            var pathList = @class.GetPath().Where(i => i.Name.Contains(txtPathName.Text)).ToList();
             dgvPath.DataSource = PathListDataTable(pathList);
         }
 
@@ -696,7 +696,7 @@ namespace TinyTech.BasicInformation
                     chkRegionName.Checked = false;
                     chkCityName.Checked = false;
                     chkProvince.Checked = false;
-                    var pathList = @class.GetPath().Where(i => i.Active).ToList();
+                    var pathList = @class.GetPath().ToList();
                     dgvPath.DataSource = PathListDataTable(pathList);
                     chkProvince.Focus();
                     DisableForm();
@@ -708,7 +708,7 @@ namespace TinyTech.BasicInformation
                 txtProvinceName.Tag = string.Empty;
                 chkRegionName.Checked = false;
                 chkCityName.Checked = false;
-                var pathList = @class.GetPath().Where(i => i.Active).ToList();
+                var pathList = @class.GetPath().ToList();
                 dgvPath.DataSource = PathListDataTable(pathList);
                 DisableForm();
             }
@@ -746,7 +746,7 @@ namespace TinyTech.BasicInformation
                     txtCityName.Tag = string.Empty;
                     chkRegionName.Checked = false;
                     chkCityName.Checked = false;
-                    var pathList = @class.GetPath().Where(i => i.Active).ToList();
+                    var pathList = @class.GetPath().ToList();
                     dgvPath.DataSource = PathListDataTable(pathList);
                     chkProvince.Focus();
                     DisableForm();
@@ -757,7 +757,7 @@ namespace TinyTech.BasicInformation
                 txtCityName.Text = "انتخاب شهر ...";
                 txtCityName.Tag = string.Empty;
                 chkRegionName.Checked = false;
-                var pathList = @class.GetPath().Where(i => i.Active).ToList();
+                var pathList = @class.GetPath().ToList();
                 dgvPath.DataSource = PathListDataTable(pathList);
                 DisableForm();
             }
@@ -801,7 +801,7 @@ namespace TinyTech.BasicInformation
                     txtRegionName.Text = "انتخاب منطقه ...";
                     txtRegionName.Tag = string.Empty;
                     chkRegionName.Checked = false;
-                    var pathList = @class.GetPath().Where(i => i.Active).ToList();
+                    var pathList = @class.GetPath().ToList();
                     dgvPath.DataSource = PathListDataTable(pathList);
                     chkRegionName.Focus();
                     DisableForm();
@@ -811,7 +811,7 @@ namespace TinyTech.BasicInformation
             {
                 txtRegionName.Text = "انتخاب منطقه ...";
                 txtRegionName.Tag = string.Empty;
-                var PathList = @class.GetPath().Where(i => i.Active).ToList();
+                var PathList = @class.GetPath().ToList();
                 dgvPath.DataSource = PathListDataTable(PathList);
                 DisableForm();
             }

@@ -207,7 +207,7 @@ namespace TinyTech.Selecting
         private void PathSelect_Load(object sender, EventArgs e)
         {
             txtPathSearch.Focus();
-            var PathList = @class.GetPath().Where(i => i.Active && i.RegionID == RegionID).ToList();
+            var PathList = @class.GetPath().Where(i => i.RegionID == RegionID).ToList();
             dgvPath.DataSource = PathListDataTable(PathList);
             SetGridView();
         }
@@ -323,7 +323,7 @@ namespace TinyTech.Selecting
         {
             try
             {
-                var PathList = @class.GetPath().Where(i => i.Active && i.RegionID == RegionID && i.Name.Contains(txtPathSearch.Text)).ToList();
+                var PathList = @class.GetPath().Where(i => i.RegionID == RegionID && i.Name.Contains(txtPathSearch.Text)).ToList();
                 dgvPath.DataSource = PathListDataTable(PathList);
 
                 if (dgvPath.Rows.Count != 0)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -55,6 +54,7 @@ namespace TinyTech.Main
         private ToolStripMenuItem ToolStripMenuItemCheckBook;
         private UI.Control.Label.Label lblUserInfo;
         private ToolStripMenuItem ToolStripMenuItemBankType;
+        private UI.Control.UIElement.Timer timerInternetCheck;
         private Container components = null;
         #endregion
 
@@ -107,6 +107,7 @@ namespace TinyTech.Main
             this.lblUserInfo = new TinyTech.UI.Control.Label.Label();
             this.lblDateTime = new TinyTech.UI.Control.Label.Label();
             this.timer1 = new TinyTech.UI.Control.UIElement.Timer();
+            this.timerInternetCheck = new TinyTech.UI.Control.UIElement.Timer();
             this.pnlMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
             this.menuMainForm.SuspendLayout();
@@ -188,28 +189,28 @@ namespace TinyTech.Main
             // ToolStripMenuItemProvince
             // 
             this.ToolStripMenuItemProvince.Name = "ToolStripMenuItemProvince";
-            this.ToolStripMenuItemProvince.Size = new System.Drawing.Size(141, 24);
+            this.ToolStripMenuItemProvince.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemProvince.Text = "تعريف استان";
             this.ToolStripMenuItemProvince.Click += new System.EventHandler(this.ToolStripMenuItemProvince_Click);
             // 
             // ToolStripMenuItemCity
             // 
             this.ToolStripMenuItemCity.Name = "ToolStripMenuItemCity";
-            this.ToolStripMenuItemCity.Size = new System.Drawing.Size(141, 24);
+            this.ToolStripMenuItemCity.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemCity.Text = "تعريف شهر";
             this.ToolStripMenuItemCity.Click += new System.EventHandler(this.ToolStripMenuItemCity_Click);
             // 
             // ToolStripMenuItemRegion
             // 
             this.ToolStripMenuItemRegion.Name = "ToolStripMenuItemRegion";
-            this.ToolStripMenuItemRegion.Size = new System.Drawing.Size(141, 24);
+            this.ToolStripMenuItemRegion.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemRegion.Text = "تعريف منطقه";
             this.ToolStripMenuItemRegion.Click += new System.EventHandler(this.ToolStripMenuItemRegion_Click);
             // 
             // ToolStripMenuItemPath
             // 
             this.ToolStripMenuItemPath.Name = "ToolStripMenuItemPath";
-            this.ToolStripMenuItemPath.Size = new System.Drawing.Size(141, 24);
+            this.ToolStripMenuItemPath.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemPath.Text = "تعريف مسير";
             this.ToolStripMenuItemPath.Click += new System.EventHandler(this.ToolStripMenuItemPath_Click);
             // 
@@ -249,27 +250,27 @@ namespace TinyTech.Main
             // ToolStripMenuItemGoodsUnit
             // 
             this.ToolStripMenuItemGoodsUnit.Name = "ToolStripMenuItemGoodsUnit";
-            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsUnit.Text = "تعريف واحد كالا";
             this.ToolStripMenuItemGoodsUnit.Click += new System.EventHandler(this.ToolStripMenuItemGoodsUnit_Click);
             // 
             // ToolStripMenuItemGoodsGroup
             // 
             this.ToolStripMenuItemGoodsGroup.Name = "ToolStripMenuItemGoodsGroup";
-            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsGroup.Text = "تعريف گروه كالا";
             this.ToolStripMenuItemGoodsGroup.Click += new System.EventHandler(this.ToolStripMenuItemGoodsGroup_Click);
             // 
             // ToolStripMenuItemGoods
             // 
             this.ToolStripMenuItemGoods.Name = "ToolStripMenuItemGoods";
-            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoods.Text = "تعريف كالا";
             // 
             // ToolStripMenuItemGoodsBarcode
             // 
             this.ToolStripMenuItemGoodsBarcode.Name = "ToolStripMenuItemGoodsBarcode";
-            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(153, 24);
+            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsBarcode.Text = "تعريف باركد كالا";
             // 
             // ToolStripMenuItemBankMenu
@@ -286,28 +287,28 @@ namespace TinyTech.Main
             // ToolStripMenuItemBankName
             // 
             this.ToolStripMenuItemBankName.Name = "ToolStripMenuItemBankName";
-            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBankName.Text = "تعريف نام بانك";
             this.ToolStripMenuItemBankName.Click += new System.EventHandler(this.ToolStripMenuItemBankName_Click);
             // 
             // ToolStripMenuItemBankType
             // 
             this.ToolStripMenuItemBankType.Name = "ToolStripMenuItemBankType";
-            this.ToolStripMenuItemBankType.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemBankType.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBankType.Text = "تعريف نوع حساب";
             this.ToolStripMenuItemBankType.Click += new System.EventHandler(this.ToolStripMenuItemBankType_Click);
             // 
             // ToolStripMenuItemAccount
             // 
             this.ToolStripMenuItemAccount.Name = "ToolStripMenuItemAccount";
-            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemAccount.Text = "تعريف شماره حساب";
             this.ToolStripMenuItemAccount.Click += new System.EventHandler(this.ToolStripMenuItemAccount_Click);
             // 
             // ToolStripMenuItemCheckBook
             // 
             this.ToolStripMenuItemCheckBook.Name = "ToolStripMenuItemCheckBook";
-            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemCheckBook.Text = "تعريف دسته چك";
             // 
             // ToolStripMenuItemDailyInformation
@@ -332,25 +333,25 @@ namespace TinyTech.Main
             // ToolStripMenuItemUserManagement
             // 
             this.ToolStripMenuItemUserManagement.Name = "ToolStripMenuItemUserManagement";
-            this.ToolStripMenuItemUserManagement.Size = new System.Drawing.Size(151, 24);
+            this.ToolStripMenuItemUserManagement.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemUserManagement.Text = "مديريت كاربران";
             // 
             // ToolStripMenuItemSetting
             // 
             this.ToolStripMenuItemSetting.Name = "ToolStripMenuItemSetting";
-            this.ToolStripMenuItemSetting.Size = new System.Drawing.Size(151, 24);
+            this.ToolStripMenuItemSetting.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemSetting.Text = "تنظيمات";
             // 
             // ToolStripMenuItemBackup
             // 
             this.ToolStripMenuItemBackup.Name = "ToolStripMenuItemBackup";
-            this.ToolStripMenuItemBackup.Size = new System.Drawing.Size(151, 24);
+            this.ToolStripMenuItemBackup.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBackup.Text = "پشتيبان گيري";
             // 
             // ToolStripMenuItemExit
             // 
             this.ToolStripMenuItemExit.Name = "ToolStripMenuItemExit";
-            this.ToolStripMenuItemExit.Size = new System.Drawing.Size(151, 24);
+            this.ToolStripMenuItemExit.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemExit.Text = "خروج";
             this.ToolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
             // 
@@ -371,7 +372,7 @@ namespace TinyTech.Main
             this.lblUserInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblUserInfo.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblUserInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
-            this.lblUserInfo.ForeColor = System.Drawing.Color.Yellow;
+            this.lblUserInfo.ForeColor = System.Drawing.Color.Lime;
             this.lblUserInfo.Location = new System.Drawing.Point(655, 0);
             this.lblUserInfo.Name = "lblUserInfo";
             this.lblUserInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -385,7 +386,7 @@ namespace TinyTech.Main
             this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
             this.lblDateTime.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblDateTime.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
-            this.lblDateTime.ForeColor = System.Drawing.Color.Yellow;
+            this.lblDateTime.ForeColor = System.Drawing.Color.Lime;
             this.lblDateTime.Location = new System.Drawing.Point(0, 0);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -399,6 +400,12 @@ namespace TinyTech.Main
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerInternetCheck
+            // 
+            this.timerInternetCheck.Enabled = true;
+            this.timerInternetCheck.Interval = 60000;
+            this.timerInternetCheck.Tick += new System.EventHandler(this.timerInternetCheck_Tick);
             // 
             // MainForm
             // 
@@ -435,6 +442,7 @@ namespace TinyTech.Main
         private void MainForm_Load(object sender, EventArgs e)
         {
             timer1_Tick(null, null);
+            //timerInternetCheck_Tick(null,null);
             pnlTop.Controls.Add(menuMainForm);
             pnlMain.Controls.Add(tabControlMain);
             pnlBottom.Controls.Add(lblDateTime);
@@ -444,8 +452,8 @@ namespace TinyTech.Main
 
         private void SetUserInfo()
         {
-            var UserInfo = @class.GetUserInfo(ConnectionInfo.LoggedInUserId).FirstOrDefault();
-            lblUserInfo.Text = $"نام كاربري: {UserInfo.UserName}\n دوره مالي: {@class.GetFiscalYear().Where(i => i.Active && i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
+            var UserInfo_ = @class.GetUserInfo(ConnectionInfo.LoggedInUserId).FirstOrDefault();
+            lblUserInfo.Text = $"نام كاربري: {UserInfo_.UserName}\n دوره مالي: {@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
         }
 
         private void SetColor()
@@ -560,6 +568,18 @@ namespace TinyTech.Main
         {
             var bankAccountTypeDefinition = new BankAccountTypeDefinition();
             tab.AddNewTab(tabControlMain, bankAccountTypeDefinition);
+        }
+
+        private void timerInternetCheck_Tick(object sender, EventArgs e)
+        {
+            if (@class.CheckForInternetConnection())
+            {
+                //lblUserInfo.Text = $"{UserInfo}\nارتباط با اينترنت برقرار مي باشد";
+            }
+            else
+            {
+                //lblUserInfo.Text = $"{UserInfo}\nارتباط با اينترنت برقرار نمي باشد";
+            }
         }
     }
 }

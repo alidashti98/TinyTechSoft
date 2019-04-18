@@ -33,7 +33,6 @@ D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\TinyTech.Setting
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\TinyTech.Setting.pdb
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\CEWorld.Convert.dll
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\FastMember.dll
-D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csprojResolveAssemblyReference.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.Properties.Resources.resources
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.GenerateResource.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.CoreCompileInputs.cache

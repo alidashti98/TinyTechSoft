@@ -192,12 +192,12 @@ namespace TinyTech.BasicInformation
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Location = new System.Drawing.Point(483, 98);
+            this.txtDescription.Location = new System.Drawing.Point(349, 98);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(10);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NextControl = this.btnSave;
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.Size = new System.Drawing.Size(200, 28);
+            this.txtDescription.Size = new System.Drawing.Size(334, 28);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -321,10 +321,10 @@ namespace TinyTech.BasicInformation
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
             this.pnlButtons.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlButtons.Location = new System.Drawing.Point(6, 98);
+            this.pnlButtons.Location = new System.Drawing.Point(6, 104);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(260, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(260, 39);
             this.pnlButtons.TabIndex = 3;
             // 
             // ProvinceDefinition
@@ -360,8 +360,8 @@ namespace TinyTech.BasicInformation
 
         private void ProvinceDefinition_Load(object sender, EventArgs e)
         {
-            var provinceList = @class.GetProvince().Where(i => i.Active).ToList();
-            dgvProvince.DataSource = ProvinceListDataTable(provinceList);
+            var provinceList = @class.GetProvince().Where(i => i.Active);
+            dgvProvince.DataSource = provinceList;//ProvinceListDataTable(provinceList);
             SetGridView();
             txtProvinceID.Text = CalculateMaxId().ToString();
             txtProvinceName.Focus();
@@ -423,9 +423,9 @@ namespace TinyTech.BasicInformation
                 txtProvinceName.Focus();
                 return false;
             }
-            if (DB_Connection.Province.AsNoTracking().Count(i => i.Name.Equals(txtProvinceName.Text) && i.Active) > 0)
+            if (@class.GetProvince().Count(i => i.Name.Equals(txtProvinceName.Text.Trim())) > 0)
             {
-                CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام استان \"{txtProvinceName.Text}\" تكراري است!", "e");
+                CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام استان \"{txtProvinceName.Text.Trim()}\" تكراري است!", "e");
                 txtProvinceName.Focus();
                 return false;
             }
@@ -433,15 +433,15 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
-                var result = @class.ProvinceDefinition(txtProvinceName.Text, txtDescription.Text, dateControlProvince.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+                var result = @class.ProvinceDefinition(txtProvinceName.Text.Trim(), txtDescription.Text.Trim(), dateControlProvince.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
 
                 if (result > 0)
                 {
-                    CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"استان \"{txtProvinceName.Text}\" با موفقيت ثبت شد", "i");
+                    CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"استان \"{txtProvinceName.Text.Trim()}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
                     if (int.Parse(txtProvinceID.Text) != MaxID_)
                     {
@@ -454,7 +454,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف استان!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -472,8 +476,8 @@ namespace TinyTech.BasicInformation
 
         private void txtProvinceName_TextChanged(object sender, EventArgs e)
         {
-            var provinceList = @class.GetProvince().Where(i => i.Active && i.Name.Contains(txtProvinceName.Text)).ToList();
-            dgvProvince.DataSource = ProvinceListDataTable(provinceList);
+            var provinceList = @class.GetProvince().Where(i => i.Active && i.Name.Contains(txtProvinceName.Text.Trim())).ToList();
+            dgvProvince.DataSource = provinceList;//ProvinceListDataTable(provinceList);
         }
     }
 }
