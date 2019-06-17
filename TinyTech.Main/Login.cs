@@ -258,7 +258,7 @@ namespace TinyTech.Main
             {
                 if (!FormIsValid()) return;
                 var currentSelectedFiscalYear = int.Parse(cmbFiscalYear.SelectedValue.ToString());
-                var databaseName = @class.GetFiscalYear().FirstOrDefault(i => i.ID == currentSelectedFiscalYear);
+                var databaseName = @class.GetFiscalYear().Where(i => i.Active).FirstOrDefault(i => i.ID == currentSelectedFiscalYear);
                 ConnectionInfo.DatabaseName = databaseName?.DatabaseName;
                 DB_Connection = new TinyTechEntities();
                 if (!CheckNewConnection()) return;
@@ -282,10 +282,10 @@ namespace TinyTech.Main
         {
             try
             {
-                var connectionTest = @class.GetFiscalYear().ToList();
+                var connectionTest = @class.GetFiscalYear(true).ToList();
                 return connectionTest.Count > 0;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ConnectionErrorMessage();
                 Login_Load(null, null);
@@ -362,7 +362,7 @@ namespace TinyTech.Main
                 ConnectionInfo.ServerName = ConnectionInfoServerName;
                 ConnectionInfo.DatabaseName = ConnectionInfoDatabaseName;
                 DB_Connection = new TinyTechEntities();
-                cmbFiscalYear.DataSource = @class.GetFiscalYear().ToList();
+                cmbFiscalYear.DataSource = @class.GetFiscalYear(true).ToList();
                 cmbFiscalYear.DisplayMember = "DisplayName";
                 cmbFiscalYear.ValueMember = "ID";
             }
@@ -431,6 +431,10 @@ namespace TinyTech.Main
                 case Keys.F1:
                     CustomMessageForm.CustomMessageBox.Show("راهنما", "راهنماي فرم ورود به برنامه", "i");
                     break;
+                //case Keys.F2:
+                //    if ((Process.GetProcessesByName("anydesk").FirstOrDefault()) != null)
+                //    Process.Start("AnyDesk.exe");
+                //    break;
             }
         }
     }

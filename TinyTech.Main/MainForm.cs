@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,9 +53,13 @@ namespace TinyTech.Main
         private ToolStripMenuItem ToolStripMenuItemBankName;
         private ToolStripMenuItem ToolStripMenuItemAccount;
         private ToolStripMenuItem ToolStripMenuItemCheckBook;
-        private UI.Control.Label.Label lblUserInfo;
         private ToolStripMenuItem ToolStripMenuItemBankType;
         private UI.Control.UIElement.Timer timerInternetCheck;
+        private PictureBox pictureBoxExit;
+        private PictureBox pictureBoxMinimize;
+        private UI.Control.Label.Label lblUserInfo;
+        private UI.Control.UIElement.Panel pnlMaxMin;
+        private PictureBox pictureBoxMaximize;
         private Container components = null;
         #endregion
 
@@ -74,9 +79,12 @@ namespace TinyTech.Main
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pnlMain = new TinyTech.UI.Control.UIElement.Panel();
             this.tabControlMain = new TinyTech.UI.Control.UIElement.TabControl();
             this.pnlTop = new TinyTech.UI.Control.UIElement.Panel();
+            this.pnlMaxMin = new TinyTech.UI.Control.UIElement.Panel();
+            this.lblUserInfo = new TinyTech.UI.Control.Label.Label();
             this.menuMainForm = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemBasicInformation = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLocation = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,14 +112,20 @@ namespace TinyTech.Main
             this.ToolStripMenuItemBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBottom = new TinyTech.UI.Control.UIElement.Panel();
-            this.lblUserInfo = new TinyTech.UI.Control.Label.Label();
             this.lblDateTime = new TinyTech.UI.Control.Label.Label();
             this.timer1 = new TinyTech.UI.Control.UIElement.Timer();
             this.timerInternetCheck = new TinyTech.UI.Control.UIElement.Timer();
+            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxExit = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
             this.pnlMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
+            this.pnlMaxMin.SuspendLayout();
             this.menuMainForm.SuspendLayout();
             this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -119,10 +133,10 @@ namespace TinyTech.Main
             this.pnlMain.Controls.Add(this.tabControlMain);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlMain.Location = new System.Drawing.Point(0, 29);
+            this.pnlMain.Location = new System.Drawing.Point(0, 60);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlMain.Size = new System.Drawing.Size(1008, 625);
+            this.pnlMain.Size = new System.Drawing.Size(1366, 603);
             this.pnlMain.TabIndex = 3;
             // 
             // tabControlMain
@@ -134,31 +148,63 @@ namespace TinyTech.Main
             this.tabControlMain.RightToLeftLayout = true;
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.ShowToolTips = true;
-            this.tabControlMain.Size = new System.Drawing.Size(1008, 625);
+            this.tabControlMain.Size = new System.Drawing.Size(1366, 603);
             this.tabControlMain.TabIndex = 0;
             // 
             // pnlTop
             // 
+            this.pnlTop.Controls.Add(this.pnlMaxMin);
+            this.pnlTop.Controls.Add(this.lblUserInfo);
             this.pnlTop.Controls.Add(this.menuMainForm);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlTop.Size = new System.Drawing.Size(1008, 29);
+            this.pnlTop.Size = new System.Drawing.Size(1366, 60);
             this.pnlTop.TabIndex = 0;
+            this.pnlTop.DoubleClick += new System.EventHandler(this.pnlTop_DoubleClick);
+            // 
+            // pnlMaxMin
+            // 
+            this.pnlMaxMin.Controls.Add(this.pictureBoxMaximize);
+            this.pnlMaxMin.Controls.Add(this.pictureBoxExit);
+            this.pnlMaxMin.Controls.Add(this.pictureBoxMinimize);
+            this.pnlMaxMin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlMaxMin.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.pnlMaxMin.Location = new System.Drawing.Point(1268, 0);
+            this.pnlMaxMin.Name = "pnlMaxMin";
+            this.pnlMaxMin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnlMaxMin.Size = new System.Drawing.Size(98, 32);
+            this.pnlMaxMin.TabIndex = 6;
+            // 
+            // lblUserInfo
+            // 
+            this.lblUserInfo.AutoSize = true;
+            this.lblUserInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblUserInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblUserInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblUserInfo.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblUserInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblUserInfo.Name = "lblUserInfo";
+            this.lblUserInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblUserInfo.Size = new System.Drawing.Size(98, 20);
+            this.lblUserInfo.TabIndex = 5;
+            this.lblUserInfo.Text = "اطلاعات كاربر جاري";
+            this.lblUserInfo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // menuMainForm
             // 
+            this.menuMainForm.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuMainForm.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.menuMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemBasicInformation,
             this.ToolStripMenuItemDailyInformation,
             this.ToolStripMenuItemFeatures});
-            this.menuMainForm.Location = new System.Drawing.Point(0, 0);
+            this.menuMainForm.Location = new System.Drawing.Point(0, 32);
             this.menuMainForm.Name = "menuMainForm";
             this.menuMainForm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuMainForm.Size = new System.Drawing.Size(1008, 28);
+            this.menuMainForm.Size = new System.Drawing.Size(1366, 28);
             this.menuMainForm.TabIndex = 1;
             this.menuMainForm.Text = "menuMainForm";
             this.menuMainForm.DoubleClick += new System.EventHandler(this.menuMainForm_DoubleClick);
@@ -183,34 +229,34 @@ namespace TinyTech.Main
             this.ToolStripMenuItemRegion,
             this.ToolStripMenuItemPath});
             this.ToolStripMenuItemLocation.Name = "ToolStripMenuItemLocation";
-            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(135, 24);
             this.ToolStripMenuItemLocation.Text = "مكان";
             // 
             // ToolStripMenuItemProvince
             // 
             this.ToolStripMenuItemProvince.Name = "ToolStripMenuItemProvince";
-            this.ToolStripMenuItemProvince.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemProvince.Size = new System.Drawing.Size(141, 24);
             this.ToolStripMenuItemProvince.Text = "تعريف استان";
             this.ToolStripMenuItemProvince.Click += new System.EventHandler(this.ToolStripMenuItemProvince_Click);
             // 
             // ToolStripMenuItemCity
             // 
             this.ToolStripMenuItemCity.Name = "ToolStripMenuItemCity";
-            this.ToolStripMenuItemCity.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemCity.Size = new System.Drawing.Size(141, 24);
             this.ToolStripMenuItemCity.Text = "تعريف شهر";
             this.ToolStripMenuItemCity.Click += new System.EventHandler(this.ToolStripMenuItemCity_Click);
             // 
             // ToolStripMenuItemRegion
             // 
             this.ToolStripMenuItemRegion.Name = "ToolStripMenuItemRegion";
-            this.ToolStripMenuItemRegion.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemRegion.Size = new System.Drawing.Size(141, 24);
             this.ToolStripMenuItemRegion.Text = "تعريف منطقه";
             this.ToolStripMenuItemRegion.Click += new System.EventHandler(this.ToolStripMenuItemRegion_Click);
             // 
             // ToolStripMenuItemPath
             // 
             this.ToolStripMenuItemPath.Name = "ToolStripMenuItemPath";
-            this.ToolStripMenuItemPath.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemPath.Size = new System.Drawing.Size(141, 24);
             this.ToolStripMenuItemPath.Text = "تعريف مسير";
             this.ToolStripMenuItemPath.Click += new System.EventHandler(this.ToolStripMenuItemPath_Click);
             // 
@@ -220,7 +266,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemCustomerGroup,
             this.ToolStripMenuItemCustomer});
             this.ToolStripMenuItemCustomerMenu.Name = "ToolStripMenuItemCustomerMenu";
-            this.ToolStripMenuItemCustomerMenu.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemCustomerMenu.Size = new System.Drawing.Size(135, 24);
             this.ToolStripMenuItemCustomerMenu.Text = "طرف حساب";
             // 
             // ToolStripMenuItemCustomerGroup
@@ -244,33 +290,33 @@ namespace TinyTech.Main
             this.ToolStripMenuItemGoods,
             this.ToolStripMenuItemGoodsBarcode});
             this.ToolStripMenuItemGoodsMenu.Name = "ToolStripMenuItemGoodsMenu";
-            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(135, 24);
             this.ToolStripMenuItemGoodsMenu.Text = "كالا";
             // 
             // ToolStripMenuItemGoodsUnit
             // 
             this.ToolStripMenuItemGoodsUnit.Name = "ToolStripMenuItemGoodsUnit";
-            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemGoodsUnit.Size = new System.Drawing.Size(153, 24);
             this.ToolStripMenuItemGoodsUnit.Text = "تعريف واحد كالا";
             this.ToolStripMenuItemGoodsUnit.Click += new System.EventHandler(this.ToolStripMenuItemGoodsUnit_Click);
             // 
             // ToolStripMenuItemGoodsGroup
             // 
             this.ToolStripMenuItemGoodsGroup.Name = "ToolStripMenuItemGoodsGroup";
-            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemGoodsGroup.Size = new System.Drawing.Size(153, 24);
             this.ToolStripMenuItemGoodsGroup.Text = "تعريف گروه كالا";
             this.ToolStripMenuItemGoodsGroup.Click += new System.EventHandler(this.ToolStripMenuItemGoodsGroup_Click);
             // 
             // ToolStripMenuItemGoods
             // 
             this.ToolStripMenuItemGoods.Name = "ToolStripMenuItemGoods";
-            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemGoods.Size = new System.Drawing.Size(153, 24);
             this.ToolStripMenuItemGoods.Text = "تعريف كالا";
             // 
             // ToolStripMenuItemGoodsBarcode
             // 
             this.ToolStripMenuItemGoodsBarcode.Name = "ToolStripMenuItemGoodsBarcode";
-            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemGoodsBarcode.Size = new System.Drawing.Size(153, 24);
             this.ToolStripMenuItemGoodsBarcode.Text = "تعريف باركد كالا";
             // 
             // ToolStripMenuItemBankMenu
@@ -281,34 +327,34 @@ namespace TinyTech.Main
             this.ToolStripMenuItemAccount,
             this.ToolStripMenuItemCheckBook});
             this.ToolStripMenuItemBankMenu.Name = "ToolStripMenuItemBankMenu";
-            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(135, 24);
             this.ToolStripMenuItemBankMenu.Text = "بانك";
             // 
             // ToolStripMenuItemBankName
             // 
             this.ToolStripMenuItemBankName.Name = "ToolStripMenuItemBankName";
-            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBankName.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemBankName.Text = "تعريف نام بانك";
             this.ToolStripMenuItemBankName.Click += new System.EventHandler(this.ToolStripMenuItemBankName_Click);
             // 
             // ToolStripMenuItemBankType
             // 
             this.ToolStripMenuItemBankType.Name = "ToolStripMenuItemBankType";
-            this.ToolStripMenuItemBankType.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBankType.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemBankType.Text = "تعريف نوع حساب";
             this.ToolStripMenuItemBankType.Click += new System.EventHandler(this.ToolStripMenuItemBankType_Click);
             // 
             // ToolStripMenuItemAccount
             // 
             this.ToolStripMenuItemAccount.Name = "ToolStripMenuItemAccount";
-            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemAccount.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemAccount.Text = "تعريف شماره حساب";
             this.ToolStripMenuItemAccount.Click += new System.EventHandler(this.ToolStripMenuItemAccount_Click);
             // 
             // ToolStripMenuItemCheckBook
             // 
             this.ToolStripMenuItemCheckBook.Name = "ToolStripMenuItemCheckBook";
-            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemCheckBook.Size = new System.Drawing.Size(173, 24);
             this.ToolStripMenuItemCheckBook.Text = "تعريف دسته چك";
             // 
             // ToolStripMenuItemDailyInformation
@@ -333,53 +379,38 @@ namespace TinyTech.Main
             // ToolStripMenuItemUserManagement
             // 
             this.ToolStripMenuItemUserManagement.Name = "ToolStripMenuItemUserManagement";
-            this.ToolStripMenuItemUserManagement.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemUserManagement.Size = new System.Drawing.Size(151, 24);
             this.ToolStripMenuItemUserManagement.Text = "مديريت كاربران";
             // 
             // ToolStripMenuItemSetting
             // 
             this.ToolStripMenuItemSetting.Name = "ToolStripMenuItemSetting";
-            this.ToolStripMenuItemSetting.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemSetting.Size = new System.Drawing.Size(151, 24);
             this.ToolStripMenuItemSetting.Text = "تنظيمات";
             // 
             // ToolStripMenuItemBackup
             // 
             this.ToolStripMenuItemBackup.Name = "ToolStripMenuItemBackup";
-            this.ToolStripMenuItemBackup.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemBackup.Size = new System.Drawing.Size(151, 24);
             this.ToolStripMenuItemBackup.Text = "پشتيبان گيري";
             // 
             // ToolStripMenuItemExit
             // 
             this.ToolStripMenuItemExit.Name = "ToolStripMenuItemExit";
-            this.ToolStripMenuItemExit.Size = new System.Drawing.Size(180, 24);
+            this.ToolStripMenuItemExit.Size = new System.Drawing.Size(151, 24);
             this.ToolStripMenuItemExit.Text = "خروج";
             this.ToolStripMenuItemExit.Click += new System.EventHandler(this.ToolStripMenuItemExit_Click);
             // 
             // pnlBottom
             // 
-            this.pnlBottom.Controls.Add(this.lblUserInfo);
             this.pnlBottom.Controls.Add(this.lblDateTime);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlBottom.Location = new System.Drawing.Point(0, 654);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 663);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlBottom.Size = new System.Drawing.Size(1008, 75);
+            this.pnlBottom.Size = new System.Drawing.Size(1366, 75);
             this.pnlBottom.TabIndex = 2;
-            // 
-            // lblUserInfo
-            // 
-            this.lblUserInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserInfo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblUserInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
-            this.lblUserInfo.ForeColor = System.Drawing.Color.Lime;
-            this.lblUserInfo.Location = new System.Drawing.Point(655, 0);
-            this.lblUserInfo.Name = "lblUserInfo";
-            this.lblUserInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblUserInfo.Size = new System.Drawing.Size(353, 75);
-            this.lblUserInfo.TabIndex = 4;
-            this.lblUserInfo.Text = "اطلاعات كاربر جاري";
-            this.lblUserInfo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // lblDateTime
             // 
@@ -407,9 +438,42 @@ namespace TinyTech.Main
             this.timerInternetCheck.Interval = 60000;
             this.timerInternetCheck.Tick += new System.EventHandler(this.timerInternetCheck_Tick);
             // 
+            // pictureBoxMaximize
+            // 
+            this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
+            this.pictureBoxMaximize.Location = new System.Drawing.Point(34, 2);
+            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
+            this.pictureBoxMaximize.Size = new System.Drawing.Size(29, 28);
+            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMaximize.TabIndex = 7;
+            this.pictureBoxMaximize.TabStop = false;
+            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
+            // 
+            // pictureBoxExit
+            // 
+            this.pictureBoxExit.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxExit.Image")));
+            this.pictureBoxExit.Location = new System.Drawing.Point(65, 2);
+            this.pictureBoxExit.Name = "pictureBoxExit";
+            this.pictureBoxExit.Size = new System.Drawing.Size(29, 28);
+            this.pictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxExit.TabIndex = 2;
+            this.pictureBoxExit.TabStop = false;
+            this.pictureBoxExit.Click += new System.EventHandler(this.pictureBoxExit_Click);
+            // 
+            // pictureBoxMinimize
+            // 
+            this.pictureBoxMinimize.Image = global::TinyTech.Main.Properties.Resources.Minimize;
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(3, 2);
+            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(29, 28);
+            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMinimize.TabIndex = 3;
+            this.pictureBoxMinimize.TabStop = false;
+            this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
+            // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1366, 738);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.pnlBottom);
@@ -423,8 +487,7 @@ namespace TinyTech.Main
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "صفحه اصلي";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "تايني تك سافت";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -432,9 +495,13 @@ namespace TinyTech.Main
             this.pnlMain.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
+            this.pnlMaxMin.ResumeLayout(false);
             this.menuMainForm.ResumeLayout(false);
             this.menuMainForm.PerformLayout();
             this.pnlBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -453,7 +520,7 @@ namespace TinyTech.Main
         private void SetUserInfo()
         {
             var UserInfo_ = @class.GetUserInfo(ConnectionInfo.LoggedInUserId).FirstOrDefault();
-            lblUserInfo.Text = $"نام كاربري: {UserInfo_.UserName}\n دوره مالي: {@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
+            lblUserInfo.Text = $"نام كاربري: {UserInfo_.UserName}      ***      دوره مالي: {@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
         }
 
         private void SetColor()
@@ -484,11 +551,11 @@ namespace TinyTech.Main
                 case Keys.Escape:
                     if (tabControlMain.TabCount == 0)
                     {
-                        this.Close();
+                        CloseProgram();
                     }
                     break;
                 case Keys.F1:
-                    CustomMessageForm.CustomMessageBox.Show("راهنماي برنامه", "تست", "i");
+                    CustomMessageForm.CustomMessageBox.Show("راهنماي برنامه", "در حال تكميل شدن...", "i");
                     break;
             }
         }
@@ -500,6 +567,11 @@ namespace TinyTech.Main
         }
 
         private void ToolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            CloseProgram();
+        }
+
+        private void CloseProgram()
         {
             this.Close();
         }
@@ -558,10 +630,25 @@ namespace TinyTech.Main
             tab.AddNewTab(tabControlMain, bankAccountDefinition);
         }
 
+        private void FormSizeChange()
+        {
+            if (this.Size != MinimumSize)
+            {
+                this.Size = MinimumSize;
+                this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
+                this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
+                this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Max;
+            }
+            else if (this.Size == MinimumSize)
+            {
+                Bounds = Screen.PrimaryScreen.WorkingArea;
+                this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
+            }
+        }
+
         private void menuMainForm_DoubleClick(object sender, EventArgs e)
         {
-            WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
-            CenterToScreen();
+            //FormSizeChange();
         }
 
         private void ToolStripMenuItemBankType_Click(object sender, EventArgs e)
@@ -580,6 +667,26 @@ namespace TinyTech.Main
             {
                 //lblUserInfo.Text = $"{UserInfo}\nارتباط با اينترنت برقرار نمي باشد";
             }
+        }
+
+        private void pictureBoxExit_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("{ESC}");
+        }
+
+        private void pictureBoxMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlTop_DoubleClick(object sender, EventArgs e)
+        {
+            FormSizeChange();
+        }
+
+        private void pictureBoxMaximize_Click(object sender, EventArgs e)
+        {
+            FormSizeChange();
         }
     }
 }

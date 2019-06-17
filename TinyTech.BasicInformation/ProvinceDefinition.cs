@@ -361,7 +361,7 @@ namespace TinyTech.BasicInformation
         private void ProvinceDefinition_Load(object sender, EventArgs e)
         {
             var provinceList = @class.GetProvince().Where(i => i.Active);
-            dgvProvince.DataSource = provinceList;//ProvinceListDataTable(provinceList);
+            dgvProvince.DataSource = provinceList;
             SetGridView();
             txtProvinceID.Text = CalculateMaxId().ToString();
             txtProvinceName.Focus();
@@ -391,7 +391,7 @@ namespace TinyTech.BasicInformation
 
             dgvProvince.Columns["ID"].DisplayIndex = 0;
             dgvProvince.Columns["Name"].DisplayIndex = 1;
-            dgvProvince.Columns["Description"].DisplayIndex = 3;
+            dgvProvince.Columns["Description"].DisplayIndex = 2;
 
             dgvProvince.Columns["ID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvProvince.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;

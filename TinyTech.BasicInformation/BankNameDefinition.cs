@@ -358,12 +358,18 @@ namespace TinyTech.BasicInformation
             return dataTable;
         }
 
+        private void ClearForm()
+        {
+            txtBankNameName.Text = txtDescription.Text = string.Empty;
+        }
+
         private void BankNameDefinition_Load(object sender, EventArgs e)
         {
-            var bankNameList = @class.GetBankName().Where(i => i.Active).ToList();
-            dgvBankName.DataSource = BankNameListDataTable(bankNameList);
+            var bankNameList = @class.GetBankName(true).ToList();
+            dgvBankName.DataSource = bankNameList;//BankNameListDataTable(bankNameList);
             SetGridView();
             txtBankNameID.Text = CalculateMaxId().ToString();
+            ClearForm();
             txtBankNameName.Focus();
         }
 
@@ -422,7 +428,7 @@ namespace TinyTech.BasicInformation
                 txtBankNameName.Focus();
                 return false;
             }
-            if (DB_Connection.BankName.AsNoTracking().Count(i => i.Active && i.Name.Equals(txtBankNameName.Text.Trim())) > 0)
+            if (@class.GetBankName(true).Count(i => i.Name.Equals(txtBankNameName.Text.Trim())) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام بانك \"{txtBankNameName.Text}\" تكراري است!", "e");
                 txtBankNameName.Focus();
@@ -465,14 +471,12 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             BankNameDefinition_Load(null, null);
-            txtBankNameName.Clear();
-            txtDescription.Clear();
         }
 
         private void txtBankNameName_TextChanged(object sender, EventArgs e)
         {
-            var bankNameList = @class.GetBankName().Where(i => i.Active && i.Name.Contains(txtBankNameName.Text)).ToList();
-            dgvBankName.DataSource = BankNameListDataTable(bankNameList);
+            var bankNameList = @class.GetBankName(true).Where(i => i.Name.Contains(txtBankNameName.Text)).ToList();
+            dgvBankName.DataSource = bankNameList;//BankNameListDataTable(bankNameList);
         }
     }
 }

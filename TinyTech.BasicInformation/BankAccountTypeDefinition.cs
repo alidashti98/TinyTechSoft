@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TinyTech.Connection;
-using TinyTech.Selecting;
 using TinyTech.UI.Control.MessageBox;
 using TinyTech.UI.Control.UIElement;
 
@@ -358,12 +357,18 @@ namespace TinyTech.BasicInformation
             return dataTable;
         }
 
+        private void ClearForm()
+        {
+            txtBankAccountTypeName.Text = txtDescription.Text = string.Empty;
+        }
+
         private void BankAccountTypeDefinition_Load(object sender, EventArgs e)
         {
-            var bankAccountTypeList = @class.GetBankAccountType();
-            dgvBankAccountType.DataSource = BankAccountListDataTable(bankAccountTypeList);
+            var bankAccountTypeList = @class.GetBankAccountType(true);
+            dgvBankAccountType.DataSource = bankAccountTypeList;//BankAccountListDataTable(bankAccountTypeList);
             SetGridView();
             txtBankAccountTypeID.Text = CalculateMaxId().ToString();
+            ClearForm();
             txtBankAccountTypeName.Focus();
         }
 
@@ -423,7 +428,7 @@ namespace TinyTech.BasicInformation
                 txtBankAccountTypeName.Focus();
                 return false;
             }
-            if (DB_Connection.BankAccount.AsNoTracking().Count(i => i.AccountNumber.Equals(txtBankAccountTypeName.Text.Trim()) && i.Active) > 0)
+            if (@class.GetBankAccountType(true).Count(i => i.Name.Equals(txtBankAccountTypeName.Text.Trim())) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"شماره حساب \"{txtBankAccountTypeName.Text}\" تكراري است!", "e");
                 txtBankAccountTypeName.Focus();
@@ -466,14 +471,12 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             BankAccountTypeDefinition_Load(null, null);
-            txtBankAccountTypeName.Clear();
-            txtDescription.Clear();
         }
 
         private void BankAccountTypeName_TextChanged(object sender, EventArgs e)
         {
-            var bankAccountTypeList = @class.GetBankAccountType().Where(i => i.Active && i.Name.Contains(txtBankAccountTypeName.Text)).ToList();
-            dgvBankAccountType.DataSource = BankAccountListDataTable(bankAccountTypeList);
+            var bankAccountTypeList = @class.GetBankAccountType(true).Where(i => i.Name.Contains(txtBankAccountTypeName.Text)).ToList();
+            dgvBankAccountType.DataSource = bankAccountTypeList;//BankAccountListDataTable(bankAccountTypeList);
         }
     }
 }

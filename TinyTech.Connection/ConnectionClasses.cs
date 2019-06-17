@@ -25,12 +25,20 @@ namespace TinyTech.Connection
 
         #region FiscalYearList
 
-        public List<FiscalYear> GetFiscalYear()
+        public List<FiscalYear> GetFiscalYear(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.FiscalYear.AsNoTracking().ToList();
+
+                if (Active)
+                {
+                    return DB_Connection.FiscalYear.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.FiscalYear.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -51,12 +59,19 @@ namespace TinyTech.Connection
 
         #region PathList
 
-        public List<Path> GetPath()
+        public List<Path> GetPath(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.Path.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.Path.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.Path.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -69,12 +84,19 @@ namespace TinyTech.Connection
 
         #region BankAccountTypeList
 
-        public List<BankAccountType> GetBankAccountType()
+        public List<BankAccountType> GetBankAccountType(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.BankAccountType.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.BankAccountType.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.BankAccountType.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -87,12 +109,19 @@ namespace TinyTech.Connection
 
         #region RegionList
 
-        public List<Region> GetRegion()
+        public List<Region> GetRegion(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.Region.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.Region.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.Region.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -105,12 +134,19 @@ namespace TinyTech.Connection
 
         #region ProvinceList
 
-        public List<Province> GetProvince()
+        public List<Province> GetProvince(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.Province.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.Province.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.Province.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -144,30 +180,55 @@ namespace TinyTech.Connection
             }
         }
 
-        public List<CityList> GetCity()
+        public List<CityList> GetCity(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                var cityList = (from i in DB_Connection.City.AsNoTracking().ToList()
-                                select new CityList
-                                {
-                                    ID = i.ID,
-                                    Name = i.Name,
-                                    ProvinceID = i.ProvinceID,
-                                    Description = i.Description,
-                                    Active = i.Active,
-                                    CLientDate = i.ClientDate,
-                                    ServerDate = i.ServerDate,
-                                    CLientTime = i.ClientTime,
-                                    ServerTime = i.ServerTime,
-                                    UserID = i.UserID,
-                                    ProvinceName = i.Province.Name,
+                if (Active)
+                {
+                    var cityList = (from i in DB_Connection.City.AsNoTracking().Where(i => i.Active).ToList()
+                                    select new CityList
+                                    {
+                                        ID = i.ID,
+                                        Name = i.Name,
+                                        ProvinceID = i.ProvinceID,
+                                        Description = i.Description,
+                                        Active = i.Active,
+                                        CLientDate = i.ClientDate,
+                                        ServerDate = i.ServerDate,
+                                        CLientTime = i.ClientTime,
+                                        ServerTime = i.ServerTime,
+                                        UserID = i.UserID,
+                                        ProvinceName = i.Province.Name,
 
 
-                                }).Distinct().ToList();
+                                    }).Distinct().ToList();
 
-                return cityList;
+                    return cityList;
+                }
+                else
+                {
+                    var cityList = (from i in DB_Connection.City.AsNoTracking().ToList()
+                                    select new CityList
+                                    {
+                                        ID = i.ID,
+                                        Name = i.Name,
+                                        ProvinceID = i.ProvinceID,
+                                        Description = i.Description,
+                                        Active = i.Active,
+                                        CLientDate = i.ClientDate,
+                                        ServerDate = i.ServerDate,
+                                        CLientTime = i.ClientTime,
+                                        ServerTime = i.ServerTime,
+                                        UserID = i.UserID,
+                                        ProvinceName = i.Province.Name,
+
+
+                                    }).Distinct().ToList();
+
+                    return cityList;
+                }
             }
             catch (Exception ex)
             {
@@ -180,12 +241,19 @@ namespace TinyTech.Connection
 
         #region CustomerGroupList
 
-        public List<CustomerGroup> GetCustomerGroup()
+        public List<CustomerGroup> GetCustomerGroup(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.CustomerGroup.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.CustomerGroup.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.CustomerGroup.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -198,12 +266,19 @@ namespace TinyTech.Connection
 
         #region GoodsUnitList
 
-        public List<GoodsUnit> GetGoodsUnit()
+        public List<GoodsUnit> GetGoodsUnit(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.GoodsUnit.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.GoodsUnit.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.GoodsUnit.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -216,12 +291,19 @@ namespace TinyTech.Connection
 
         #region BankNameList
 
-        public List<BankName> GetBankName()
+        public List<BankName> GetBankName(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.BankName.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.BankName.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.BankName.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -234,12 +316,19 @@ namespace TinyTech.Connection
 
         #region GoodsGroupList
 
-        public List<GoodsGroup> GetGoodsGroup()
+        public List<GoodsGroup> GetGoodsGroup(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                return DB_Connection.GoodsGroup.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return DB_Connection.GoodsGroup.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.GoodsGroup.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -280,37 +369,69 @@ namespace TinyTech.Connection
             }
         }
 
-        public List<BankAccountList> GetBankAccount()
+        public List<BankAccountList> GetBankAccount(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
-                var bankAccountList = (from i in DB_Connection.BankAccount.AsNoTracking().ToList()
-                                       select new BankAccountList
-                                       {
-                                           ID = i.ID,
-                                           AccountNumber = i.AccountNumber,
-                                           AccountOwner = i.AccountOwner,
-                                           BankNameID = i.BankNameID,
-                                           Description = i.Description,
-                                           Active = i.Active,
-                                           Balance = i.Balance,
-                                           CLientDate = i.ClientDate,
-                                           ServerDate = i.ServerDate,
-                                           CLientTime = i.ClientTime,
-                                           ServerTime = i.ServerTime,
-                                           UserID = i.UserID,
-                                           Address = i.Address,
-                                           Branch = i.Branch,
-                                           Phone1 = i.Phone1,
-                                           Phone2 = i.Phone2,
-                                           AccountTypeID = i.AccountTypeID,
-                                           BankNameName = i.BankName.Name,
-                                           AccountTypeName = i.BankAccountType.Name,
+                if (Active)
+                {
+                    var bankAccountList = (from i in DB_Connection.BankAccount.AsNoTracking().Where(i => i.Active).ToList()
+                                           select new BankAccountList
+                                           {
+                                               ID = i.ID,
+                                               AccountNumber = i.AccountNumber,
+                                               AccountOwner = i.AccountOwner,
+                                               BankNameID = i.BankNameID,
+                                               Description = i.Description,
+                                               Active = i.Active,
+                                               Balance = i.Balance,
+                                               CLientDate = i.ClientDate,
+                                               ServerDate = i.ServerDate,
+                                               CLientTime = i.ClientTime,
+                                               ServerTime = i.ServerTime,
+                                               UserID = i.UserID,
+                                               Address = i.Address,
+                                               Branch = i.Branch,
+                                               Phone1 = i.Phone1,
+                                               Phone2 = i.Phone2,
+                                               AccountTypeID = i.AccountTypeID,
+                                               BankNameName = i.BankName.Name,
+                                               AccountTypeName = i.BankAccountType.Name,
 
-                                       }).Distinct().ToList();
+                                           }).Distinct().ToList();
 
-                return bankAccountList;
+                    return bankAccountList;
+                }
+                else
+                {
+                    var bankAccountList = (from i in DB_Connection.BankAccount.AsNoTracking().ToList()
+                                           select new BankAccountList
+                                           {
+                                               ID = i.ID,
+                                               AccountNumber = i.AccountNumber,
+                                               AccountOwner = i.AccountOwner,
+                                               BankNameID = i.BankNameID,
+                                               Description = i.Description,
+                                               Active = i.Active,
+                                               Balance = i.Balance,
+                                               CLientDate = i.ClientDate,
+                                               ServerDate = i.ServerDate,
+                                               CLientTime = i.ClientTime,
+                                               ServerTime = i.ServerTime,
+                                               UserID = i.UserID,
+                                               Address = i.Address,
+                                               Branch = i.Branch,
+                                               Phone1 = i.Phone1,
+                                               Phone2 = i.Phone2,
+                                               AccountTypeID = i.AccountTypeID,
+                                               BankNameName = i.BankName.Name,
+                                               AccountTypeName = i.BankAccountType.Name,
+
+                                           }).Distinct().ToList();
+
+                    return bankAccountList;
+                }
             }
             catch (Exception ex)
             {
@@ -481,15 +602,24 @@ namespace TinyTech.Connection
         //#endregion
 
         #region UserList
-        public List<User> GetUserInfo(int userId)
+        public List<User> GetUserInfo(int userId, bool Active = false)
         {
             DB_Connection = new TinyTechEntities();
 
             try
             {
-                return userId > 0
-                    ? DB_Connection.User.AsNoTracking().Where(i => i.ID == userId).ToList()
-                    : DB_Connection.User.AsNoTracking().ToList();
+                if (Active)
+                {
+                    return userId > 0
+                        ? DB_Connection.User.AsNoTracking().Where(i => i.ID == userId).ToList()
+                        : DB_Connection.User.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return userId > 0
+                        ? DB_Connection.User.AsNoTracking().Where(i => i.ID == userId).ToList()
+                        : DB_Connection.User.AsNoTracking().ToList();
+                }
             }
             catch (Exception ex)
             {

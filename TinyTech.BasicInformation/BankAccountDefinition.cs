@@ -230,7 +230,6 @@ namespace TinyTech.BasicInformation
             this.txtBankName.Size = new System.Drawing.Size(159, 28);
             this.txtBankName.TabIndex = 38;
             this.txtBankName.Text = "انتخاب نام بانك ...";
-            this.txtBankName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // chkBankAccountType
             // 
@@ -261,7 +260,6 @@ namespace TinyTech.BasicInformation
             this.txtBankAccountTypeName.Size = new System.Drawing.Size(159, 28);
             this.txtBankAccountTypeName.TabIndex = 36;
             this.txtBankAccountTypeName.Text = "انتخاب نوع حساب ...";
-            this.txtBankAccountTypeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPhone2
             // 
@@ -331,7 +329,6 @@ namespace TinyTech.BasicInformation
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDescription.Size = new System.Drawing.Size(422, 28);
             this.txtDescription.TabIndex = 11;
-            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnSave
             // 
@@ -394,7 +391,7 @@ namespace TinyTech.BasicInformation
             this.lblPhone2.Location = new System.Drawing.Point(138, 83);
             this.lblPhone2.Name = "lblPhone2";
             this.lblPhone2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblPhone2.Size = new System.Drawing.Size(40, 20);
+            this.lblPhone2.Size = new System.Drawing.Size(41, 20);
             this.lblPhone2.TabIndex = 34;
             this.lblPhone2.Text = "تلفن 2";
             this.lblPhone2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -473,7 +470,6 @@ namespace TinyTech.BasicInformation
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtAddress.Size = new System.Drawing.Size(469, 28);
             this.txtAddress.TabIndex = 5;
-            this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblAddress
             // 
@@ -747,21 +743,21 @@ namespace TinyTech.BasicInformation
             return dataTable;
         }
 
-        private void BankAccountDefinition_Load(object sender, EventArgs e)
+        private void ClearForm()
         {
-            //FillAccountType();
-            var bankAccountList = @class.GetBankAccount();
-            dgvBankAccount.DataSource = BankAccountListDataTable(bankAccountList);
-            SetGridView();
-            txtBankAccountID.Text = CalculateMaxId().ToString();
-            txtBankAccountNumber.Focus();
+            chkBankName.Checked = chkBankAccountType.Checked = false;
+            txtBankAccountNumber.Text = txtBranch.Text = txtAccountOwner.Text = txtAddress.Text = txtDebt.Text = txtCrediting.Text = txtDescription.Text = string.Empty;
         }
 
-        //private void FillAccountType()
-        //{
-        //    var bankAccountType = @class.GetBankAccountType().Where(i => i.Active).ToList();
-        //    cmbAccountType.DataSource = bankAccountType;
-        //}
+        private void BankAccountDefinition_Load(object sender, EventArgs e)
+        {
+            var bankAccountList = @class.GetBankAccount(true);
+            dgvBankAccount.DataSource = bankAccountList;//BankAccountListDataTable(bankAccountList);
+            SetGridView();
+            txtBankAccountID.Text = CalculateMaxId().ToString();
+            ClearForm();
+            txtBankAccountNumber.Focus();
+        }
 
         private int CalculateMaxId()
         {
@@ -854,7 +850,7 @@ namespace TinyTech.BasicInformation
                 txtBankAccountNumber.Focus();
                 return false;
             }
-            if (DB_Connection.BankAccount.AsNoTracking().Count(i => i.AccountNumber.Equals(txtBankAccountNumber.Text.Trim()) && i.Active) > 0)
+            if (@class.GetBankAccount(true).Count(i => i.AccountNumber.Equals(txtBankAccountNumber.Text.Trim())) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"شماره حساب \"{txtBankAccountNumber.Text}\" تكراري است!", "e");
                 txtBankAccountNumber.Focus();
@@ -911,14 +907,12 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             BankAccountDefinition_Load(null, null);
-            txtBankAccountNumber.Clear();
-            txtDescription.Clear();
         }
 
         private void txtBankAccountNumber_TextChanged(object sender, EventArgs e)
         {
-            //var BankAccountList = @class.GetBankAccount().Where(i => i.Active && i.Name.Contains(txtBankAccountNumber.Text)).ToList();
-            //dgvBankAccount.DataSource = BankAccountListDataTable(BankAccountList);
+            var BankAccountList = @class.GetBankAccount(true).Where(i => i.AccountNumber.Contains(txtBankAccountNumber.Text)).ToList();
+            dgvBankAccount.DataSource = BankAccountList;//BankAccountListDataTable(BankAccountList);
         }
 
         private void chkBankAccountType_CheckedChanged(object sender, EventArgs e)
