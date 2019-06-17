@@ -360,7 +360,7 @@ namespace TinyTech.BasicInformation
 
         private void ProvinceDefinition_Load(object sender, EventArgs e)
         {
-            var provinceList = @class.GetProvince().Where(i => i.Active);
+            var provinceList = @class.GetProvince(true);
             dgvProvince.DataSource = provinceList;
             SetGridView();
             txtProvinceID.Text = CalculateMaxId().ToString();
@@ -423,7 +423,7 @@ namespace TinyTech.BasicInformation
                 txtProvinceName.Focus();
                 return false;
             }
-            if (@class.GetProvince().Count(i => i.Name.Equals(txtProvinceName.Text.Trim())) > 0)
+            if (@class.GetProvince(true).Count(i => i.Name.Equals(txtProvinceName.Text.Trim())) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام استان \"{txtProvinceName.Text.Trim()}\" تكراري است!", "e");
                 txtProvinceName.Focus();
@@ -476,7 +476,7 @@ namespace TinyTech.BasicInformation
 
         private void txtProvinceName_TextChanged(object sender, EventArgs e)
         {
-            var provinceList = @class.GetProvince().Where(i => i.Active && i.Name.Contains(txtProvinceName.Text.Trim())).ToList();
+            var provinceList = @class.GetProvince(true).Where(i => i.Name.Contains(txtProvinceName.Text.Trim())).ToList();
             dgvProvince.DataSource = provinceList;//ProvinceListDataTable(provinceList);
         }
     }

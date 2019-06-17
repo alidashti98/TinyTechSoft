@@ -23,7 +23,7 @@ namespace TinyTech.Main
         private UI.Control.UIElement.Timer timer1;
         private DateControl Date = new DateControl();
         private DateTime FullPersianDate = DateTime.Now;
-        private UI.Control.Label.Label lblDateTime;
+        private UI.Control.Label.Label lblTime;
         private UI.Control.UIElement.Panel pnlBottom;
         private UI.Control.UIElement.Panel pnlTop;
         private MenuStrip menuMainForm;
@@ -56,11 +56,17 @@ namespace TinyTech.Main
         private ToolStripMenuItem ToolStripMenuItemBankType;
         private UI.Control.UIElement.Timer timerInternetCheck;
         private PictureBox pictureBoxExit;
-        private PictureBox pictureBoxMinimize;
-        private UI.Control.Label.Label lblUserInfo;
         private UI.Control.UIElement.Panel pnlMaxMin;
         private PictureBox pictureBoxMaximize;
+        private UI.Control.Label.Label lblDate;
+        private UI.Control.Label.Label lblCustomText;
+        private UI.Control.Label.Label lblFiscalYearInfo;
+        private UI.Control.Label.Label lblUserInfo;
+        private UI.Control.Label.Label lblFreeSpace;
+        private PictureBox pictureBoxUser;
+        private PictureBox pictureBoxMinimize;
         private Container components = null;
+        private bool Restart = false;
         #endregion
 
         protected override void Dispose(bool disposing)
@@ -83,8 +89,14 @@ namespace TinyTech.Main
             this.pnlMain = new TinyTech.UI.Control.UIElement.Panel();
             this.tabControlMain = new TinyTech.UI.Control.UIElement.TabControl();
             this.pnlTop = new TinyTech.UI.Control.UIElement.Panel();
-            this.pnlMaxMin = new TinyTech.UI.Control.UIElement.Panel();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
             this.lblUserInfo = new TinyTech.UI.Control.Label.Label();
+            this.lblFreeSpace = new TinyTech.UI.Control.Label.Label();
+            this.lblFiscalYearInfo = new TinyTech.UI.Control.Label.Label();
+            this.pnlMaxMin = new TinyTech.UI.Control.UIElement.Panel();
+            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxExit = new System.Windows.Forms.PictureBox();
             this.menuMainForm = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemBasicInformation = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLocation = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,20 +124,20 @@ namespace TinyTech.Main
             this.ToolStripMenuItemBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlBottom = new TinyTech.UI.Control.UIElement.Panel();
-            this.lblDateTime = new TinyTech.UI.Control.Label.Label();
+            this.lblCustomText = new TinyTech.UI.Control.Label.Label();
+            this.lblDate = new TinyTech.UI.Control.Label.Label();
+            this.lblTime = new TinyTech.UI.Control.Label.Label();
             this.timer1 = new TinyTech.UI.Control.UIElement.Timer();
             this.timerInternetCheck = new TinyTech.UI.Control.UIElement.Timer();
-            this.pictureBoxMaximize = new System.Windows.Forms.PictureBox();
-            this.pictureBoxExit = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMinimize = new System.Windows.Forms.PictureBox();
             this.pnlMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.pnlMaxMin.SuspendLayout();
-            this.menuMainForm.SuspendLayout();
-            this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).BeginInit();
+            this.menuMainForm.SuspendLayout();
+            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -136,7 +148,7 @@ namespace TinyTech.Main
             this.pnlMain.Location = new System.Drawing.Point(0, 60);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlMain.Size = new System.Drawing.Size(1366, 603);
+            this.pnlMain.Size = new System.Drawing.Size(1366, 652);
             this.pnlMain.TabIndex = 3;
             // 
             // tabControlMain
@@ -148,13 +160,16 @@ namespace TinyTech.Main
             this.tabControlMain.RightToLeftLayout = true;
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.ShowToolTips = true;
-            this.tabControlMain.Size = new System.Drawing.Size(1366, 603);
+            this.tabControlMain.Size = new System.Drawing.Size(1366, 652);
             this.tabControlMain.TabIndex = 0;
             // 
             // pnlTop
             // 
-            this.pnlTop.Controls.Add(this.pnlMaxMin);
+            this.pnlTop.Controls.Add(this.pictureBoxUser);
             this.pnlTop.Controls.Add(this.lblUserInfo);
+            this.pnlTop.Controls.Add(this.lblFreeSpace);
+            this.pnlTop.Controls.Add(this.lblFiscalYearInfo);
+            this.pnlTop.Controls.Add(this.pnlMaxMin);
             this.pnlTop.Controls.Add(this.menuMainForm);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
@@ -165,33 +180,114 @@ namespace TinyTech.Main
             this.pnlTop.TabIndex = 0;
             this.pnlTop.DoubleClick += new System.EventHandler(this.pnlTop_DoubleClick);
             // 
-            // pnlMaxMin
+            // pictureBoxUser
             // 
-            this.pnlMaxMin.Controls.Add(this.pictureBoxMaximize);
-            this.pnlMaxMin.Controls.Add(this.pictureBoxExit);
-            this.pnlMaxMin.Controls.Add(this.pictureBoxMinimize);
-            this.pnlMaxMin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlMaxMin.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlMaxMin.Location = new System.Drawing.Point(1268, 0);
-            this.pnlMaxMin.Name = "pnlMaxMin";
-            this.pnlMaxMin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlMaxMin.Size = new System.Drawing.Size(98, 32);
-            this.pnlMaxMin.TabIndex = 6;
+            this.pictureBoxUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxUser.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxUser.Image = global::TinyTech.Main.Properties.Resources.User;
+            this.pictureBoxUser.Location = new System.Drawing.Point(308, 0);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(29, 32);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxUser.TabIndex = 12;
+            this.pictureBoxUser.TabStop = false;
+            this.pictureBoxUser.Click += new System.EventHandler(this.pictureBoxUser_Click);
             // 
             // lblUserInfo
             // 
             this.lblUserInfo.AutoSize = true;
             this.lblUserInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblUserInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblUserInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblUserInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 10F, System.Drawing.FontStyle.Bold);
             this.lblUserInfo.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblUserInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblUserInfo.Location = new System.Drawing.Point(196, 0);
             this.lblUserInfo.Name = "lblUserInfo";
             this.lblUserInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblUserInfo.Size = new System.Drawing.Size(98, 20);
-            this.lblUserInfo.TabIndex = 5;
+            this.lblUserInfo.Size = new System.Drawing.Size(112, 24);
+            this.lblUserInfo.TabIndex = 11;
             this.lblUserInfo.Text = "اطلاعات كاربر جاري";
-            this.lblUserInfo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblUserInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFreeSpace
+            // 
+            this.lblFreeSpace.AutoSize = true;
+            this.lblFreeSpace.BackColor = System.Drawing.Color.Transparent;
+            this.lblFreeSpace.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblFreeSpace.Font = new System.Drawing.Font("IRANSans(FaNum)", 11F, System.Drawing.FontStyle.Bold);
+            this.lblFreeSpace.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblFreeSpace.Location = new System.Drawing.Point(140, 0);
+            this.lblFreeSpace.Name = "lblFreeSpace";
+            this.lblFreeSpace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblFreeSpace.Size = new System.Drawing.Size(56, 25);
+            this.lblFreeSpace.TabIndex = 10;
+            this.lblFreeSpace.Text = "     |     ";
+            this.lblFreeSpace.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFiscalYearInfo
+            // 
+            this.lblFiscalYearInfo.AutoSize = true;
+            this.lblFiscalYearInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblFiscalYearInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblFiscalYearInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 10F, System.Drawing.FontStyle.Bold);
+            this.lblFiscalYearInfo.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblFiscalYearInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblFiscalYearInfo.Name = "lblFiscalYearInfo";
+            this.lblFiscalYearInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblFiscalYearInfo.Size = new System.Drawing.Size(140, 24);
+            this.lblFiscalYearInfo.TabIndex = 9;
+            this.lblFiscalYearInfo.Text = "اطلاعات دوره مالي جاري";
+            this.lblFiscalYearInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlMaxMin
+            // 
+            this.pnlMaxMin.Controls.Add(this.pictureBoxMinimize);
+            this.pnlMaxMin.Controls.Add(this.pictureBoxMaximize);
+            this.pnlMaxMin.Controls.Add(this.pictureBoxExit);
+            this.pnlMaxMin.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlMaxMin.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.pnlMaxMin.Location = new System.Drawing.Point(1276, 0);
+            this.pnlMaxMin.Name = "pnlMaxMin";
+            this.pnlMaxMin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnlMaxMin.Size = new System.Drawing.Size(90, 32);
+            this.pnlMaxMin.TabIndex = 6;
+            // 
+            // pictureBoxMinimize
+            // 
+            this.pictureBoxMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBoxMinimize.Image = global::TinyTech.Main.Properties.Resources.Minimize;
+            this.pictureBoxMinimize.Location = new System.Drawing.Point(3, 0);
+            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
+            this.pictureBoxMinimize.Size = new System.Drawing.Size(29, 32);
+            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMinimize.TabIndex = 8;
+            this.pictureBoxMinimize.TabStop = false;
+            // 
+            // pictureBoxMaximize
+            // 
+            this.pictureBoxMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxMaximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
+            this.pictureBoxMaximize.Location = new System.Drawing.Point(32, 0);
+            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
+            this.pictureBoxMaximize.Size = new System.Drawing.Size(29, 32);
+            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMaximize.TabIndex = 7;
+            this.pictureBoxMaximize.TabStop = false;
+            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
+            // 
+            // pictureBoxExit
+            // 
+            this.pictureBoxExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxExit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBoxExit.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxExit.Image")));
+            this.pictureBoxExit.Location = new System.Drawing.Point(61, 0);
+            this.pictureBoxExit.Name = "pictureBoxExit";
+            this.pictureBoxExit.Size = new System.Drawing.Size(29, 32);
+            this.pictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxExit.TabIndex = 2;
+            this.pictureBoxExit.TabStop = false;
+            this.pictureBoxExit.Click += new System.EventHandler(this.pictureBoxExit_Click);
             // 
             // menuMainForm
             // 
@@ -207,7 +303,6 @@ namespace TinyTech.Main
             this.menuMainForm.Size = new System.Drawing.Size(1366, 28);
             this.menuMainForm.TabIndex = 1;
             this.menuMainForm.Text = "menuMainForm";
-            this.menuMainForm.DoubleClick += new System.EventHandler(this.menuMainForm_DoubleClick);
             // 
             // ToolStripMenuItemBasicInformation
             // 
@@ -403,28 +498,60 @@ namespace TinyTech.Main
             // 
             // pnlBottom
             // 
-            this.pnlBottom.Controls.Add(this.lblDateTime);
+            this.pnlBottom.Controls.Add(this.lblCustomText);
+            this.pnlBottom.Controls.Add(this.lblDate);
+            this.pnlBottom.Controls.Add(this.lblTime);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.pnlBottom.Location = new System.Drawing.Point(0, 663);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 712);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlBottom.Size = new System.Drawing.Size(1366, 75);
+            this.pnlBottom.Size = new System.Drawing.Size(1366, 26);
             this.pnlBottom.TabIndex = 2;
             // 
-            // lblDateTime
+            // lblCustomText
             // 
-            this.lblDateTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblDateTime.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblDateTime.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
-            this.lblDateTime.ForeColor = System.Drawing.Color.Lime;
-            this.lblDateTime.Location = new System.Drawing.Point(0, 0);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDateTime.Size = new System.Drawing.Size(184, 75);
-            this.lblDateTime.TabIndex = 3;
-            this.lblDateTime.Text = "زمان جاري سيستم";
-            this.lblDateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCustomText.BackColor = System.Drawing.Color.Transparent;
+            this.lblCustomText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCustomText.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblCustomText.ForeColor = System.Drawing.Color.Lime;
+            this.lblCustomText.Location = new System.Drawing.Point(105, 0);
+            this.lblCustomText.Name = "lblCustomText";
+            this.lblCustomText.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblCustomText.Size = new System.Drawing.Size(1161, 26);
+            this.lblCustomText.TabIndex = 5;
+            this.lblCustomText.Text = "متن دلخواه";
+            this.lblCustomText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblDate.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblDate.ForeColor = System.Drawing.Color.Lime;
+            this.lblDate.Location = new System.Drawing.Point(1266, 0);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblDate.Size = new System.Drawing.Size(100, 20);
+            this.lblDate.TabIndex = 4;
+            this.lblDate.Text = "تاريخ جاري سيستم";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTime.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTime.ForeColor = System.Drawing.Color.Lime;
+            this.lblTime.Location = new System.Drawing.Point(0, 0);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblTime.Size = new System.Drawing.Size(105, 20);
+            this.lblTime.TabIndex = 3;
+            this.lblTime.Text = "ساعت جاري سيستم";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -437,39 +564,6 @@ namespace TinyTech.Main
             this.timerInternetCheck.Enabled = true;
             this.timerInternetCheck.Interval = 60000;
             this.timerInternetCheck.Tick += new System.EventHandler(this.timerInternetCheck_Tick);
-            // 
-            // pictureBoxMaximize
-            // 
-            this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
-            this.pictureBoxMaximize.Location = new System.Drawing.Point(34, 2);
-            this.pictureBoxMaximize.Name = "pictureBoxMaximize";
-            this.pictureBoxMaximize.Size = new System.Drawing.Size(29, 28);
-            this.pictureBoxMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxMaximize.TabIndex = 7;
-            this.pictureBoxMaximize.TabStop = false;
-            this.pictureBoxMaximize.Click += new System.EventHandler(this.pictureBoxMaximize_Click);
-            // 
-            // pictureBoxExit
-            // 
-            this.pictureBoxExit.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxExit.Image")));
-            this.pictureBoxExit.Location = new System.Drawing.Point(65, 2);
-            this.pictureBoxExit.Name = "pictureBoxExit";
-            this.pictureBoxExit.Size = new System.Drawing.Size(29, 28);
-            this.pictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxExit.TabIndex = 2;
-            this.pictureBoxExit.TabStop = false;
-            this.pictureBoxExit.Click += new System.EventHandler(this.pictureBoxExit_Click);
-            // 
-            // pictureBoxMinimize
-            // 
-            this.pictureBoxMinimize.Image = global::TinyTech.Main.Properties.Resources.Minimize;
-            this.pictureBoxMinimize.Location = new System.Drawing.Point(3, 2);
-            this.pictureBoxMinimize.Name = "pictureBoxMinimize";
-            this.pictureBoxMinimize.Size = new System.Drawing.Size(29, 28);
-            this.pictureBoxMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxMinimize.TabIndex = 3;
-            this.pictureBoxMinimize.TabStop = false;
-            this.pictureBoxMinimize.Click += new System.EventHandler(this.pictureBoxMinimize_Click);
             // 
             // MainForm
             // 
@@ -495,13 +589,15 @@ namespace TinyTech.Main
             this.pnlMain.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.pnlMaxMin.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).EndInit();
             this.menuMainForm.ResumeLayout(false);
             this.menuMainForm.PerformLayout();
             this.pnlBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaximize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();
+            this.pnlBottom.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -509,18 +605,20 @@ namespace TinyTech.Main
         private void MainForm_Load(object sender, EventArgs e)
         {
             timer1_Tick(null, null);
-            //timerInternetCheck_Tick(null,null);
+            //timerInternetCheck_Tick(null, null);
             pnlTop.Controls.Add(menuMainForm);
             pnlMain.Controls.Add(tabControlMain);
-            pnlBottom.Controls.Add(lblDateTime);
+            pnlBottom.Controls.Add(lblTime);
             SetColor();
-            SetUserInfo();
+            SetUserAndFiscalYearInfo();
+            lblCustomText.Text = string.Empty;
         }
 
-        private void SetUserInfo()
+        private void SetUserAndFiscalYearInfo()
         {
             var UserInfo_ = @class.GetUserInfo(ConnectionInfo.LoggedInUserId).FirstOrDefault();
-            lblUserInfo.Text = $"نام كاربري: {UserInfo_.UserName}      ***      دوره مالي: {@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
+            lblUserInfo.Text = $"{UserInfo_.UserName}";
+            lblFiscalYearInfo.Text = $"{@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
         }
 
         private void SetColor()
@@ -531,12 +629,15 @@ namespace TinyTech.Main
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBoxWarning.State = 0;
-            if (CustomMessageForm.CustomMessageBox.Show("خروج", "آيا مي خواهيد از برنامه خارج شويد؟", "w") == DialogResult.No)
+            if (!Restart)
             {
-                e.Cancel = true;
+                MessageBoxWarning.State = 0;
+                if (CustomMessageForm.CustomMessageBox.Show("خروج", "آيا مي خواهيد از برنامه خارج شويد؟", "w") == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                MessageBoxWarning.State = 1;
             }
-            MessageBoxWarning.State = 1;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -579,7 +680,8 @@ namespace TinyTech.Main
         private void timer1_Tick(object sender, EventArgs e)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fa-IR");
-            lblDateTime.Text = $"{DateTime.Now.ToString("HH:mm:ss")}\n{Date.ShamsiNow}\n{FullPersianDate.ToLongDateString()}";
+            lblTime.Text = $"{DateTime.Now.ToString("HH:mm:ss")}";
+            lblDate.Text = $"{FullPersianDate.ToLongDateString()}";//{Date.ShamsiNow}
         }
 
         private void ToolStripMenuItemProvince_Click(object sender, EventArgs e)
@@ -646,11 +748,6 @@ namespace TinyTech.Main
             }
         }
 
-        private void menuMainForm_DoubleClick(object sender, EventArgs e)
-        {
-            //FormSizeChange();
-        }
-
         private void ToolStripMenuItemBankType_Click(object sender, EventArgs e)
         {
             var bankAccountTypeDefinition = new BankAccountTypeDefinition();
@@ -661,11 +758,13 @@ namespace TinyTech.Main
         {
             if (@class.CheckForInternetConnection())
             {
-                //lblUserInfo.Text = $"{UserInfo}\nارتباط با اينترنت برقرار مي باشد";
+                lblCustomText.Text = $"ارتباط با اينترنت برقرار مي باشد";
+                lblCustomText.ForeColor = Color.Lime;
             }
             else
             {
-                //lblUserInfo.Text = $"{UserInfo}\nارتباط با اينترنت برقرار نمي باشد";
+                lblCustomText.Text = $"ارتباط با اينترنت برقرار نمي باشد";
+                lblCustomText.ForeColor = Color.Red;
             }
         }
 
@@ -687,6 +786,28 @@ namespace TinyTech.Main
         private void pictureBoxMaximize_Click(object sender, EventArgs e)
         {
             FormSizeChange();
+        }
+
+        private void SwitchUser()
+        {
+            MessageBoxWarning.State = 0;
+            if (CustomMessageForm.CustomMessageBox.Show("خروج از كاربري", "آيا مي خواهيد از كاربري خود خارج شويد؟", "w") == DialogResult.No)
+            {
+                Restart = false;
+                MessageBoxWarning.State = 1;
+                return;
+            }
+            else
+            {
+                Restart = true;
+                Process.Start(Application.ExecutablePath);
+                this.Close();
+            }
+        }
+
+        private void pictureBoxUser_Click(object sender, EventArgs e)
+        {
+            SwitchUser();
         }
     }
 }
