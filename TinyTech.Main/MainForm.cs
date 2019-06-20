@@ -66,6 +66,7 @@ namespace TinyTech.Main
         private PictureBox pictureBoxUser;
         private PictureBox pictureBoxMinimize;
         private Container components = null;
+        private ToolStripMenuItem ToolStripMenuItemCurrency;
         private bool Restart = false;
         #endregion
 
@@ -113,6 +114,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemGoods = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemGoodsBarcode = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemBankMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemCurrency = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemBankName = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemBankType = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemAccount = new System.Windows.Forms.ToolStripMenuItem();
@@ -417,6 +419,7 @@ namespace TinyTech.Main
             // ToolStripMenuItemBankMenu
             // 
             this.ToolStripMenuItemBankMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemCurrency,
             this.ToolStripMenuItemBankName,
             this.ToolStripMenuItemBankType,
             this.ToolStripMenuItemAccount,
@@ -424,6 +427,13 @@ namespace TinyTech.Main
             this.ToolStripMenuItemBankMenu.Name = "ToolStripMenuItemBankMenu";
             this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(135, 24);
             this.ToolStripMenuItemBankMenu.Text = "بانك";
+            // 
+            // ToolStripMenuItemCurrency
+            // 
+            this.ToolStripMenuItemCurrency.Name = "ToolStripMenuItemCurrency";
+            this.ToolStripMenuItemCurrency.Size = new System.Drawing.Size(173, 24);
+            this.ToolStripMenuItemCurrency.Text = "تعريف واحد پول";
+            this.ToolStripMenuItemCurrency.Click += new System.EventHandler(this.ToolStripMenuItemCurrency_Click);
             // 
             // ToolStripMenuItemBankName
             // 
@@ -754,18 +764,24 @@ namespace TinyTech.Main
             tab.AddNewTab(tabControlMain, bankAccountTypeDefinition);
         }
 
+        private void ToolStripMenuItemCurrency_Click(object sender, EventArgs e)
+        {
+            var currencyDefinition = new CurrencyDefinition();
+            tab.AddNewTab(tabControlMain, currencyDefinition);
+        }
+
         private void timerInternetCheck_Tick(object sender, EventArgs e)
         {
-            if (@class.CheckForInternetConnection())
-            {
-                lblCustomText.Text = $"ارتباط با اينترنت برقرار مي باشد";
-                lblCustomText.ForeColor = Color.Lime;
-            }
-            else
-            {
-                lblCustomText.Text = $"ارتباط با اينترنت برقرار نمي باشد";
-                lblCustomText.ForeColor = Color.Red;
-            }
+            //if (@class.CheckForInternetConnection())
+            //{
+            //    lblCustomText.Text = $"ارتباط با اينترنت برقرار مي باشد";
+            //    lblCustomText.ForeColor = Color.Lime;
+            //}
+            //else
+            //{
+            //    lblCustomText.Text = $"ارتباط با اينترنت برقرار نمي باشد";
+            //    lblCustomText.ForeColor = Color.Red;
+            //}
         }
 
         private void pictureBoxExit_Click(object sender, EventArgs e)
@@ -809,5 +825,7 @@ namespace TinyTech.Main
         {
             SwitchUser();
         }
+
+        
     }
 }

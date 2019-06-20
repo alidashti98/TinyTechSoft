@@ -143,6 +143,9 @@
     <Compile Include="Control\UIElement\GroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Control\UIElement\ToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Control\UIElement\Panel.cs">
       <SubType>Component</SubType>
     </Compile>

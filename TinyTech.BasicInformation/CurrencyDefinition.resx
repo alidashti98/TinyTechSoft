@@ -117,24 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuMainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBoxExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACQAAAAnCAYAAABnlOo2AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADvSURBVFhHzdJRDoIwEIRh7uA1vQM8eS28We2SLoHy
-        UyhtMj58EcZkdhIdQgh/BUMlDJUwVMJQCUMlDJUwVMJQCUMlDJUwVBpe708TKm2BR2pQaQs8AkI0ZtnC
-        i+KzfR8fj0dqHA6cmCIcZSUpt++n/ECtXfmFs1Hdxpht8R35qK5jTH7wDh81p89uYwwdvMPHzFTago5d
-        8Z/pmz5HKn6KDpas/5n0vv6nqPyJ/GBJPsZ1HbUtLjkbs5SkvMuoXXkBjjFeFJ+XUf7+1OFALSptgaES
-        hkoYKmGohKEShkoYKmGohKEShkoYKmGohKFOGH6+pqfnP3ZTvwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>155, 17</value>
-  </metadata>
-  <metadata name="timerInternetCheck.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>242, 17</value>
-  </metadata>
 </root>

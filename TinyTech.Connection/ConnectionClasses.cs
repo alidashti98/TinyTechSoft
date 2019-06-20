@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using CEWorld;
 using Encoding = System.Text.Encoding;
 
 namespace TinyTech.Connection
@@ -22,6 +23,34 @@ namespace TinyTech.Connection
         //====================================================================================//
 
         #region List Classes
+
+        #region ConvertNumbers
+        public string ConvertNumberToString(string Number, bool Moneysymbol = false)
+        {
+            string Result = string.Empty;
+            string Symbol = string.Empty;
+            var currencyList = GetCurrency(true).FirstOrDefault(i => i.IsDefault);
+            if (Moneysymbol && currencyList.Name.Count() > 0)
+            {
+                Symbol = currencyList.Name;
+            }
+            else
+            {
+                Symbol = string.Empty;
+            }
+
+            try
+            {
+                Result = $"{CEWorld.Convert.NumberToWord.PersianConvertNumberToWord(decimal.Parse(Number).ToString())} {Symbol}";
+                return Result;
+            }
+            catch
+            {
+                Result = "طول عدد وارد شده بيش از حد مجاز است";
+                return Result;
+            }
+        }
+        #endregion
 
         #region FiscalYearList
 
@@ -630,6 +659,31 @@ namespace TinyTech.Connection
         }
         #endregion
 
+        #region ‍CurrencyList
+
+        public List<Currency> GetCurrency(bool Active = false)
+        {
+            try
+            {
+                DB_Connection = new TinyTechEntities();
+                if (Active)
+                {
+                    return DB_Connection.Currency.AsNoTracking().Where(i => i.Active).ToList();
+                }
+                else
+                {
+                    return DB_Connection.Currency.AsNoTracking().ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException?.ToString());
+                return null;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         //====================================================================================//
@@ -687,7 +741,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int CheckLoginInfo(string username,string password) //Correct UserName And Password => 0 , Invalid UserName => 1 , Invalid Password => 2
+        public int CheckLoginInfo(string username, string password) //Correct UserName And Password => 0 , Invalid UserName => 1 , Invalid Password => 2
         {
             var userInfo = GetUserInfo(0).FirstOrDefault(i => i.UserName == username);
             if (userInfo == null)
@@ -1158,6 +1212,64 @@ namespace TinyTech.Connection
                             dbConnection.SaveChanges();
                             dbTran.Commit();
                             return path.ID;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return 0;
+            }
+        }
+
+        public int CurrencyDefinition(string name, string description, bool isDefault, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            if (isDefault)
+                            {
+                                var crList =
+            from cr in DB_Connection.Currency
+            where cr.IsDefault
+            select cr;
+
+                                foreach (Currency cr in crList)
+                                {
+                                    cr.IsDefault = false;
+                                }
+                                DB_Connection.SaveChanges();
+                            }
+
+                            var currency = new Currency()
+                            {
+                                Name = name,
+                                Description = description,
+                                IsDefault = isDefault,
+                                Active = true,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                            };
+                            dbConnection.Currency.Add(currency);
+
+                            dbConnection.SaveChanges();
+                            dbTran.Commit();
+                            return currency.ID;
                         }
                         catch (Exception e)
                         {

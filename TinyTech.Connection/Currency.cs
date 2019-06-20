@@ -12,25 +12,17 @@ namespace TinyTech.Connection
     using System;
     using System.Collections.Generic;
     
-    public partial class Province
+    public partial class Currency
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Province()
-        {
-            this.City = new HashSet<City>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool IsDefault { get; set; }
         public bool Active { get; set; }
         public string ClientDate { get; set; }
         public string ServerDate { get; set; }
         public string ClientTime { get; set; }
         public string ServerTime { get; set; }
         public int UserID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<City> City { get; set; }
     }
 }

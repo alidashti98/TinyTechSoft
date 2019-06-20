@@ -6,11 +6,14 @@ namespace TinyTech.UI.Control.CheckBox
 {
     public class CheckBox : System.Windows.Forms.CheckBox
     {
+        public System.Windows.Forms.Control NextControl { get; set; }
+
         public CheckBox()
         {
             InitializeUI();
             Enter += CheckBox_Enter;
             Leave += CheckBox_Leave;
+            KeyDown += CheckBox_KeyDown;
         }
 
         private void CheckBox_Leave(object sender, EventArgs e)
@@ -31,6 +34,34 @@ namespace TinyTech.UI.Control.CheckBox
             // 
             Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ResumeLayout(false);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // CheckBox
+            // 
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CheckBox_KeyDown);
+            this.ResumeLayout(false);
+
+        }
+
+        private void SetNextControl(CheckBox nextControl)
+        {
+            SendKeys.Send("{TAB}");
+        }
+
+        private void CheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Return || NextControl == null) return;
+            if (!NextControl.Enabled)
+            {
+                SetNextControl((CheckBox)sender);
+                return;
+            }
+
+            NextControl.Focus();
         }
     }
 }

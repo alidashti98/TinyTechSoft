@@ -21,7 +21,7 @@ namespace TinyTech.Connection
             : base(ConnectionInfo.BuildConnectionString())
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -33,6 +33,7 @@ namespace TinyTech.Connection
         public virtual DbSet<BuyBody> BuyBody { get; set; }
         public virtual DbSet<BuyDetail> BuyDetail { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<CustomerActivity> CustomerActivity { get; set; }
         public virtual DbSet<CustomerGroup> CustomerGroup { get; set; }

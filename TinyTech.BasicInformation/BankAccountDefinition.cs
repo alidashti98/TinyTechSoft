@@ -9,6 +9,7 @@ using TinyTech.Connection;
 using TinyTech.Selecting;
 using TinyTech.UI.Control.MessageBox;
 using TinyTech.UI.Control.UIElement;
+using CEWorld;
 
 namespace TinyTech.BasicInformation
 {
@@ -44,7 +45,6 @@ namespace TinyTech.BasicInformation
         private UI.Control.Label.Label lblBranch;
         private UI.Control.TextBox.TextBox txtAddress;
         private UI.Control.Label.Label lblAddress;
-        private UI.Control.Label.Label lblBalanceInfo;
         private UI.Control.TextBox.NumericTextBoxWithSeperator txtBalance;
         private UI.Control.Label.Label lblBalance;
         private UI.Control.TextBox.NumericTextBoxWithSeperator txtCrediting;
@@ -57,6 +57,7 @@ namespace TinyTech.BasicInformation
         private UI.Control.TextBox.TextBox txtBankAccountTypeName;
         private UI.Control.CheckBox.CheckBox chkBankName;
         private UI.Control.TextBox.TextBox txtBankName;
+        private UI.Control.Label.Label lblBalanceString;
         private Container components = null;
         #endregion
 
@@ -98,7 +99,6 @@ namespace TinyTech.BasicInformation
             this.lblBranch = new TinyTech.UI.Control.Label.Label();
             this.txtAddress = new TinyTech.UI.Control.TextBox.TextBox();
             this.lblAddress = new TinyTech.UI.Control.Label.Label();
-            this.lblBalanceInfo = new TinyTech.UI.Control.Label.Label();
             this.txtBalance = new TinyTech.UI.Control.TextBox.NumericTextBoxWithSeperator();
             this.lblBalance = new TinyTech.UI.Control.Label.Label();
             this.lblCrediting = new TinyTech.UI.Control.Label.Label();
@@ -113,6 +113,7 @@ namespace TinyTech.BasicInformation
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblBankAccountName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
+            this.lblBalanceString = new TinyTech.UI.Control.Label.Label();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBankAccount)).BeginInit();
             this.pnlBankAccountDefinition.SuspendLayout();
@@ -175,7 +176,6 @@ namespace TinyTech.BasicInformation
             this.groupBoxBankAccountDefinition.Controls.Add(this.lblBranch);
             this.groupBoxBankAccountDefinition.Controls.Add(this.txtAddress);
             this.groupBoxBankAccountDefinition.Controls.Add(this.lblAddress);
-            this.groupBoxBankAccountDefinition.Controls.Add(this.lblBalanceInfo);
             this.groupBoxBankAccountDefinition.Controls.Add(this.txtBalance);
             this.groupBoxBankAccountDefinition.Controls.Add(this.lblBalance);
             this.groupBoxBankAccountDefinition.Controls.Add(this.txtCrediting);
@@ -193,6 +193,7 @@ namespace TinyTech.BasicInformation
             this.groupBoxBankAccountDefinition.Controls.Add(this.lblDescription);
             this.groupBoxBankAccountDefinition.Controls.Add(this.lblBankAccountName);
             this.groupBoxBankAccountDefinition.Controls.Add(this.pnlButtons);
+            this.groupBoxBankAccountDefinition.Controls.Add(this.lblBalanceString);
             this.groupBoxBankAccountDefinition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxBankAccountDefinition.Location = new System.Drawing.Point(0, 0);
             this.groupBoxBankAccountDefinition.Name = "groupBoxBankAccountDefinition";
@@ -230,6 +231,7 @@ namespace TinyTech.BasicInformation
             this.txtBankName.Size = new System.Drawing.Size(159, 28);
             this.txtBankName.TabIndex = 38;
             this.txtBankName.Text = "انتخاب نام بانك ...";
+            this.txtBankName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // chkBankAccountType
             // 
@@ -260,6 +262,7 @@ namespace TinyTech.BasicInformation
             this.txtBankAccountTypeName.Size = new System.Drawing.Size(159, 28);
             this.txtBankAccountTypeName.TabIndex = 36;
             this.txtBankAccountTypeName.Text = "انتخاب نوع حساب ...";
+            this.txtBankAccountTypeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPhone2
             // 
@@ -329,6 +332,7 @@ namespace TinyTech.BasicInformation
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDescription.Size = new System.Drawing.Size(422, 28);
             this.txtDescription.TabIndex = 11;
+            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnSave
             // 
@@ -470,6 +474,7 @@ namespace TinyTech.BasicInformation
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtAddress.Size = new System.Drawing.Size(469, 28);
             this.txtAddress.TabIndex = 5;
+            this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblAddress
             // 
@@ -485,20 +490,6 @@ namespace TinyTech.BasicInformation
             this.lblAddress.Text = "آدرس";
             this.lblAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblBalanceInfo
-            // 
-            this.lblBalanceInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBalanceInfo.AutoSize = true;
-            this.lblBalanceInfo.BackColor = System.Drawing.Color.Transparent;
-            this.lblBalanceInfo.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.lblBalanceInfo.Location = new System.Drawing.Point(307, 144);
-            this.lblBalanceInfo.Name = "lblBalanceInfo";
-            this.lblBalanceInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblBalanceInfo.Size = new System.Drawing.Size(47, 20);
-            this.lblBalanceInfo.TabIndex = 26;
-            this.lblBalanceInfo.Text = "وضعيت";
-            this.lblBalanceInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // txtBalance
             // 
             this.txtBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -507,12 +498,12 @@ namespace TinyTech.BasicInformation
             this.txtBalance.Enabled = false;
             this.txtBalance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.txtBalance.ForeColor = System.Drawing.Color.Black;
-            this.txtBalance.Location = new System.Drawing.Point(362, 142);
+            this.txtBalance.Location = new System.Drawing.Point(13, 113);
             this.txtBalance.Margin = new System.Windows.Forms.Padding(10);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.NextControl = null;
             this.txtBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBalance.Size = new System.Drawing.Size(120, 28);
+            this.txtBalance.Size = new System.Drawing.Size(112, 28);
             this.txtBalance.TabIndex = 8;
             this.txtBalance.Text = "0";
             this.txtBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -524,7 +515,7 @@ namespace TinyTech.BasicInformation
             this.lblBalance.AutoSize = true;
             this.lblBalance.BackColor = System.Drawing.Color.Transparent;
             this.lblBalance.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.lblBalance.Location = new System.Drawing.Point(491, 144);
+            this.lblBalance.Location = new System.Drawing.Point(134, 115);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblBalance.Size = new System.Drawing.Size(48, 20);
@@ -712,6 +703,20 @@ namespace TinyTech.BasicInformation
             this.pnlButtons.Size = new System.Drawing.Size(258, 40);
             this.pnlButtons.TabIndex = 3;
             // 
+            // lblBalanceString
+            // 
+            this.lblBalanceString.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBalanceString.AutoSize = true;
+            this.lblBalanceString.BackColor = System.Drawing.Color.Transparent;
+            this.lblBalanceString.Font = new System.Drawing.Font("IRANSans(FaNum)", 7F);
+            this.lblBalanceString.Location = new System.Drawing.Point(13, 142);
+            this.lblBalanceString.Name = "lblBalanceString";
+            this.lblBalanceString.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblBalanceString.Size = new System.Drawing.Size(64, 17);
+            this.lblBalanceString.TabIndex = 39;
+            this.lblBalanceString.Text = "مبلغ به حروف";
+            this.lblBalanceString.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // BankAccountDefinition
             // 
             this.Controls.Add(this.pnlMain);
@@ -878,7 +883,7 @@ namespace TinyTech.BasicInformation
         {
             if (FormValidate())
             {
-                var result = @class.BankAccountDefinition(txtBankAccountNumber.Text, txtAccountOwner.Text, int.Parse(txtBankName.Tag.ToString()), txtDescription.Text, decimal.Parse(txtDebt.Text), decimal.Parse(txtCrediting.Text), dateControlBankAccount.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId, txtAddress.Text, txtBranch.Text,txtPhone1.Text,txtPhone2.Text,int.Parse(txtBankAccountTypeName.Tag.ToString()));
+                var result = @class.BankAccountDefinition(txtBankAccountNumber.Text, txtAccountOwner.Text, int.Parse(txtBankName.Tag.ToString()), txtDescription.Text, decimal.Parse(txtDebt.Text), decimal.Parse(txtCrediting.Text), dateControlBankAccount.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId, txtAddress.Text, txtBranch.Text, txtPhone1.Text, txtPhone2.Text, int.Parse(txtBankAccountTypeName.Tag.ToString()));
 
                 if (result > 0)
                 {
@@ -974,27 +979,30 @@ namespace TinyTech.BasicInformation
 
         private void CheckDebtCrediting()
         {
+            string NumberToString = string.Empty;
             if (txtDebt.Text == "0" && txtCrediting.Text == "0")
             {
                 txtDebt.Enabled = txtCrediting.Enabled = true;
                 txtBalance.Text = "0";
-                txtBalance.ForeColor = lblBalanceInfo.ForeColor = Color.Black;
-                lblBalanceInfo.Text = "--";
+                txtBalance.ForeColor = lblBalanceString.ForeColor = Color.Black;
+                lblBalanceString.Text = "--";
             }
 
             if (txtDebt.Text != "0")
             {
                 txtCrediting.Enabled = false;
                 txtBalance.Text = txtDebt.Text;
-                txtBalance.ForeColor = lblBalanceInfo.ForeColor = Color.Green;
-                lblBalanceInfo.Text = "بدهكار";
+                NumberToString = @class.ConvertNumberToString(txtBalance.Text,true);
+                txtBalance.ForeColor = lblBalanceString.ForeColor = Color.Green;
+                lblBalanceString.Text = $"{NumberToString} بدهكار";
             }
             else if (txtCrediting.Text != "0")
             {
                 txtDebt.Enabled = false;
                 txtBalance.Text = txtCrediting.Text;
-                txtBalance.ForeColor = lblBalanceInfo.ForeColor = Color.Red;;
-                lblBalanceInfo.Text = "بستانكار";
+                NumberToString = @class.ConvertNumberToString(txtBalance.Text,true);
+                txtBalance.ForeColor = lblBalanceString.ForeColor = Color.Red;
+                lblBalanceString.Text = $"{NumberToString} بستانكار";
             }
         }
 

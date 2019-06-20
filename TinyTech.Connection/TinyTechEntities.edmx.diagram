@@ -5,36 +5,37 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="216887c4ecf54fa2bff9197c300a1b66" Name="Diagram1" ZoomLevel="69">
-        <EntityTypeShape EntityType="TinyTechModel.BankAccount" Width="1.5" PointX="16" PointY="6" />
-        <EntityTypeShape EntityType="TinyTechModel.BankAccountType" Width="1.5" PointX="13.75" PointY="6.875" />
-        <EntityTypeShape EntityType="TinyTechModel.BankName" Width="1.5" PointX="13.75" PointY="10.875" />
-        <EntityTypeShape EntityType="TinyTechModel.BuyBody" Width="1.5" PointX="3" PointY="17.375" />
-        <EntityTypeShape EntityType="TinyTechModel.BuyDetail" Width="1.5" PointX="5.25" PointY="14.375" />
-        <EntityTypeShape EntityType="TinyTechModel.City" Width="1.5" PointX="11" PointY="1" />
-        <EntityTypeShape EntityType="TinyTechModel.Customer" Width="1.5" PointX="0.75" PointY="18.5" />
-        <EntityTypeShape EntityType="TinyTechModel.CustomerActivity" Width="1.5" PointX="3" PointY="41.5" />
-        <EntityTypeShape EntityType="TinyTechModel.CustomerGroup" Width="1.5" PointX="1.5" PointY="27.5" />
-        <EntityTypeShape EntityType="TinyTechModel.FiscalYear" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TinyTechModel.Goods" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsActivity" Width="1.5" PointX="8.25" PointY="10.5" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsActivityType" Width="1.5" PointX="6" PointY="5.5" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsCode" Width="1.5" PointX="5.25" PointY="30.5" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsGroup" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsUnit" Width="1.5" PointX="0.75" PointY="10.875" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsWarehouse" Width="1.5" PointX="5.25" PointY="11.25" />
-        <EntityTypeShape EntityType="TinyTechModel.GoodsWarehouseActivity" Width="1.5" PointX="11.25" PointY="10.25" />
-        <EntityTypeShape EntityType="TinyTechModel.Path" Width="1.5" PointX="15.5" PointY="1.125" />
-        <EntityTypeShape EntityType="TinyTechModel.Personnel" Width="1.5" PointX="1.5" PointY="31.75" />
+        <EntityTypeShape EntityType="TinyTechModel.BankAccount" Width="1.5" PointX="13" PointY="6.375" />
+        <EntityTypeShape EntityType="TinyTechModel.BankAccountType" Width="1.5" PointX="10.75" PointY="7.25" />
+        <EntityTypeShape EntityType="TinyTechModel.BankName" Width="1.5" PointX="10.75" PointY="11.25" />
+        <EntityTypeShape EntityType="TinyTechModel.BuyBody" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="TinyTechModel.BuyDetail" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="TinyTechModel.City" Width="1.5" PointX="11" PointY="1.25" />
+        <EntityTypeShape EntityType="TinyTechModel.Currency" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="TinyTechModel.Customer" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="TinyTechModel.CustomerActivity" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="TinyTechModel.CustomerGroup" Width="1.5" PointX="1.5" PointY="38.25" />
+        <EntityTypeShape EntityType="TinyTechModel.FiscalYear" Width="1.5" PointX="2.75" PointY="1" />
+        <EntityTypeShape EntityType="TinyTechModel.Goods" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsActivity" Width="1.5" PointX="5.25" PointY="14.75" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsActivityType" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsCode" Width="1.5" PointX="5.25" PointY="30.75" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsGroup" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsUnit" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsWarehouse" Width="1.5" PointX="8.25" PointY="6.625" />
+        <EntityTypeShape EntityType="TinyTechModel.GoodsWarehouseActivity" Width="1.5" PointX="8.25" PointY="10.5" />
+        <EntityTypeShape EntityType="TinyTechModel.Path" Width="1.5" PointX="15.5" PointY="1.375" />
+        <EntityTypeShape EntityType="TinyTechModel.Personnel" Width="1.5" PointX="1.5" PointY="27.875" />
         <EntityTypeShape EntityType="TinyTechModel.PersonnelActivity" Width="1.5" PointX="3.75" PointY="33.625" />
-        <EntityTypeShape EntityType="TinyTechModel.PersonnelType" Width="1.5" PointX="1.5" PointY="38.625" />
-        <EntityTypeShape EntityType="TinyTechModel.Province" Width="1.5" PointX="8.75" PointY="1.125" />
-        <EntityTypeShape EntityType="TinyTechModel.Region" Width="1.5" PointX="13.25" PointY="1" />
-        <EntityTypeShape EntityType="TinyTechModel.SailBody" Width="1.5" PointX="3" PointY="21.25" />
-        <EntityTypeShape EntityType="TinyTechModel.SailDetail" Width="1.5" PointX="5.25" PointY="8.375" />
-        <EntityTypeShape EntityType="TinyTechModel.Setting" Width="1.5" PointX="8.75" PointY="5.75" />
-        <EntityTypeShape EntityType="TinyTechModel.User" Width="1.5" PointX="6" PointY="1.375" />
-        <EntityTypeShape EntityType="TinyTechModel.UserRole" Width="1.5" PointX="3.75" PointY="2" />
-        <EntityTypeShape EntityType="TinyTechModel.Warehouse" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="TinyTechModel.PersonnelType" Width="1.5" PointX="1.5" PointY="34.625" />
+        <EntityTypeShape EntityType="TinyTechModel.Province" Width="1.5" PointX="8.75" PointY="1.5" />
+        <EntityTypeShape EntityType="TinyTechModel.Region" Width="1.5" PointX="13.25" PointY="1.25" />
+        <EntityTypeShape EntityType="TinyTechModel.SailBody" Width="1.5" PointX="3" PointY="21.5" />
+        <EntityTypeShape EntityType="TinyTechModel.SailDetail" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="TinyTechModel.Setting" Width="1.5" PointX="12.75" PointY="12" />
+        <EntityTypeShape EntityType="TinyTechModel.User" Width="1.5" PointX="6" PointY="25.625" />
+        <EntityTypeShape EntityType="TinyTechModel.UserRole" Width="1.5" PointX="3.75" PointY="26.25" />
+        <EntityTypeShape EntityType="TinyTechModel.Warehouse" Width="1.5" PointX="6" PointY="4.25" />
         <AssociationConnector Association="TinyTechModel.FK_BankAccount_BankAccountType" />
         <AssociationConnector Association="TinyTechModel.FK_BankAccount_BankName" />
         <AssociationConnector Association="TinyTechModel.FK_BuyBody_Customer" />

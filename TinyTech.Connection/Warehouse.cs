@@ -28,6 +28,7 @@ namespace TinyTech.Connection
         public string Phone1 { get; set; }
         public string Mobile { get; set; }
         public string Manager { get; set; }
+        public bool IsDefault { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsWarehouse> GoodsWarehouse { get; set; }

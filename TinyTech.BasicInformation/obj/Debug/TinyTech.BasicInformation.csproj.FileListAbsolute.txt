@@ -116,6 +116,7 @@ D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\bin\Debug\TinyTec
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\bin\Debug\EntityFramework.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\bin\Debug\EntityFramework.SqlServer.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.csprojResolveAssemblyReference.cache
+D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.CurrencyDefinition.resources
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.BankAccountTypeDefinition.resources
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.BankAccountDefinition.resources
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.BasicInformation\obj\Debug\TinyTech.BasicInformation.CityDefinition.resources

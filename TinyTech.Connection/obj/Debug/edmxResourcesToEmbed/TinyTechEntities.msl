@@ -90,6 +90,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Currency">
+      <EntityTypeMapping TypeName="TinyTechModel.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ServerTime" ColumnName="ServerTime" />
+          <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
+          <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
+          <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="TinyTechModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
@@ -369,8 +385,8 @@
           <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
           <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
           <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -450,6 +466,7 @@
     <EntitySetMapping Name="Warehouse">
       <EntityTypeMapping TypeName="TinyTechModel.Warehouse">
         <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
           <ScalarProperty Name="Manager" ColumnName="Manager" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
           <ScalarProperty Name="Phone1" ColumnName="Phone1" />

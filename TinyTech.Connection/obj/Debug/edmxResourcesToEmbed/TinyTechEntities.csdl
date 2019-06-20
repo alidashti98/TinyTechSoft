@@ -21,6 +21,7 @@
     <EntitySet Name="BuyBody" EntityType="TinyTechModel.BuyBody" />
     <EntitySet Name="BuyDetail" EntityType="TinyTechModel.BuyDetail" />
     <EntitySet Name="City" EntityType="TinyTechModel.City" />
+    <EntitySet Name="Currency" EntityType="TinyTechModel.Currency" />
     <EntitySet Name="Customer" EntityType="TinyTechModel.Customer" />
     <EntitySet Name="CustomerActivity" EntityType="TinyTechModel.CustomerActivity" />
     <EntitySet Name="CustomerGroup" EntityType="TinyTechModel.CustomerGroup" />
@@ -264,6 +265,21 @@
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Province" Relationship="TinyTechModel.FK_City_Province" FromRole="City" ToRole="Province" />
     <NavigationProperty Name="Region" Relationship="TinyTechModel.FK_Region_City" FromRole="City" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -565,8 +581,8 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" Nullable="false" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
@@ -663,6 +679,7 @@
     <Property Name="Phone1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Name="Mobile" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Name="Manager" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="GoodsWarehouse" Relationship="TinyTechModel.FK_GoodsWarehouse_Warehouse" FromRole="Warehouse" ToRole="GoodsWarehouse" />
     <NavigationProperty Name="GoodsWarehouseActivity" Relationship="TinyTechModel.FK_GoodsWarehouseActivity_Warehouse" FromRole="Warehouse" ToRole="GoodsWarehouseActivity" />
   </EntityType>
