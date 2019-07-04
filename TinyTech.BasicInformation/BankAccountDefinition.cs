@@ -208,6 +208,7 @@ namespace TinyTech.BasicInformation
             this.chkBankName.AutoSize = true;
             this.chkBankName.Location = new System.Drawing.Point(726, 112);
             this.chkBankName.Name = "chkBankName";
+            this.chkBankName.NextControl = null;
             this.chkBankName.Size = new System.Drawing.Size(66, 24);
             this.chkBankName.TabIndex = 3;
             this.chkBankName.Text = "نام بانك";
@@ -239,6 +240,7 @@ namespace TinyTech.BasicInformation
             this.chkBankAccountType.AutoSize = true;
             this.chkBankAccountType.Location = new System.Drawing.Point(712, 81);
             this.chkBankAccountType.Name = "chkBankAccountType";
+            this.chkBankAccountType.NextControl = null;
             this.chkBankAccountType.Size = new System.Drawing.Size(80, 24);
             this.chkBankAccountType.TabIndex = 2;
             this.chkBankAccountType.Text = "نوع حساب";
@@ -992,7 +994,7 @@ namespace TinyTech.BasicInformation
             {
                 txtCrediting.Enabled = false;
                 txtBalance.Text = txtDebt.Text;
-                NumberToString = @class.ConvertNumberToString(txtBalance.Text,true);
+                NumberToString = @class.ConvertNumberToString(txtBalance.Text, true);
                 txtBalance.ForeColor = lblBalanceString.ForeColor = Color.Green;
                 lblBalanceString.Text = $"{NumberToString} بدهكار";
             }
@@ -1000,7 +1002,7 @@ namespace TinyTech.BasicInformation
             {
                 txtDebt.Enabled = false;
                 txtBalance.Text = txtCrediting.Text;
-                NumberToString = @class.ConvertNumberToString(txtBalance.Text,true);
+                NumberToString = @class.ConvertNumberToString(txtBalance.Text, true);
                 txtBalance.ForeColor = lblBalanceString.ForeColor = Color.Red;
                 lblBalanceString.Text = $"{NumberToString} بستانكار";
             }

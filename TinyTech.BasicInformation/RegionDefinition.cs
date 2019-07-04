@@ -611,19 +611,14 @@ namespace TinyTech.UI.UserControl
         {
             if (chkProvince.Checked)
             {
-                var provinceArray = new ArrayList();
-                new UserControlLoader(new ProvinceSelect(provinceArray), true, false, true);
+                var provinceList = new List<Province>();
+                new UserControlLoader(new ProvinceSelect(provinceList), true, false, true);
 
-                if (provinceArray.Count > 0)
+                if (provinceList.Count() > 0)
                 {
-                    txtProvinceName.Text = provinceArray[1].ToString();
-                    txtProvinceName.Tag = provinceArray[0].ToString();
-
+                    txtProvinceName.Text = provinceList.FirstOrDefault().Name;
+                    txtProvinceName.Tag = provinceList.FirstOrDefault().ID;
                     chkCityName.Focus();
-
-                    //var RegionList = @class.GetRegion().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
-                    //dgvRegion.DataSource = RegionListDataTable(RegionList);
-                    //txtRegionName.Focus();
                 }
                 else
                 {
@@ -631,8 +626,8 @@ namespace TinyTech.UI.UserControl
                     txtProvinceName.Tag = string.Empty;
                     chkProvince.Checked = false;
                     chkCityName.Checked = false;
-                    var RegionList = @class.GetRegion().Where(i => i.Active).ToList();
-                    dgvRegion.DataSource = RegionListDataTable(RegionList);
+                    var RegionList = @class.GetRegion(true).ToList();
+                    dgvRegion.DataSource = RegionList; //RegionListDataTable(RegionList);
                     chkProvince.Focus();
                     DisableForm();
                 }

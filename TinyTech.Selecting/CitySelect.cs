@@ -197,9 +197,9 @@ namespace TinyTech.Selecting
 
         }
 
-        private DataTable CityListDataTable(List<ConnectionClasses.CityList> cityList)
+        private DataTable CityListDataTable(List<City> cityList)
         {
-            var dataTable = UI.Control.UIElement.ToolBox<ConnectionClasses.CityList>.GetDataTable(cityList);
+            var dataTable = UI.Control.UIElement.ToolBox<City>.GetDataTable(cityList);
             return dataTable;
         }
 

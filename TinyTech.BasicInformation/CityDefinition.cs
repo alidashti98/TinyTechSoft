@@ -185,6 +185,7 @@ namespace TinyTech.BasicInformation
             this.chkProvince.AutoSize = true;
             this.chkProvince.Location = new System.Drawing.Point(629, 61);
             this.chkProvince.Name = "chkProvince";
+            this.chkProvince.NextControl = null;
             this.chkProvince.Size = new System.Drawing.Size(56, 24);
             this.chkProvince.TabIndex = 1;
             this.chkProvince.Text = "استان";
@@ -250,12 +251,12 @@ namespace TinyTech.BasicInformation
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Location = new System.Drawing.Point(473, 137);
+            this.txtDescription.Location = new System.Drawing.Point(278, 137);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(10);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NextControl = this.btnSave;
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.Size = new System.Drawing.Size(212, 28);
+            this.txtDescription.Size = new System.Drawing.Size(407, 28);
             this.txtDescription.TabIndex = 3;
             this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -416,16 +417,16 @@ namespace TinyTech.BasicInformation
             btnRefresh.Enabled = false;
         }
 
-        private DataTable CityListDataTable(List<ConnectionClasses.CityList> cityList)
+        private DataTable CityListDataTable(List<City> cityList)
         {
-            var dataTable = ToolBox<ConnectionClasses.CityList>.GetDataTable(cityList);
+            var dataTable = ToolBox<City>.GetDataTable(cityList);
             return dataTable;
         }
 
         private void CityDefinition_Load(object sender, EventArgs e)
         {
-            var cityList = @class.GetCity().Where(i => i.Active).ToList();
-            dgvCity.DataSource = CityListDataTable(cityList);
+            var cityList = @class.GetCity(true).ToList();
+            dgvCity.DataSource = cityList;//CityListDataTable(cityList);
             SetGridView();
             txtCityID.Text = CalculateMaxId().ToString();
             chkProvince.Focus();
@@ -494,8 +495,8 @@ namespace TinyTech.BasicInformation
                 txtCityName.Focus();
                 return false;
             }
-                
-            if (DB_Connection.City.AsNoTracking().Count(i => i.Name.Equals(txtCityName.Text) && i.Active) > 0)
+
+            if (@class.GetCity(true).Count(i => i.Name.Equals(txtCityName.Text)) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام شهر \"{txtCityName.Text}\" تكراري است!", "e");
                 txtCityName.Focus();
@@ -544,42 +545,31 @@ namespace TinyTech.BasicInformation
 
         private void txtCityName_TextChanged(object sender, EventArgs e)
         {
-            var cityList = @class.GetCity().Where(i => i.Active && i.Name.Contains(txtCityName.Text)).ToList();
-            dgvCity.DataSource = CityListDataTable(cityList);
+            var cityList = @class.GetCity(true).Where(i => i.Name.Contains(txtCityName.Text)).ToList();
+            dgvCity.DataSource = cityList; //CityListDataTable(cityList);
         }
 
         private void chkProvince_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkProvince.Checked)
-            {
-                var provinceArray = new ArrayList();
-                new UserControlLoader(new ProvinceSelect(provinceArray), true, false, true);
+            var provinceList = new List<Province>();
+            new UserControlLoader(new ProvinceSelect(provinceList), true, false, true);
 
-                if (provinceArray.Count > 0)
-                {
-                    txtProvinceName.Text = provinceArray[1].ToString();
-                    txtProvinceName.Tag = provinceArray[0].ToString();
-                    var cityList = @class.GetCity().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
-                    dgvCity.DataSource = CityListDataTable(cityList);
-                    txtCityName.Focus();
-                }
-                else
-                {
-                    txtProvinceName.Text = "انتخاب استان ...";
-                    txtProvinceName.Tag = string.Empty;
-                    chkProvince.Checked = false;
-                    var cityList = @class.GetCity().Where(i => i.Active).ToList();
-                    dgvCity.DataSource = CityListDataTable(cityList);
-                    chkProvince.Focus();
-                    DisableForm();
-                }
+            if (provinceList.Count() > 0)
+            {
+                txtProvinceName.Text = provinceList.FirstOrDefault().Name;
+                txtProvinceName.Tag = provinceList.FirstOrDefault().ID;
+                var cityList = @class.GetCity(true).Where(i => i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
+                dgvCity.DataSource = cityList;
+                txtCityName.Focus();
             }
-            else if (!chkProvince.Checked)
+            else
             {
                 txtProvinceName.Text = "انتخاب استان ...";
                 txtProvinceName.Tag = string.Empty;
-                var cityList = @class.GetCity().Where(i => i.Active).ToList();
-                dgvCity.DataSource = CityListDataTable(cityList);
+                chkProvince.Checked = false;
+                var cityList = @class.GetCity(true).ToList();
+                dgvCity.DataSource = cityList;//CityListDataTable(cityList);
+                chkProvince.Focus();
                 DisableForm();
             }
         }

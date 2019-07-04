@@ -673,43 +673,24 @@ namespace TinyTech.BasicInformation
 
         private void chkProvince_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkProvince.Checked)
+            var provinceList = new List<Province>();
+
+            if (provinceList.Count() > 0)
             {
-                var provinceArray = new ArrayList();
-                new UserControlLoader(new ProvinceSelect(provinceArray), true, false, true);
-
-                if (provinceArray.Count > 0)
-                {
-                    txtProvinceName.Text = provinceArray[1].ToString();
-                    txtProvinceName.Tag = provinceArray[0].ToString();
-
-                    chkCityName.Focus();
-
-                    //var PathList = @class.GetPath().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
-                    //dgvPath.DataSource = PathListDataTable(PathList);
-                    //txtPathName.Focus();
-                }
-                else
-                {
-                    txtProvinceName.Text = "انتخاب استان ...";
-                    txtProvinceName.Tag = string.Empty;
-                    chkRegionName.Checked = false;
-                    chkCityName.Checked = false;
-                    chkProvince.Checked = false;
-                    var pathList = @class.GetPath().ToList();
-                    dgvPath.DataSource = PathListDataTable(pathList);
-                    chkProvince.Focus();
-                    DisableForm();
-                }
+                txtProvinceName.Text = provinceList.FirstOrDefault().Name;
+                txtProvinceName.Tag = provinceList.FirstOrDefault().ID;
+                chkCityName.Focus();
             }
-            else if (!chkProvince.Checked)
+            else
             {
                 txtProvinceName.Text = "انتخاب استان ...";
                 txtProvinceName.Tag = string.Empty;
                 chkRegionName.Checked = false;
                 chkCityName.Checked = false;
-                var pathList = @class.GetPath().ToList();
-                dgvPath.DataSource = PathListDataTable(pathList);
+                chkProvince.Checked = false;
+                var pathList = @class.GetPath(true).ToList();
+                dgvPath.DataSource = pathList; //PathListDataTable(pathList);
+                chkProvince.Focus();
                 DisableForm();
             }
         }

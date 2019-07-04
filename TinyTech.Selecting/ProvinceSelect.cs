@@ -23,7 +23,7 @@ namespace TinyTech.Selecting
         private UI.Control.TextBox.TextBox txtProvinceSearch;
         private UI.Control.Label.Label lblProvinceSearch;
         private UI.Control.Label.Label lblHelp;
-        private ArrayList info;
+        private List<Province> info;
         private Container components = null;
         #endregion
 
@@ -36,7 +36,7 @@ namespace TinyTech.Selecting
             base.Dispose(disposing);
         }
 
-        public ProvinceSelect(ArrayList info_)
+        public ProvinceSelect(List<Province> info_)
         {
             InitializeComponent();
             info = info_;
@@ -206,8 +206,8 @@ namespace TinyTech.Selecting
         private void ProvinceSelect_Load(object sender, EventArgs e)
         {
             txtProvinceSearch.Focus();
-            var provinceList = @class.GetProvince().Where(i => i.Active).ToList();
-            dgvProvince.DataSource = ProvinceListDataTable(provinceList);
+            var provinceList = @class.GetProvince(true).ToList();
+            dgvProvince.DataSource = provinceList; //ProvinceListDataTable(provinceList);
             SetGridView();
         }
 
@@ -302,9 +302,7 @@ namespace TinyTech.Selecting
 
                     break;
                 case Keys.Enter when dgvProvince.Rows.Count > 0 && dgvProvince.CurrentRow != null:
-                    info.Add(dgvProvince.CurrentRow.Cells["ID"].Value);
-                    info.Add(dgvProvince.CurrentRow.Cells["Name"].Value);
-
+                    FillProvinceList();
                     ParentForm?.Close();
                     break;
             }
@@ -318,12 +316,17 @@ namespace TinyTech.Selecting
             }
         }
 
+        private void FillProvinceList()
+        {
+            info.Add((Province)dgvProvince.CurrentRow?.DataBoundItem);
+        }
+
         private void txtProvinceSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                var provinceList = @class.GetProvince().Where(i => i.Name.Contains(txtProvinceSearch.Text)).ToList();
-                dgvProvince.DataSource = ProvinceListDataTable(provinceList);
+                var provinceList = @class.GetProvince(true).Where(i => i.Name.Contains(txtProvinceSearch.Text)).ToList();
+                dgvProvince.DataSource = provinceList; //ProvinceListDataTable(provinceList);
 
                 if (dgvProvince.Rows.Count != 0)
                 {
@@ -354,8 +357,7 @@ namespace TinyTech.Selecting
             switch (e.KeyCode)
             {
                 case Keys.Enter when dgvProvince.Rows.Count > 0:
-                    info.Add(dgvProvince.CurrentRow?.Cells["ID"].Value);
-                    info.Add(dgvProvince.CurrentRow?.Cells["Name"].Value);
+                    FillProvinceList();
                     ParentForm?.Close();
                     break;
                 case Keys.ControlKey:
@@ -367,8 +369,7 @@ namespace TinyTech.Selecting
         private void dgvProvince_DoubleClick(object sender, EventArgs e)
         {
             if (dgvProvince.Rows.Count <= 0) return;
-            info.Add(dgvProvince.CurrentRow?.Cells["ID"].Value);
-            info.Add(dgvProvince.CurrentRow?.Cells["Name"].Value);
+            FillProvinceList();
             ParentForm?.Close();
         }
 

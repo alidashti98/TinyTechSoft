@@ -188,75 +188,18 @@ namespace TinyTech.Connection
 
         #region CityList
 
-        public class CityList
-        {
-            public int ID { get; set; }
-            public string Name { get; set; }
-            public int ProvinceID { get; set; }
-            public string Description { get; set; }
-            public bool Active { get; set; }
-            public string CLientDate { get; set; }
-            public string ServerDate { get; set; }
-            public string CLientTime { get; set; }
-            public string ServerTime { get; set; }
-            public int UserID { get; set; }
-            public string ProvinceName { get; set; }
-
-
-            public CityList()
-            {
-
-            }
-        }
-
-        public List<CityList> GetCity(bool Active = false)
+        public List<City> GetCity(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
                 if (Active)
                 {
-                    var cityList = (from i in DB_Connection.City.AsNoTracking().Where(i => i.Active).ToList()
-                                    select new CityList
-                                    {
-                                        ID = i.ID,
-                                        Name = i.Name,
-                                        ProvinceID = i.ProvinceID,
-                                        Description = i.Description,
-                                        Active = i.Active,
-                                        CLientDate = i.ClientDate,
-                                        ServerDate = i.ServerDate,
-                                        CLientTime = i.ClientTime,
-                                        ServerTime = i.ServerTime,
-                                        UserID = i.UserID,
-                                        ProvinceName = i.Province.Name,
-
-
-                                    }).Distinct().ToList();
-
-                    return cityList;
+                    return DB_Connection.City.AsNoTracking().Where(i => i.Active).ToList();
                 }
                 else
                 {
-                    var cityList = (from i in DB_Connection.City.AsNoTracking().ToList()
-                                    select new CityList
-                                    {
-                                        ID = i.ID,
-                                        Name = i.Name,
-                                        ProvinceID = i.ProvinceID,
-                                        Description = i.Description,
-                                        Active = i.Active,
-                                        CLientDate = i.ClientDate,
-                                        ServerDate = i.ServerDate,
-                                        CLientTime = i.ClientTime,
-                                        ServerTime = i.ServerTime,
-                                        UserID = i.UserID,
-                                        ProvinceName = i.Province.Name,
-
-
-                                    }).Distinct().ToList();
-
-                    return cityList;
+                    return DB_Connection.City.AsNoTracking().ToList();
                 }
             }
             catch (Exception ex)
@@ -981,7 +924,50 @@ namespace TinyTech.Connection
                                 ServerTime = serverTime,
                                 UserID = userID,
                             };
+
+                            var city = new City()
+                            {
+                                Name = $"شهر پيش فرض",
+                                ProvinceID = province.ID,
+                                Description = $"شهر پيش فرض در استان {name}",
+                                Active = true,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                            };
+
+                            var region = new Region()
+                            {
+                                Name = $"منطقه پيش فرض",
+                                CityID = city.ID,
+                                Description = $"منطقه پيش فرض در استان {name} »»» شهر پيش فرض",
+                                Active = true,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                            };
+
+                            var path = new Path()
+                            {
+                                Name = $"مسير پيش فرض",
+                                RegionID = region.ID,
+                                Description = $"مسير پيش فرض در استان {name} »»» شهر پيش فرض »»» مسير پيش فرض",
+                                Active = true,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID
+                            };
+
                             dbConnection.Province.Add(province);
+                            dbConnection.City.Add(city);
+                            dbConnection.Region.Add(region);
+                            dbConnection.Path.Add(path);
 
                             dbConnection.SaveChanges();
                             dbTran.Commit();
