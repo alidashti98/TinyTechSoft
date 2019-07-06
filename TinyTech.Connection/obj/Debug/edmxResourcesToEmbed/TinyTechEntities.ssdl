@@ -57,7 +57,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="BuyID" Type="int" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="PeopleD" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="BuyDetail">
@@ -85,6 +85,16 @@
     <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="CityTemp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
   <EntityType Name="Currency">
     <Key>
       <PropertyRef Name="ID" />
@@ -94,68 +104,6 @@
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="IsDefault" Type="bit" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
-    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Customer">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="GroupID" Type="int" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="VisitorID" Type="int" Nullable="false" />
-    <Property Name="ProvinceID" Type="int" Nullable="false" />
-    <Property Name="CityID" Type="int" Nullable="false" />
-    <Property Name="RegionID" Type="int" Nullable="false" />
-    <Property Name="PathID" Type="int" Nullable="false" />
-    <Property Name="NumberInPath" Type="int" Nullable="false" />
-    <Property Name="Image" Type="image" />
-    <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="Message" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="BlackList" Type="bit" Nullable="false" />
-    <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Special" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="CreateUserID" Type="int" Nullable="false" />
-    <Property Name="CreateVisitorID" Type="int" Nullable="false" />
-    <Property Name="Status" Type="int" Nullable="false" />
-    <Property Name="NationalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="EconomicCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="PostalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="TypeID" Type="int" Nullable="false" />
-    <Property Name="AllowedFactorCount" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CustomerActivity">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CustomerGroup">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="DefaultSailPrice" Type="int" Nullable="false" />
-    <Property Name="IsParrent" Type="bit" Nullable="false" />
-    <Property Name="ParrentID" Type="int" Nullable="false" />
     <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
@@ -313,7 +261,7 @@
     <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Personnel">
+  <EntityType Name="People">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -323,38 +271,66 @@
     <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="VisitorID" Type="int" Nullable="false" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="RegionID" Type="int" Nullable="false" />
+    <Property Name="PathID" Type="int" Nullable="false" />
+    <Property Name="NumberInPath" Type="int" Nullable="false" />
+    <Property Name="Image" Type="image" />
     <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="PersonnelTypeID" Type="int" Nullable="false" />
-    <Property Name="Salary" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="Image" Type="image" />
+    <Property Name="BlackList" Type="bit" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Special" Type="bit" Nullable="false" />
     <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="CreateUserID" Type="int" Nullable="false" />
-    <Property Name="IsSupervisor" Type="bit" Nullable="false" />
-    <Property Name="SupervisorID" Type="int" Nullable="false" />
-    <Property Name="SupervisorPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="CashRewardPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-    <Property Name="FaildCheckPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="CreateVisitorID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="EconomicCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="AllowedFactorCount" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="PersonnelActivity">
+  <EntityType Name="PeopleActivity">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PersonnelID" Type="int" Nullable="false" />
+    <Property Name="PeopleID" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
   </EntityType>
-  <EntityType Name="PersonnelType">
+  <EntityType Name="PeopleGroup">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="DefaultSailPrice" Type="int" Nullable="false" />
+    <Property Name="IsParrent" Type="bit" Nullable="false" />
+    <Property Name="ParrentID" Type="int" Nullable="false" />
+    <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PeopleType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
   </EntityType>
   <EntityType Name="Province">
     <Key>
@@ -369,6 +345,15 @@
     <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProvinceTemp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Region">
     <Key>
@@ -392,7 +377,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="SailID" Type="int" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="PeopleID" Type="int" Nullable="false" />
     <Property Name="VisitorID" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
@@ -474,15 +459,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BuyBody_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+  <Association Name="FK_BuyBody_People">
+    <End Role="People" Type="Self.People" Multiplicity="1" />
     <End Role="BuyBody" Type="Self.BuyBody" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Customer">
+      <Principal Role="People">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="BuyBody">
-        <PropertyRef Name="CustomerID" />
+        <PropertyRef Name="PeopleD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -524,39 +509,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Customer_CustomerGroup">
-    <End Role="CustomerGroup" Type="Self.CustomerGroup" Multiplicity="1" />
-    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+  <Association Name="FK_CityTemp_ProvinceTemp">
+    <End Role="ProvinceTemp" Type="Self.ProvinceTemp" Multiplicity="1" />
+    <End Role="CityTemp" Type="Self.CityTemp" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CustomerGroup">
+      <Principal Role="ProvinceTemp">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="GroupID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Customer_Personnel">
-    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Personnel">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="VisitorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CustomerActivity_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-    <End Role="CustomerActivity" Type="Self.CustomerActivity" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CustomerActivity">
-        <PropertyRef Name="CustomerID" />
+      <Dependent Role="CityTemp">
+        <PropertyRef Name="ProvinceID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -728,27 +689,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Personnel_PersonnelType">
-    <End Role="PersonnelType" Type="Self.PersonnelType" Multiplicity="1" />
-    <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+  <Association Name="FK_People_PeopleGroup">
+    <End Role="PeopleGroup" Type="Self.PeopleGroup" Multiplicity="1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PersonnelType">
+      <Principal Role="PeopleGroup">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Personnel">
-        <PropertyRef Name="PersonnelTypeID" />
+      <Dependent Role="People">
+        <PropertyRef Name="GroupID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PersonnelActivity_Personnel">
-    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-    <End Role="PersonnelActivity" Type="Self.PersonnelActivity" Multiplicity="*" />
+  <Association Name="FK_People_PeopleType">
+    <End Role="PeopleType" Type="Self.PeopleType" Multiplicity="1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Personnel">
+      <Principal Role="PeopleType">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="PersonnelActivity">
-        <PropertyRef Name="PersonnelID" />
+      <Dependent Role="People">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PeopleActivity_People">
+    <End Role="People" Type="Self.People" Multiplicity="1" />
+    <End Role="PeopleActivity" Type="Self.PeopleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PeopleActivity">
+        <PropertyRef Name="PeopleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -764,27 +737,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SailBody_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+  <Association Name="FK_SailBody_People">
+    <End Role="People" Type="Self.People" Multiplicity="1" />
     <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Customer">
+      <Principal Role="People">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="SailBody">
-        <PropertyRef Name="CustomerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SailBody_Personnel">
-    <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-    <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Personnel">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="SailBody">
-        <PropertyRef Name="VisitorID" />
+        <PropertyRef Name="PeopleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -844,10 +805,8 @@
     <EntitySet Name="BuyBody" EntityType="Self.BuyBody" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BuyDetail" EntityType="Self.BuyDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CityTemp" EntityType="Self.CityTemp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CustomerActivity" EntityType="Self.CustomerActivity" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CustomerGroup" EntityType="Self.CustomerGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FiscalYear" EntityType="Self.FiscalYear" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GoodsActivity" EntityType="Self.GoodsActivity" Schema="dbo" store:Type="Tables" />
@@ -858,10 +817,12 @@
     <EntitySet Name="GoodsWarehouse" EntityType="Self.GoodsWarehouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GoodsWarehouseActivity" EntityType="Self.GoodsWarehouseActivity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Path" EntityType="Self.Path" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Personnel" EntityType="Self.Personnel" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PersonnelActivity" EntityType="Self.PersonnelActivity" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PersonnelType" EntityType="Self.PersonnelType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeopleActivity" EntityType="Self.PeopleActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeopleGroup" EntityType="Self.PeopleGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeopleType" EntityType="Self.PeopleType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProvinceTemp" EntityType="Self.ProvinceTemp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SailBody" EntityType="Self.SailBody" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SailDetail" EntityType="Self.SailDetail" Schema="dbo" store:Type="Tables" />
@@ -877,8 +838,8 @@
       <End Role="BankName" EntitySet="BankName" />
       <End Role="BankAccount" EntitySet="BankAccount" />
     </AssociationSet>
-    <AssociationSet Name="FK_BuyBody_Customer" Association="Self.FK_BuyBody_Customer">
-      <End Role="Customer" EntitySet="Customer" />
+    <AssociationSet Name="FK_BuyBody_People" Association="Self.FK_BuyBody_People">
+      <End Role="People" EntitySet="People" />
       <End Role="BuyBody" EntitySet="BuyBody" />
     </AssociationSet>
     <AssociationSet Name="FK_BuyDetail_BuyBody" Association="Self.FK_BuyDetail_BuyBody">
@@ -893,17 +854,9 @@
       <End Role="Province" EntitySet="Province" />
       <End Role="City" EntitySet="City" />
     </AssociationSet>
-    <AssociationSet Name="FK_Customer_CustomerGroup" Association="Self.FK_Customer_CustomerGroup">
-      <End Role="CustomerGroup" EntitySet="CustomerGroup" />
-      <End Role="Customer" EntitySet="Customer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Customer_Personnel" Association="Self.FK_Customer_Personnel">
-      <End Role="Personnel" EntitySet="Personnel" />
-      <End Role="Customer" EntitySet="Customer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CustomerActivity_Customer" Association="Self.FK_CustomerActivity_Customer">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="CustomerActivity" EntitySet="CustomerActivity" />
+    <AssociationSet Name="FK_CityTemp_ProvinceTemp" Association="Self.FK_CityTemp_ProvinceTemp">
+      <End Role="ProvinceTemp" EntitySet="ProvinceTemp" />
+      <End Role="CityTemp" EntitySet="CityTemp" />
     </AssociationSet>
     <AssociationSet Name="FK_Goods_GoodsGroup" Association="Self.FK_Goods_GoodsGroup">
       <End Role="GoodsGroup" EntitySet="GoodsGroup" />
@@ -961,24 +914,24 @@
       <End Role="Region" EntitySet="Region" />
       <End Role="Path" EntitySet="Path" />
     </AssociationSet>
-    <AssociationSet Name="FK_Personnel_PersonnelType" Association="Self.FK_Personnel_PersonnelType">
-      <End Role="PersonnelType" EntitySet="PersonnelType" />
-      <End Role="Personnel" EntitySet="Personnel" />
+    <AssociationSet Name="FK_People_PeopleGroup" Association="Self.FK_People_PeopleGroup">
+      <End Role="PeopleGroup" EntitySet="PeopleGroup" />
+      <End Role="People" EntitySet="People" />
     </AssociationSet>
-    <AssociationSet Name="FK_PersonnelActivity_Personnel" Association="Self.FK_PersonnelActivity_Personnel">
-      <End Role="Personnel" EntitySet="Personnel" />
-      <End Role="PersonnelActivity" EntitySet="PersonnelActivity" />
+    <AssociationSet Name="FK_People_PeopleType" Association="Self.FK_People_PeopleType">
+      <End Role="PeopleType" EntitySet="PeopleType" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PeopleActivity_People" Association="Self.FK_PeopleActivity_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="PeopleActivity" EntitySet="PeopleActivity" />
     </AssociationSet>
     <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
       <End Role="City" EntitySet="City" />
       <End Role="Region" EntitySet="Region" />
     </AssociationSet>
-    <AssociationSet Name="FK_SailBody_Customer" Association="Self.FK_SailBody_Customer">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="SailBody" EntitySet="SailBody" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SailBody_Personnel" Association="Self.FK_SailBody_Personnel">
-      <End Role="Personnel" EntitySet="Personnel" />
+    <AssociationSet Name="FK_SailBody_People" Association="Self.FK_SailBody_People">
+      <End Role="People" EntitySet="People" />
       <End Role="SailBody" EntitySet="SailBody" />
     </AssociationSet>
     <AssociationSet Name="FK_SailDetail_Goods" Association="Self.FK_SailDetail_Goods">

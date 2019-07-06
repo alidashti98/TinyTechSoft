@@ -16,12 +16,11 @@ namespace TinyTech.Connection
     {
         public int ID { get; set; }
         public int SailID { get; set; }
-        public int CustomerID { get; set; }
+        public int PeopleID { get; set; }
         public int VisitorID { get; set; }
         public bool Active { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Personnel Personnel { get; set; }
+        public virtual People People { get; set; }
         public virtual SailDetail SailDetail { get; set; }
     }
 }

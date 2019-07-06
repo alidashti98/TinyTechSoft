@@ -33,10 +33,8 @@ namespace TinyTech.Connection
         public virtual DbSet<BuyBody> BuyBody { get; set; }
         public virtual DbSet<BuyDetail> BuyDetail { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<CityTemp> CityTemp { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<CustomerActivity> CustomerActivity { get; set; }
-        public virtual DbSet<CustomerGroup> CustomerGroup { get; set; }
         public virtual DbSet<FiscalYear> FiscalYear { get; set; }
         public virtual DbSet<Goods> Goods { get; set; }
         public virtual DbSet<GoodsActivity> GoodsActivity { get; set; }
@@ -47,10 +45,12 @@ namespace TinyTech.Connection
         public virtual DbSet<GoodsWarehouse> GoodsWarehouse { get; set; }
         public virtual DbSet<GoodsWarehouseActivity> GoodsWarehouseActivity { get; set; }
         public virtual DbSet<Path> Path { get; set; }
-        public virtual DbSet<Personnel> Personnel { get; set; }
-        public virtual DbSet<PersonnelActivity> PersonnelActivity { get; set; }
-        public virtual DbSet<PersonnelType> PersonnelType { get; set; }
+        public virtual DbSet<People> People { get; set; }
+        public virtual DbSet<PeopleActivity> PeopleActivity { get; set; }
+        public virtual DbSet<PeopleGroup> PeopleGroup { get; set; }
+        public virtual DbSet<PeopleType> PeopleType { get; set; }
         public virtual DbSet<Province> Province { get; set; }
+        public virtual DbSet<ProvinceTemp> ProvinceTemp { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<SailBody> SailBody { get; set; }
         public virtual DbSet<SailDetail> SailDetail { get; set; }
@@ -59,7 +59,7 @@ namespace TinyTech.Connection
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
     
-        public virtual int CustomerGroupDefinition(string name, Nullable<decimal> defaultSailPrice, string description)
+        public virtual int PeopleGroupDefinition(string name, Nullable<decimal> defaultSailPrice, string description)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
@@ -73,7 +73,7 @@ namespace TinyTech.Connection
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CustomerGroupDefinition", nameParameter, defaultSailPriceParameter, descriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PeopleGroupDefinition", nameParameter, defaultSailPriceParameter, descriptionParameter);
         }
     
         public virtual int ProvinceDefinition(string name, string description)

@@ -463,10 +463,7 @@ namespace TinyTech.UI.UserControl
 
         private void DisableForm()
         {
-            txtRegionName.Enabled = false;
-            txtDescription.Enabled = false;
-            btnSave.Enabled = false;
-            btnRefresh.Enabled = false;
+            txtRegionName.Enabled = txtDescription.Enabled = btnSave.Enabled = btnRefresh.Enabled = false;
         }
 
         private DataTable RegionListDataTable(List<Region> RegionList)
@@ -477,8 +474,8 @@ namespace TinyTech.UI.UserControl
 
         private void RegionDefinition_Load(object sender, EventArgs e)
         {
-            var RegionList = @class.GetRegion().Where(i => i.Active).ToList();
-            dgvRegion.DataSource = RegionListDataTable(RegionList);
+            var regionList = @class.GetRegion(true).ToList();
+            dgvRegion.DataSource = regionList; //RegionListDataTable(RegionList);
             SetGridView();
             txtRegionID.Text = CalculateMaxId().ToString();
             chkProvince.Focus();
@@ -554,7 +551,7 @@ namespace TinyTech.UI.UserControl
                 txtRegionName.Focus();
                 return false;
             }
-            if (DB_Connection.Region.AsNoTracking().Count(i => i.Name.Equals(txtRegionName.Text) && i.Active) > 0)
+            if (@class.GetRegion(true).Count(i => i.Name.Equals(txtRegionName.Text)) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام منطقه \"{txtRegionName.Text}\" تكراري است!", "e");
                 txtRegionName.Focus();
@@ -595,16 +592,14 @@ namespace TinyTech.UI.UserControl
         private void RefreshForm()
         {
             RegionDefinition_Load(null, null);
-            txtRegionName.Clear();
-            txtDescription.Clear();
-            chkCityName.Checked = false;
-            chkProvince.Checked = false;
+            txtRegionName.Text = txtDescription.Text = string.Empty;
+            chkCityName.Checked = chkProvince.Checked = false;
         }
 
         private void txtRegionName_TextChanged(object sender, EventArgs e)
         {
-            var RegionList = @class.GetRegion().Where(i => i.Active && i.Name.Contains(txtRegionName.Text)).ToList();
-            dgvRegion.DataSource = RegionListDataTable(RegionList);
+            var regionList = @class.GetRegion(true).Where(i => i.Name.Contains(txtRegionName.Text)).ToList();
+            dgvRegion.DataSource = regionList; //RegionListDataTable(RegionList);
         }
 
         private void chkProvince_CheckedChanged(object sender, EventArgs e)
@@ -624,8 +619,7 @@ namespace TinyTech.UI.UserControl
                 {
                     txtProvinceName.Text = "انتخاب استان ...";
                     txtProvinceName.Tag = string.Empty;
-                    chkProvince.Checked = false;
-                    chkCityName.Checked = false;
+                    chkProvince.Checked = chkCityName.Checked = false;
                     var RegionList = @class.GetRegion(true).ToList();
                     dgvRegion.DataSource = RegionList; //RegionListDataTable(RegionList);
                     chkProvince.Focus();
@@ -637,8 +631,8 @@ namespace TinyTech.UI.UserControl
                 txtProvinceName.Text = "انتخاب استان ...";
                 txtProvinceName.Tag = string.Empty;
                 chkCityName.Checked = false;
-                var RegionList = @class.GetRegion().Where(i => i.Active).ToList();
-                dgvRegion.DataSource = RegionListDataTable(RegionList);
+                var RegionList = @class.GetRegion(true).ToList();
+                dgvRegion.DataSource = RegionList; //RegionListDataTable(RegionList);
                 DisableForm();
             }
         }
@@ -655,13 +649,13 @@ namespace TinyTech.UI.UserControl
 
             if (chkProvince.Checked && chkCityName.Checked)
             {
-                var CityArray = new ArrayList();
-                new UserControlLoader(new CitySelect(CityArray, int.Parse(txtProvinceName.Tag.ToString())), true, false, true);
+                var cityList = new List<City>();
+                new UserControlLoader(new CitySelect(cityList, int.Parse(txtProvinceName.Tag.ToString())), true, false, true);
 
-                if (CityArray.Count > 0)
+                if (cityList.Count > 0)
                 {
-                    txtCityName.Text = CityArray[1].ToString();
-                    txtCityName.Tag = CityArray[0].ToString();
+                    txtCityName.Text = cityList.FirstOrDefault().Name;
+                    txtCityName.Tag = cityList.FirstOrDefault().ID;
                     txtRegionName.Select();
 
                     //var RegionList = @class.GetRegion().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
@@ -673,8 +667,8 @@ namespace TinyTech.UI.UserControl
                     txtCityName.Text = "انتخاب شهر ...";
                     txtCityName.Tag = string.Empty;
                     chkCityName.Checked = false;
-                    var RegionList = @class.GetRegion().Where(i => i.Active).ToList();
-                    dgvRegion.DataSource = RegionListDataTable(RegionList);
+                    var regionList = @class.GetRegion(true).ToList();
+                    dgvRegion.DataSource = regionList; //RegionListDataTable(RegionList);
                     chkProvince.Focus();
                     DisableForm();
                 }
@@ -683,8 +677,8 @@ namespace TinyTech.UI.UserControl
             {
                 txtCityName.Text = "انتخاب شهر ...";
                 txtCityName.Tag = string.Empty;
-                var RegionList = @class.GetRegion().Where(i => i.Active).ToList();
-                dgvRegion.DataSource = RegionListDataTable(RegionList);
+                var regionList = @class.GetRegion(true).ToList();
+                dgvRegion.DataSource = regionList; //RegionListDataTable(RegionList);
                 DisableForm();
             }
         }

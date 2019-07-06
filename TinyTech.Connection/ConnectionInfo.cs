@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity.Core.EntityClient;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TinyTech.Connection
 {

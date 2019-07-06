@@ -538,8 +538,7 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             CityDefinition_Load(null, null);
-            txtCityName.Clear();
-            txtDescription.Clear();
+            txtCityName.Text = txtDescription.Text = string.Empty;
             chkProvince.Checked = false;
         }
 

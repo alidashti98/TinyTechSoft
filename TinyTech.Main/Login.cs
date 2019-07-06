@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Xml;
 using TinyTech.Connection;
 using TinyTech.UI.Control.MessageBox;
-using TinyTech.UI.Control.TextBox;
 
 namespace TinyTech.Main
 {
@@ -258,7 +257,7 @@ namespace TinyTech.Main
             {
                 if (!FormIsValid()) return;
                 var currentSelectedFiscalYear = int.Parse(cmbFiscalYear.SelectedValue.ToString());
-                var databaseName = @class.GetFiscalYear().Where(i => i.Active).FirstOrDefault(i => i.ID == currentSelectedFiscalYear);
+                var databaseName = @class.GetFiscalYear().FirstOrDefault(i => i.ID == currentSelectedFiscalYear);
                 ConnectionInfo.DatabaseName = databaseName?.DatabaseName;
                 DB_Connection = new TinyTechEntities();
                 if (!CheckNewConnection()) return;

@@ -47,8 +47,10 @@ D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\CEWorld.Conve
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.dll
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.SqlServer.dll
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\FastMember.dll
+D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\Z.EntityFramework.Extensions.dll
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\bin\Debug\Z.EntityFramework.Extensions.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csprojResolveAssemblyReference.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csproj.CoreCompileInputs.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Connection\obj\Debug\TinyTech.Connection.csproj.CopyComplete

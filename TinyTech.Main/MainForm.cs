@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -33,9 +32,9 @@ namespace TinyTech.Main
         private ToolStripMenuItem ToolStripMenuItemCity;
         private ToolStripMenuItem ToolStripMenuItemRegion;
         private ToolStripMenuItem ToolStripMenuItemPath;
-        private ToolStripMenuItem ToolStripMenuItemCustomerMenu;
-        private ToolStripMenuItem ToolStripMenuItemCustomerGroup;
-        private ToolStripMenuItem ToolStripMenuItemCustomer;
+        private ToolStripMenuItem ToolStripMenuItemPeopleMenu;
+        private ToolStripMenuItem ToolStripMenuItemPeopleGroup;
+        private ToolStripMenuItem ToolStripMenuItemPeople;
         private ToolStripMenuItem ToolStripMenuItemGoodsMenu;
         private ToolStripMenuItem ToolStripMenuItemGoodsUnit;
         private ToolStripMenuItem ToolStripMenuItemGoodsGroup;
@@ -105,9 +104,9 @@ namespace TinyTech.Main
             this.ToolStripMenuItemCity = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemRegion = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemPath = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemCustomerMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemCustomer = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemPeopleMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemPeopleGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemPeople = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemGoodsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemGoodsUnit = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemGoodsGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -310,7 +309,7 @@ namespace TinyTech.Main
             // 
             this.ToolStripMenuItemBasicInformation.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemLocation,
-            this.ToolStripMenuItemCustomerMenu,
+            this.ToolStripMenuItemPeopleMenu,
             this.ToolStripMenuItemGoodsMenu,
             this.ToolStripMenuItemBankMenu});
             this.ToolStripMenuItemBasicInformation.ForeColor = System.Drawing.Color.Lime;
@@ -357,27 +356,27 @@ namespace TinyTech.Main
             this.ToolStripMenuItemPath.Text = "تعريف مسير";
             this.ToolStripMenuItemPath.Click += new System.EventHandler(this.ToolStripMenuItemPath_Click);
             // 
-            // ToolStripMenuItemCustomerMenu
+            // ToolStripMenuItemPeopleMenu
             // 
-            this.ToolStripMenuItemCustomerMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemCustomerGroup,
-            this.ToolStripMenuItemCustomer});
-            this.ToolStripMenuItemCustomerMenu.Name = "ToolStripMenuItemCustomerMenu";
-            this.ToolStripMenuItemCustomerMenu.Size = new System.Drawing.Size(135, 24);
-            this.ToolStripMenuItemCustomerMenu.Text = "طرف حساب";
+            this.ToolStripMenuItemPeopleMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemPeopleGroup,
+            this.ToolStripMenuItemPeople});
+            this.ToolStripMenuItemPeopleMenu.Name = "ToolStripMenuItemPeopleMenu";
+            this.ToolStripMenuItemPeopleMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemPeopleMenu.Text = "طرف حساب";
             // 
-            // ToolStripMenuItemCustomerGroup
+            // ToolStripMenuItemPeopleGroup
             // 
-            this.ToolStripMenuItemCustomerGroup.Name = "ToolStripMenuItemCustomerGroup";
-            this.ToolStripMenuItemCustomerGroup.Size = new System.Drawing.Size(191, 24);
-            this.ToolStripMenuItemCustomerGroup.Text = "تعريف گروه طرف حساب";
-            this.ToolStripMenuItemCustomerGroup.Click += new System.EventHandler(this.ToolStripMenuItemCustomerGroup_Click);
+            this.ToolStripMenuItemPeopleGroup.Name = "ToolStripMenuItemPeopleGroup";
+            this.ToolStripMenuItemPeopleGroup.Size = new System.Drawing.Size(191, 24);
+            this.ToolStripMenuItemPeopleGroup.Text = "تعريف گروه طرف حساب";
+            this.ToolStripMenuItemPeopleGroup.Click += new System.EventHandler(this.ToolStripMenuItemPeopleGroup_Click);
             // 
-            // ToolStripMenuItemCustomer
+            // ToolStripMenuItemPeople
             // 
-            this.ToolStripMenuItemCustomer.Name = "ToolStripMenuItemCustomer";
-            this.ToolStripMenuItemCustomer.Size = new System.Drawing.Size(191, 24);
-            this.ToolStripMenuItemCustomer.Text = "تعريف طرف حساب";
+            this.ToolStripMenuItemPeople.Name = "ToolStripMenuItemPeople";
+            this.ToolStripMenuItemPeople.Size = new System.Drawing.Size(191, 24);
+            this.ToolStripMenuItemPeople.Text = "تعريف طرف حساب";
             // 
             // ToolStripMenuItemGoodsMenu
             // 
@@ -627,7 +626,7 @@ namespace TinyTech.Main
         private void SetUserAndFiscalYearInfo()
         {
             var UserInfo_ = @class.GetUserInfo(ConnectionInfo.LoggedInUserId).FirstOrDefault();
-            lblUserInfo.Text = $"{UserInfo_.UserName}";
+            lblUserInfo.Text = $"{UserInfo_.FirstName} {UserInfo_.LastName} ({UserInfo_.UserName})";
             lblFiscalYearInfo.Text = $"{@class.GetFiscalYear().Where(i => i.DatabaseName.Equals(ConnectionInfo.DatabaseName)).Select(i => i.DisplayName).FirstOrDefault()}";
         }
 
@@ -671,10 +670,10 @@ namespace TinyTech.Main
             }
         }
 
-        private void ToolStripMenuItemCustomerGroup_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemPeopleGroup_Click(object sender, EventArgs e)
         {
-            var customerGroupDefinition = new CustomerGroupDefinition();
-            tab.AddNewTab(tabControlMain, customerGroupDefinition);
+            var PeopleGroupDefinition = new PeopleGroupDefinition();
+            tab.AddNewTab(tabControlMain, PeopleGroupDefinition);
         }
 
         private void ToolStripMenuItemExit_Click(object sender, EventArgs e)

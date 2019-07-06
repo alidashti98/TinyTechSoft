@@ -360,8 +360,8 @@ namespace TinyTech.BasicInformation
 
         private void GoodsUnitDefinition_Load(object sender, EventArgs e)
         {
-            var goodsUnitList = @class.GetGoodsUnit().Where(i => i.Active).ToList();
-            dgvGoodsUnit.DataSource = GoodsUnitListDataTable(goodsUnitList);
+            var goodsUnitList = @class.GetGoodsUnit(true).ToList();
+            dgvGoodsUnit.DataSource = goodsUnitList; //GoodsUnitListDataTable(goodsUnitList);
             SetGridView();
             txtGoodsUnitID.Text = CalculateMaxId().ToString();
             txtGoodsUnitName.Focus();
@@ -423,7 +423,7 @@ namespace TinyTech.BasicInformation
                 txtGoodsUnitName.Focus();
                 return false;
             }
-            if (DB_Connection.GoodsUnit.AsNoTracking().Count(i => i.Name.Equals(txtGoodsUnitName.Text) && i.Active) > 0)
+            if (@class.GetGoodsUnit(true).Count(i => i.Name.Equals(txtGoodsUnitName.Text)) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام واحد كالا \"{txtGoodsUnitName.Text}\" تكراري است!", "e");
                 txtGoodsUnitName.Focus();
@@ -466,14 +466,13 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             GoodsUnitDefinition_Load(null, null);
-            txtGoodsUnitName.Clear();
-            txtDescription.Clear();
+            txtGoodsUnitName.Text = txtDescription.Text = string.Empty;
         }
 
         private void txtGoodsUnitName_TextChanged(object sender, EventArgs e)
         {
-            var goodsUnitList = @class.GetGoodsUnit().Where(i => i.Active && i.Name.Contains(txtGoodsUnitName.Text)).ToList();
-            dgvGoodsUnit.DataSource = GoodsUnitListDataTable(goodsUnitList);
+            var goodsUnitList = @class.GetGoodsUnit(true).Where(i => i.Name.Contains(txtGoodsUnitName.Text)).ToList();
+            dgvGoodsUnit.DataSource = goodsUnitList; //GoodsUnitListDataTable(goodsUnitList);
         }
     }
 }

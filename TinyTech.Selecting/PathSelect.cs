@@ -22,7 +22,7 @@ namespace TinyTech.Selecting
         private UI.Control.TextBox.TextBox txtPathSearch;
         private UI.Control.Label.Label lblPathSearch;
         private UI.Control.Label.Label lblHelp;
-        private ArrayList info;
+        private List<Path> info;
         private int RegionID;
         private Container components = null;
         #endregion
@@ -36,7 +36,7 @@ namespace TinyTech.Selecting
             base.Dispose(disposing);
         }
 
-        public PathSelect(ArrayList info_, int RegionID_)
+        public PathSelect(List<Path> info_, int RegionID_)
         {
             InitializeComponent();
             info = info_;
@@ -207,8 +207,8 @@ namespace TinyTech.Selecting
         private void PathSelect_Load(object sender, EventArgs e)
         {
             txtPathSearch.Focus();
-            var PathList = @class.GetPath().Where(i => i.RegionID == RegionID).ToList();
-            dgvPath.DataSource = PathListDataTable(PathList);
+            var pathList = @class.GetPath(true).Where(i => i.RegionID == RegionID).ToList();
+            dgvPath.DataSource = pathList; //PathListDataTable(PathList);
             SetGridView();
         }
 
@@ -242,6 +242,11 @@ namespace TinyTech.Selecting
 
             dgvPath.AutoGenerateColumns = false;
 
+        }
+
+        private void FillPathList()
+        {
+            info.Add((Path)dgvPath.CurrentRow?.DataBoundItem);
         }
 
         private void txtPathSearch_KeyDown(object sender, KeyEventArgs e)
@@ -303,9 +308,7 @@ namespace TinyTech.Selecting
 
                     break;
                 case Keys.Enter when dgvPath.Rows.Count > 0 && dgvPath.CurrentRow != null:
-                    info.Add(dgvPath.CurrentRow.Cells["ID"].Value);
-                    info.Add(dgvPath.CurrentRow.Cells["Name"].Value);
-
+                    FillPathList();
                     ParentForm?.Close();
                     break;
             }
@@ -323,8 +326,8 @@ namespace TinyTech.Selecting
         {
             try
             {
-                var PathList = @class.GetPath().Where(i => i.RegionID == RegionID && i.Name.Contains(txtPathSearch.Text)).ToList();
-                dgvPath.DataSource = PathListDataTable(PathList);
+                var pathList = @class.GetPath(true).Where(i => i.RegionID == RegionID && i.Name.Contains(txtPathSearch.Text)).ToList();
+                dgvPath.DataSource = pathList; //PathListDataTable(PathList);
 
                 if (dgvPath.Rows.Count != 0)
                 {
@@ -355,8 +358,7 @@ namespace TinyTech.Selecting
             switch (e.KeyCode)
             {
                 case Keys.Enter when dgvPath.Rows.Count > 0:
-                    info.Add(dgvPath.CurrentRow?.Cells["ID"].Value);
-                    info.Add(dgvPath.CurrentRow?.Cells["Name"].Value);
+                    FillPathList();
                     ParentForm?.Close();
                     break;
                 case Keys.ControlKey:
@@ -368,8 +370,7 @@ namespace TinyTech.Selecting
         private void dgvPath_DoubleClick(object sender, EventArgs e)
         {
             if (dgvPath.Rows.Count <= 0) return;
-            info.Add(dgvPath.CurrentRow?.Cells["ID"].Value);
-            info.Add(dgvPath.CurrentRow?.Cells["Name"].Value);
+            FillPathList();
             ParentForm?.Close();
         }
 

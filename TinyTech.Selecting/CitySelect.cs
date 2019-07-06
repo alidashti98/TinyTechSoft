@@ -22,7 +22,7 @@ namespace TinyTech.Selecting
         private UI.Control.TextBox.TextBox txtCitySearch;
         private UI.Control.Label.Label lblCitySearch;
         private UI.Control.Label.Label lblHelp;
-        private ArrayList info;
+        private List<City> info;
         private int ProvinceID;
         private Container components = null;
         #endregion
@@ -35,7 +35,7 @@ namespace TinyTech.Selecting
             }
             base.Dispose(disposing);
         }
-        public CitySelect(ArrayList info_, int ProvinceID_)
+        public CitySelect(List<City> info_, int ProvinceID_)
         {
             InitializeComponent();
             info = info_;
@@ -206,8 +206,8 @@ namespace TinyTech.Selecting
         private void CitySelect_Load(object sender, EventArgs e)
         {
             txtCitySearch.Focus();
-            var cityList = @class.GetCity().Where(i => i.Active && i.ProvinceID == ProvinceID).ToList();
-            dgvCity.DataSource = CityListDataTable(cityList);
+            var cityList = @class.GetCity(true).Where(i => i.ProvinceID == ProvinceID).ToList();
+            dgvCity.DataSource = cityList; //CityListDataTable(cityList);
             SetGridView();
         }
 
@@ -302,9 +302,7 @@ namespace TinyTech.Selecting
 
                     break;
                 case Keys.Enter when dgvCity.Rows.Count > 0 && dgvCity.CurrentRow != null:
-                    info.Add(dgvCity.CurrentRow.Cells["ID"].Value);
-                    info.Add(dgvCity.CurrentRow.Cells["Name"].Value);
-
+                    FillCityList();
                     ParentForm?.Close();
                     break;
             }
@@ -318,12 +316,17 @@ namespace TinyTech.Selecting
             }
         }
 
+        private void FillCityList()
+        {
+            info.Add((City)dgvCity.CurrentRow?.DataBoundItem);
+        }
+
         private void txtCitySearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                var cityList = @class.GetCity().Where(i => i.Active && i.ProvinceID == ProvinceID && i.Name.Contains(txtCitySearch.Text)).ToList();
-                dgvCity.DataSource = CityListDataTable(cityList);
+                var cityList = @class.GetCity(true).Where(i => i.ProvinceID == ProvinceID && i.Name.Contains(txtCitySearch.Text)).ToList();
+                dgvCity.DataSource = cityList; //CityListDataTable(cityList);
 
                 if (dgvCity.Rows.Count != 0)
                 {
@@ -354,8 +357,7 @@ namespace TinyTech.Selecting
             switch (e.KeyCode)
             {
                 case Keys.Enter when dgvCity.Rows.Count > 0:
-                    info.Add(dgvCity.CurrentRow?.Cells["ID"].Value);
-                    info.Add(dgvCity.CurrentRow?.Cells["Name"].Value);
+                    FillCityList();
                     ParentForm?.Close();
                     break;
                 case Keys.ControlKey:
@@ -367,8 +369,7 @@ namespace TinyTech.Selecting
         private void dgvCity_DoubleClick(object sender, EventArgs e)
         {
             if (dgvCity.Rows.Count <= 0) return;
-            info.Add(dgvCity.CurrentRow?.Cells["ID"].Value);
-            info.Add(dgvCity.CurrentRow?.Cells["Name"].Value);
+            FillCityList();
             ParentForm?.Close();
         }
 

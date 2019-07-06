@@ -436,8 +436,8 @@ namespace TinyTech.BasicInformation
 
         private void GoodsGroupDefinition_Load(object sender, EventArgs e)
         {
-            var goodsGroupList = @class.GetGoodsGroup().Where(i => i.Active).ToList();
-            dgvGoodsGroup.DataSource = GoodsGroupListDataTable(goodsGroupList);
+            var goodsGroupList = @class.GetGoodsGroup(true).ToList();
+            dgvGoodsGroup.DataSource = goodsGroupList; //GoodsGroupListDataTable(goodsGroupList);
             SetGridView();
             txtGoodsGroupID.Text = CalculateMaxId().ToString();
             txtGoodsGroupName.Focus();
@@ -500,7 +500,7 @@ namespace TinyTech.BasicInformation
                 txtGoodsGroupName.Focus();
                 return false;
             }
-            if (DB_Connection.GoodsGroup.AsNoTracking().Count(i => i.Name.Equals(txtGoodsGroupName.Text) && i.Active) > 0)
+            if (@class.GetGoodsGroup(true).Count(i => i.Name.Equals(txtGoodsGroupName.Text)) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام گروه كالا \"{txtGoodsGroupName.Text}\" تكراري است!", "e");
                 txtGoodsGroupName.Focus();
@@ -543,13 +543,12 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             GoodsGroupDefinition_Load(null, null);
-            txtGoodsGroupName.Clear();
-            txtDescription.Clear();
+            txtGoodsGroupName.Text = txtDescription.Text = string.Empty;
         }
 
         private void txtGoodsGroupName_TextChanged(object sender, EventArgs e)
         {
-            var goodsGroupList = @class.GetGoodsGroup().Where(i => i.Active && i.Name.Contains(txtGoodsGroupName.Text)).ToList();
+            var goodsGroupList = @class.GetGoodsGroup(true).Where(i => i.Name.Contains(txtGoodsGroupName.Text)).ToList();
             dgvGoodsGroup.DataSource = GoodsGroupListDataTable(goodsGroupList);
         }
 

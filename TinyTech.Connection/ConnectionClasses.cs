@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Windows.Forms;
-using CEWorld;
 using Encoding = System.Text.Encoding;
 
 namespace TinyTech.Connection
@@ -211,20 +207,19 @@ namespace TinyTech.Connection
 
         #endregion
 
-        #region CustomerGroupList
-
-        public List<CustomerGroup> GetCustomerGroup(bool Active = false)
+        #region PeopleGroupList
+        public List<PeopleGroup> GetPeopleGroup(bool Active = false)
         {
             try
             {
                 DB_Connection = new TinyTechEntities();
                 if (Active)
                 {
-                    return DB_Connection.CustomerGroup.AsNoTracking().Where(i => i.Active).ToList();
+                    return DB_Connection.PeopleGroup.AsNoTracking().Where(i => i.Active).ToList();
                 }
                 else
                 {
-                    return DB_Connection.CustomerGroup.AsNoTracking().ToList();
+                    return DB_Connection.PeopleGroup.AsNoTracking().ToList();
                 }
             }
             catch (Exception ex)
@@ -467,11 +462,11 @@ namespace TinyTech.Connection
         //}
         //#endregion
 
-        //#region CustomerActivityList
-        //public class CustomerActivityList
+        //#region PeopleActivityList
+        //public class PeopleActivityList
         //{
         //    public int ID { get; set; }
-        //    public int CustomerID { get; set; }
+        //    public int PeopleID { get; set; }
         //    public string Description { get; set; }
         //    public bool Active { get; set; }
         //    public string ClientDate { get; set; }
@@ -482,22 +477,22 @@ namespace TinyTech.Connection
         //    public decimal Debtor { get; set; }
         //    public decimal Creditor { get; set; }
 
-        //    public CustomerActivityList()
+        //    public PeopleActivityList()
         //    {
 
         //    }
         //}
 
-        //public List<CustomerActivity> GetCustomerActivity()
+        //public List<PeopleActivity> GetPeopleActivity()
         //{
         //    try
         //    {
         //        DB_Connection = new TinyTechEntities();
-        //        var customerActivity = (from i in DB_Connection.CustomerActivity.AsNoTracking().ToList()
-        //                                select new CustomerActivity
+        //        var PeopleActivity = (from i in DB_Connection.PeopleActivity.AsNoTracking().ToList()
+        //                                select new PeopleActivity
         //                                {
         //                                    ID = i.ID,
-        //                                    CustomerID = i.CustomerID,
+        //                                    PeopleID = i.PeopleID,
         //                                    Active = i.Active,
         //                                    Description = i.Description,
         //                                    ClientDate = i.ClientDate,
@@ -510,7 +505,7 @@ namespace TinyTech.Connection
 
         //                                }).Distinct().ToList();
 
-        //        return customerActivity;
+        //        return PeopleActivity;
         //    }
         //    catch (Exception ex)
         //    {
@@ -750,8 +745,7 @@ namespace TinyTech.Connection
                                 UserID = userID,
                             };
                             dbConnection.GoodsGroup.Add(goodsGroup);
-
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return goodsGroup.ID;
                         }
@@ -794,7 +788,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.GoodsUnit.Add(goodsUnit);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return goodsUnit.ID;
                         }
@@ -837,7 +831,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.BankName.Add(bankName);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return bankName.ID;
                         }
@@ -857,7 +851,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public int CustomerGroupDefinition(string name, int defaultSailPrice, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID, bool isParrent = false, int parrentID = 0) //Save Error => 0
+        public int PeopleGroupDefinition(string name, int defaultSailPrice, string description, int parrentID, string clientDate, string serverDate, string clientTime, string serverTime, int userID, bool isParrent = false) //Save Error => 0
         {
             try
             {
@@ -867,7 +861,7 @@ namespace TinyTech.Connection
                     {
                         try
                         {
-                            var customerGroup = new CustomerGroup()
+                            var PeopleGroup = new PeopleGroup()
                             {
                                 Name = name,
                                 DefaultSailPrice = defaultSailPrice,
@@ -881,11 +875,11 @@ namespace TinyTech.Connection
                                 ServerTime = serverTime,
                                 UserID = userID
                             };
-                            dbConnection.CustomerGroup.Add(customerGroup);
+                            dbConnection.PeopleGroup.Add(PeopleGroup);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
-                            return customerGroup.ID;
+                            return PeopleGroup.ID;
                         }
                         catch (Exception e)
                         {
@@ -969,7 +963,7 @@ namespace TinyTech.Connection
                             dbConnection.Region.Add(region);
                             dbConnection.Path.Add(path);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return province.ID;
                         }
@@ -1020,7 +1014,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.BankAccount.Add(bankAccount);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return bankAccount.ID;
                         }
@@ -1063,7 +1057,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.BankAccountType.Add(bankAccountType);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return bankAccountType.ID;
                         }
@@ -1107,7 +1101,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.City.Add(city);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return city.ID;
                         }
@@ -1151,7 +1145,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.Region.Add(region);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return region.ID;
                         }
@@ -1195,7 +1189,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.Path.Add(path);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return path.ID;
                         }
@@ -1236,7 +1230,7 @@ namespace TinyTech.Connection
                                 {
                                     cr.IsDefault = false;
                                 }
-                                DB_Connection.SaveChanges();
+                                DB_Connection.BulkSaveChanges();
                             }
 
                             var currency = new Currency()
@@ -1253,7 +1247,7 @@ namespace TinyTech.Connection
                             };
                             dbConnection.Currency.Add(currency);
 
-                            dbConnection.SaveChanges();
+                            dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return currency.ID;
                         }

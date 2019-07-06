@@ -16,10 +16,10 @@ namespace TinyTech.Connection
     {
         public int ID { get; set; }
         public int BuyID { get; set; }
-        public int CustomerID { get; set; }
+        public int PeopleD { get; set; }
         public bool Active { get; set; }
     
-        public virtual Customer Customer { get; set; }
+        public virtual People People { get; set; }
         public virtual BuyDetail BuyDetail { get; set; }
     }
 }

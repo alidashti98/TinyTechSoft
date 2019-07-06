@@ -426,8 +426,6 @@ namespace TinyTech.BasicInformation
                 lblDefaultCurrency.ForeColor = Color.White;
                 lblDefaultCurrency.Text = "واحد پول پيش فرض تعيين نشده است";
             }
-
-
         }
 
         private int CalculateMaxId()

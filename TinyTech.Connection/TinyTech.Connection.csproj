@@ -34,10 +34,10 @@
       <HintPath>..\TinyTech.Main\bin\Debug\Static Refrence\CEWorld.Convert.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
       <HintPath>..\TinyTech.Main\bin\Debug\Static Refrence\FastMember.dll</HintPath>
@@ -55,6 +55,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Z.EntityFramework.Extensions, Version=3.21.2.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.3.21.2\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankAccount.cs">
@@ -75,18 +78,12 @@
     <Compile Include="City.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CityTemp.cs">
+      <DependentUpon>TinyTechEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionClasses.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Currency.cs">
-      <DependentUpon>TinyTechEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>TinyTechEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerActivity.cs">
-      <DependentUpon>TinyTechEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerGroup.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="FiscalYear.cs">
@@ -119,17 +116,23 @@
     <Compile Include="Path.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Personnel.cs">
+    <Compile Include="People.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonnelActivity.cs">
+    <Compile Include="PeopleActivity.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonnelType.cs">
+    <Compile Include="PeopleGroup.cs">
+      <DependentUpon>TinyTechEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PeopleType.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs">
+      <DependentUpon>TinyTechEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProvinceTemp.cs">
       <DependentUpon>TinyTechEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Region.cs">
@@ -171,11 +174,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
     <EntityDeploy Include="TinyTechEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TinyTechEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="TinyTechEntities.edmx.diagram">
       <DependentUpon>TinyTechEntities.edmx</DependentUpon>
     </None>

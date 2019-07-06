@@ -62,7 +62,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="BuyID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PeopleD" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="BuyDetail">
@@ -90,6 +90,16 @@
           <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CityTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="Currency">
           <Key>
             <PropertyRef Name="ID" />
@@ -99,68 +109,6 @@
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="GroupID" Type="int" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="VisitorID" Type="int" Nullable="false" />
-          <Property Name="ProvinceID" Type="int" Nullable="false" />
-          <Property Name="CityID" Type="int" Nullable="false" />
-          <Property Name="RegionID" Type="int" Nullable="false" />
-          <Property Name="PathID" Type="int" Nullable="false" />
-          <Property Name="NumberInPath" Type="int" Nullable="false" />
-          <Property Name="Image" Type="image" />
-          <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="Message" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="BlackList" Type="bit" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Special" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="CreateUserID" Type="int" Nullable="false" />
-          <Property Name="CreateVisitorID" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="NationalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="EconomicCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="PostalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="TypeID" Type="int" Nullable="false" />
-          <Property Name="AllowedFactorCount" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CustomerActivity">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CustomerGroup">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="DefaultSailPrice" Type="int" Nullable="false" />
-          <Property Name="IsParrent" Type="bit" Nullable="false" />
-          <Property Name="ParrentID" Type="int" Nullable="false" />
           <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
@@ -318,7 +266,7 @@
           <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Personnel">
+        <EntityType Name="People">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -328,38 +276,66 @@
           <Property Name="Phone1" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Phone2" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="VisitorID" Type="int" Nullable="false" />
+          <Property Name="ProvinceID" Type="int" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="PathID" Type="int" Nullable="false" />
+          <Property Name="NumberInPath" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
           <Property Name="Credit" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Balance" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="PersonnelTypeID" Type="int" Nullable="false" />
-          <Property Name="Salary" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="Image" Type="image" />
+          <Property Name="BlackList" Type="bit" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Special" Type="bit" Nullable="false" />
           <Property Name="CreateDate" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CreateUserID" Type="int" Nullable="false" />
-          <Property Name="IsSupervisor" Type="bit" Nullable="false" />
-          <Property Name="SupervisorID" Type="int" Nullable="false" />
-          <Property Name="SupervisorPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="CashRewardPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="FaildCheckPercent" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="CreateVisitorID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="NationalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="EconomicCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="AllowedFactorCount" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="PersonnelActivity">
+        <EntityType Name="PeopleActivity">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PersonnelID" Type="int" Nullable="false" />
+          <Property Name="PeopleID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
         </EntityType>
-        <EntityType Name="PersonnelType">
+        <EntityType Name="PeopleGroup">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="DefaultSailPrice" Type="int" Nullable="false" />
+          <Property Name="IsParrent" Type="bit" Nullable="false" />
+          <Property Name="ParrentID" Type="int" Nullable="false" />
+          <Property Name="ClientDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ServerDate" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeopleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -374,6 +350,15 @@
           <Property Name="ClientTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="ServerTime" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProvinceTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -397,7 +382,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="SailID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PeopleID" Type="int" Nullable="false" />
           <Property Name="VisitorID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
@@ -479,15 +464,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BuyBody_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK_BuyBody_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
           <End Role="BuyBody" Type="Self.BuyBody" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="People">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="BuyBody">
-              <PropertyRef Name="CustomerID" />
+              <PropertyRef Name="PeopleD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -529,39 +514,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Customer_CustomerGroup">
-          <End Role="CustomerGroup" Type="Self.CustomerGroup" Multiplicity="1" />
-          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+        <Association Name="FK_CityTemp_ProvinceTemp">
+          <End Role="ProvinceTemp" Type="Self.ProvinceTemp" Multiplicity="1" />
+          <End Role="CityTemp" Type="Self.CityTemp" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CustomerGroup">
+            <Principal Role="ProvinceTemp">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Customer_Personnel">
-          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personnel">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="VisitorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerActivity_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="CustomerActivity" Type="Self.CustomerActivity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CustomerActivity">
-              <PropertyRef Name="CustomerID" />
+            <Dependent Role="CityTemp">
+              <PropertyRef Name="ProvinceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -733,27 +694,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Personnel_PersonnelType">
-          <End Role="PersonnelType" Type="Self.PersonnelType" Multiplicity="1" />
-          <End Role="Personnel" Type="Self.Personnel" Multiplicity="*" />
+        <Association Name="FK_People_PeopleGroup">
+          <End Role="PeopleGroup" Type="Self.PeopleGroup" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PersonnelType">
+            <Principal Role="PeopleGroup">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Personnel">
-              <PropertyRef Name="PersonnelTypeID" />
+            <Dependent Role="People">
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PersonnelActivity_Personnel">
-          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-          <End Role="PersonnelActivity" Type="Self.PersonnelActivity" Multiplicity="*" />
+        <Association Name="FK_People_PeopleType">
+          <End Role="PeopleType" Type="Self.PeopleType" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personnel">
+            <Principal Role="PeopleType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PersonnelActivity">
-              <PropertyRef Name="PersonnelID" />
+            <Dependent Role="People">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeopleActivity_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="PeopleActivity" Type="Self.PeopleActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PeopleActivity">
+              <PropertyRef Name="PeopleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -769,27 +742,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SailBody_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK_SailBody_People">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
           <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="People">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="SailBody">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SailBody_Personnel">
-          <End Role="Personnel" Type="Self.Personnel" Multiplicity="1" />
-          <End Role="SailBody" Type="Self.SailBody" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personnel">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SailBody">
-              <PropertyRef Name="VisitorID" />
+              <PropertyRef Name="PeopleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -849,10 +810,8 @@
           <EntitySet Name="BuyBody" EntityType="Self.BuyBody" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BuyDetail" EntityType="Self.BuyDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityTemp" EntityType="Self.CityTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerActivity" EntityType="Self.CustomerActivity" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerGroup" EntityType="Self.CustomerGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FiscalYear" EntityType="Self.FiscalYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsActivity" EntityType="Self.GoodsActivity" Schema="dbo" store:Type="Tables" />
@@ -863,10 +822,12 @@
           <EntitySet Name="GoodsWarehouse" EntityType="Self.GoodsWarehouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsWarehouseActivity" EntityType="Self.GoodsWarehouseActivity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Path" EntityType="Self.Path" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personnel" EntityType="Self.Personnel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PersonnelActivity" EntityType="Self.PersonnelActivity" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PersonnelType" EntityType="Self.PersonnelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeopleActivity" EntityType="Self.PeopleActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeopleGroup" EntityType="Self.PeopleGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeopleType" EntityType="Self.PeopleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProvinceTemp" EntityType="Self.ProvinceTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SailBody" EntityType="Self.SailBody" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SailDetail" EntityType="Self.SailDetail" Schema="dbo" store:Type="Tables" />
@@ -882,8 +843,8 @@
             <End Role="BankName" EntitySet="BankName" />
             <End Role="BankAccount" EntitySet="BankAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK_BuyBody_Customer" Association="Self.FK_BuyBody_Customer">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK_BuyBody_People" Association="Self.FK_BuyBody_People">
+            <End Role="People" EntitySet="People" />
             <End Role="BuyBody" EntitySet="BuyBody" />
           </AssociationSet>
           <AssociationSet Name="FK_BuyDetail_BuyBody" Association="Self.FK_BuyDetail_BuyBody">
@@ -898,17 +859,9 @@
             <End Role="Province" EntitySet="Province" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
-          <AssociationSet Name="FK_Customer_CustomerGroup" Association="Self.FK_Customer_CustomerGroup">
-            <End Role="CustomerGroup" EntitySet="CustomerGroup" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Customer_Personnel" Association="Self.FK_Customer_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerActivity_Customer" Association="Self.FK_CustomerActivity_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="CustomerActivity" EntitySet="CustomerActivity" />
+          <AssociationSet Name="FK_CityTemp_ProvinceTemp" Association="Self.FK_CityTemp_ProvinceTemp">
+            <End Role="ProvinceTemp" EntitySet="ProvinceTemp" />
+            <End Role="CityTemp" EntitySet="CityTemp" />
           </AssociationSet>
           <AssociationSet Name="FK_Goods_GoodsGroup" Association="Self.FK_Goods_GoodsGroup">
             <End Role="GoodsGroup" EntitySet="GoodsGroup" />
@@ -966,24 +919,24 @@
             <End Role="Region" EntitySet="Region" />
             <End Role="Path" EntitySet="Path" />
           </AssociationSet>
-          <AssociationSet Name="FK_Personnel_PersonnelType" Association="Self.FK_Personnel_PersonnelType">
-            <End Role="PersonnelType" EntitySet="PersonnelType" />
-            <End Role="Personnel" EntitySet="Personnel" />
+          <AssociationSet Name="FK_People_PeopleGroup" Association="Self.FK_People_PeopleGroup">
+            <End Role="PeopleGroup" EntitySet="PeopleGroup" />
+            <End Role="People" EntitySet="People" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonnelActivity_Personnel" Association="Self.FK_PersonnelActivity_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
-            <End Role="PersonnelActivity" EntitySet="PersonnelActivity" />
+          <AssociationSet Name="FK_People_PeopleType" Association="Self.FK_People_PeopleType">
+            <End Role="PeopleType" EntitySet="PeopleType" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeopleActivity_People" Association="Self.FK_PeopleActivity_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="PeopleActivity" EntitySet="PeopleActivity" />
           </AssociationSet>
           <AssociationSet Name="FK_Region_City" Association="Self.FK_Region_City">
             <End Role="City" EntitySet="City" />
             <End Role="Region" EntitySet="Region" />
           </AssociationSet>
-          <AssociationSet Name="FK_SailBody_Customer" Association="Self.FK_SailBody_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="SailBody" EntitySet="SailBody" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SailBody_Personnel" Association="Self.FK_SailBody_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
+          <AssociationSet Name="FK_SailBody_People" Association="Self.FK_SailBody_People">
+            <End Role="People" EntitySet="People" />
             <End Role="SailBody" EntitySet="SailBody" />
           </AssociationSet>
           <AssociationSet Name="FK_SailDetail_Goods" Association="Self.FK_SailDetail_Goods">
@@ -1004,7 +957,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="TinyTechModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="TinyTechEntities" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="CustomerGroupDefinition">
+          <FunctionImport Name="PeopleGroupDefinition">
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="DefaultSailPrice" Mode="In" Type="Decimal" />
             <Parameter Name="Description" Mode="In" Type="String" />
@@ -1024,10 +977,8 @@
           <EntitySet Name="BuyBody" EntityType="TinyTechModel.BuyBody" />
           <EntitySet Name="BuyDetail" EntityType="TinyTechModel.BuyDetail" />
           <EntitySet Name="City" EntityType="TinyTechModel.City" />
+          <EntitySet Name="CityTemp" EntityType="TinyTechModel.CityTemp" />
           <EntitySet Name="Currency" EntityType="TinyTechModel.Currency" />
-          <EntitySet Name="Customer" EntityType="TinyTechModel.Customer" />
-          <EntitySet Name="CustomerActivity" EntityType="TinyTechModel.CustomerActivity" />
-          <EntitySet Name="CustomerGroup" EntityType="TinyTechModel.CustomerGroup" />
           <EntitySet Name="FiscalYear" EntityType="TinyTechModel.FiscalYear" />
           <EntitySet Name="Goods" EntityType="TinyTechModel.Goods" />
           <EntitySet Name="GoodsActivity" EntityType="TinyTechModel.GoodsActivity" />
@@ -1038,10 +989,12 @@
           <EntitySet Name="GoodsWarehouse" EntityType="TinyTechModel.GoodsWarehouse" />
           <EntitySet Name="GoodsWarehouseActivity" EntityType="TinyTechModel.GoodsWarehouseActivity" />
           <EntitySet Name="Path" EntityType="TinyTechModel.Path" />
-          <EntitySet Name="Personnel" EntityType="TinyTechModel.Personnel" />
-          <EntitySet Name="PersonnelActivity" EntityType="TinyTechModel.PersonnelActivity" />
-          <EntitySet Name="PersonnelType" EntityType="TinyTechModel.PersonnelType" />
+          <EntitySet Name="People" EntityType="TinyTechModel.People" />
+          <EntitySet Name="PeopleActivity" EntityType="TinyTechModel.PeopleActivity" />
+          <EntitySet Name="PeopleGroup" EntityType="TinyTechModel.PeopleGroup" />
+          <EntitySet Name="PeopleType" EntityType="TinyTechModel.PeopleType" />
           <EntitySet Name="Province" EntityType="TinyTechModel.Province" />
+          <EntitySet Name="ProvinceTemp" EntityType="TinyTechModel.ProvinceTemp" />
           <EntitySet Name="Region" EntityType="TinyTechModel.Region" />
           <EntitySet Name="SailBody" EntityType="TinyTechModel.SailBody" />
           <EntitySet Name="SailDetail" EntityType="TinyTechModel.SailDetail" />
@@ -1057,8 +1010,8 @@
             <End Role="BankName" EntitySet="BankName" />
             <End Role="BankAccount" EntitySet="BankAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK_BuyBody_Customer" Association="TinyTechModel.FK_BuyBody_Customer">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK_BuyBody_People" Association="TinyTechModel.FK_BuyBody_People">
+            <End Role="People" EntitySet="People" />
             <End Role="BuyBody" EntitySet="BuyBody" />
           </AssociationSet>
           <AssociationSet Name="FK_BuyDetail_BuyBody" Association="TinyTechModel.FK_BuyDetail_BuyBody">
@@ -1077,21 +1030,9 @@
             <End Role="City" EntitySet="City" />
             <End Role="Region" EntitySet="Region" />
           </AssociationSet>
-          <AssociationSet Name="FK_Customer_CustomerGroup" Association="TinyTechModel.FK_Customer_CustomerGroup">
-            <End Role="CustomerGroup" EntitySet="CustomerGroup" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Customer_Personnel" Association="TinyTechModel.FK_Customer_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerActivity_Customer" Association="TinyTechModel.FK_CustomerActivity_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="CustomerActivity" EntitySet="CustomerActivity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SailBody_Customer" Association="TinyTechModel.FK_SailBody_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="SailBody" EntitySet="SailBody" />
+          <AssociationSet Name="FK_CityTemp_ProvinceTemp" Association="TinyTechModel.FK_CityTemp_ProvinceTemp">
+            <End Role="ProvinceTemp" EntitySet="ProvinceTemp" />
+            <End Role="CityTemp" EntitySet="CityTemp" />
           </AssociationSet>
           <AssociationSet Name="FK_Goods_GoodsGroup" Association="TinyTechModel.FK_Goods_GoodsGroup">
             <End Role="GoodsGroup" EntitySet="GoodsGroup" />
@@ -1153,16 +1094,20 @@
             <End Role="Region" EntitySet="Region" />
             <End Role="Path" EntitySet="Path" />
           </AssociationSet>
-          <AssociationSet Name="FK_Personnel_PersonnelType" Association="TinyTechModel.FK_Personnel_PersonnelType">
-            <End Role="PersonnelType" EntitySet="PersonnelType" />
-            <End Role="Personnel" EntitySet="Personnel" />
+          <AssociationSet Name="FK_People_PeopleGroup" Association="TinyTechModel.FK_People_PeopleGroup">
+            <End Role="PeopleGroup" EntitySet="PeopleGroup" />
+            <End Role="People" EntitySet="People" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonnelActivity_Personnel" Association="TinyTechModel.FK_PersonnelActivity_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
-            <End Role="PersonnelActivity" EntitySet="PersonnelActivity" />
+          <AssociationSet Name="FK_People_PeopleType" Association="TinyTechModel.FK_People_PeopleType">
+            <End Role="PeopleType" EntitySet="PeopleType" />
+            <End Role="People" EntitySet="People" />
           </AssociationSet>
-          <AssociationSet Name="FK_SailBody_Personnel" Association="TinyTechModel.FK_SailBody_Personnel">
-            <End Role="Personnel" EntitySet="Personnel" />
+          <AssociationSet Name="FK_PeopleActivity_People" Association="TinyTechModel.FK_PeopleActivity_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="PeopleActivity" EntitySet="PeopleActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SailBody_People" Association="TinyTechModel.FK_SailBody_People">
+            <End Role="People" EntitySet="People" />
             <End Role="SailBody" EntitySet="SailBody" />
           </AssociationSet>
           <AssociationSet Name="FK_SailDetail_SailBody" Association="TinyTechModel.FK_SailDetail_SailBody">
@@ -1235,9 +1180,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="BuyID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="PeopleD" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_BuyBody_Customer" FromRole="BuyBody" ToRole="Customer" />
+          <NavigationProperty Name="People" Relationship="TinyTechModel.FK_BuyBody_People" FromRole="BuyBody" ToRole="People" />
           <NavigationProperty Name="BuyDetail" Relationship="TinyTechModel.FK_BuyDetail_BuyBody" FromRole="BuyBody" ToRole="BuyDetail" />
         </EntityType>
         <EntityType Name="BuyDetail">
@@ -1269,6 +1214,17 @@
           <NavigationProperty Name="Province" Relationship="TinyTechModel.FK_City_Province" FromRole="City" ToRole="Province" />
           <NavigationProperty Name="Region" Relationship="TinyTechModel.FK_Region_City" FromRole="City" ToRole="Region" />
         </EntityType>
+        <EntityType Name="CityTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ProvinceTemp" Relationship="TinyTechModel.FK_CityTemp_ProvinceTemp" FromRole="CityTemp" ToRole="ProvinceTemp" />
+        </EntityType>
         <EntityType Name="Currency">
           <Key>
             <PropertyRef Name="ID" />
@@ -1283,75 +1239,6 @@
           <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Phone1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Phone2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="VisitorID" Type="Int32" Nullable="false" />
-          <Property Name="ProvinceID" Type="Int32" Nullable="false" />
-          <Property Name="CityID" Type="Int32" Nullable="false" />
-          <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <Property Name="PathID" Type="Int32" Nullable="false" />
-          <Property Name="NumberInPath" Type="Int32" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Credit" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="BlackList" Type="Boolean" Nullable="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Special" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="CreateUserID" Type="Int32" Nullable="false" />
-          <Property Name="CreateVisitorID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="NationalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="EconomicCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <Property Name="AllowedFactorCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BuyBody" Relationship="TinyTechModel.FK_BuyBody_Customer" FromRole="Customer" ToRole="BuyBody" />
-          <NavigationProperty Name="CustomerGroup" Relationship="TinyTechModel.FK_Customer_CustomerGroup" FromRole="Customer" ToRole="CustomerGroup" />
-          <NavigationProperty Name="Personnel" Relationship="TinyTechModel.FK_Customer_Personnel" FromRole="Customer" ToRole="Personnel" />
-          <NavigationProperty Name="CustomerActivity" Relationship="TinyTechModel.FK_CustomerActivity_Customer" FromRole="Customer" ToRole="CustomerActivity" />
-          <NavigationProperty Name="SailBody" Relationship="TinyTechModel.FK_SailBody_Customer" FromRole="Customer" ToRole="SailBody" />
-        </EntityType>
-        <EntityType Name="CustomerActivity">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_CustomerActivity_Customer" FromRole="CustomerActivity" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="CustomerGroup">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="DefaultSailPrice" Type="Int32" Nullable="false" />
-          <Property Name="IsParrent" Type="Boolean" Nullable="false" />
-          <Property Name="ParrentID" Type="Int32" Nullable="false" />
-          <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_Customer_CustomerGroup" FromRole="CustomerGroup" ToRole="Customer" />
         </EntityType>
         <EntityType Name="FiscalYear">
           <Key>
@@ -1529,7 +1416,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Region" Relationship="TinyTechModel.FK_Path_Region" FromRole="Path" ToRole="Region" />
         </EntityType>
-        <EntityType Name="Personnel">
+        <EntityType Name="People">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -1539,44 +1426,74 @@
           <Property Name="Phone1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Phone2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="VisitorID" Type="Int32" Nullable="false" />
+          <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="PathID" Type="Int32" Nullable="false" />
+          <Property Name="NumberInPath" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Credit" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="PersonnelTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Salary" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BlackList" Type="Boolean" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Special" Type="Boolean" Nullable="false" />
           <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreateUserID" Type="Int32" Nullable="false" />
-          <Property Name="IsSupervisor" Type="Boolean" Nullable="false" />
-          <Property Name="SupervisorID" Type="Int32" Nullable="false" />
-          <Property Name="SupervisorPercent" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="CashRewardPercent" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="FaildCheckPercent" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_Customer_Personnel" FromRole="Personnel" ToRole="Customer" />
-          <NavigationProperty Name="PersonnelType" Relationship="TinyTechModel.FK_Personnel_PersonnelType" FromRole="Personnel" ToRole="PersonnelType" />
-          <NavigationProperty Name="PersonnelActivity" Relationship="TinyTechModel.FK_PersonnelActivity_Personnel" FromRole="Personnel" ToRole="PersonnelActivity" />
-          <NavigationProperty Name="SailBody" Relationship="TinyTechModel.FK_SailBody_Personnel" FromRole="Personnel" ToRole="SailBody" />
+          <Property Name="CreateVisitorID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="NationalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EconomicCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="AllowedFactorCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BuyBody" Relationship="TinyTechModel.FK_BuyBody_People" FromRole="People" ToRole="BuyBody" />
+          <NavigationProperty Name="PeopleGroup" Relationship="TinyTechModel.FK_People_PeopleGroup" FromRole="People" ToRole="PeopleGroup" />
+          <NavigationProperty Name="PeopleType" Relationship="TinyTechModel.FK_People_PeopleType" FromRole="People" ToRole="PeopleType" />
+          <NavigationProperty Name="PeopleActivity" Relationship="TinyTechModel.FK_PeopleActivity_People" FromRole="People" ToRole="PeopleActivity" />
+          <NavigationProperty Name="SailBody" Relationship="TinyTechModel.FK_SailBody_People" FromRole="People" ToRole="SailBody" />
         </EntityType>
-        <EntityType Name="PersonnelActivity">
+        <EntityType Name="PeopleActivity">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonnelID" Type="Int32" Nullable="false" />
+          <Property Name="PeopleID" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Personnel" Relationship="TinyTechModel.FK_PersonnelActivity_Personnel" FromRole="PersonnelActivity" ToRole="Personnel" />
+          <NavigationProperty Name="People" Relationship="TinyTechModel.FK_PeopleActivity_People" FromRole="PeopleActivity" ToRole="People" />
         </EntityType>
-        <EntityType Name="PersonnelType">
+        <EntityType Name="PeopleGroup">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Personnel" Relationship="TinyTechModel.FK_Personnel_PersonnelType" FromRole="PersonnelType" ToRole="Personnel" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultSailPrice" Type="Int32" Nullable="false" />
+          <Property Name="IsParrent" Type="Boolean" Nullable="false" />
+          <Property Name="ParrentID" Type="Int32" Nullable="false" />
+          <Property Name="ClientDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ServerDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ClientTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="TinyTechModel.FK_People_PeopleGroup" FromRole="PeopleGroup" ToRole="People" />
+        </EntityType>
+        <EntityType Name="PeopleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="People" Relationship="TinyTechModel.FK_People_PeopleType" FromRole="PeopleType" ToRole="People" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -1592,6 +1509,16 @@
           <Property Name="ServerTime" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="City" Relationship="TinyTechModel.FK_City_Province" FromRole="Province" ToRole="City" />
+        </EntityType>
+        <EntityType Name="ProvinceTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CityTemp" Relationship="TinyTechModel.FK_CityTemp_ProvinceTemp" FromRole="ProvinceTemp" ToRole="CityTemp" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -1617,11 +1544,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="SailID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="PeopleID" Type="Int32" Nullable="false" />
           <Property Name="VisitorID" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="TinyTechModel.FK_SailBody_Customer" FromRole="SailBody" ToRole="Customer" />
-          <NavigationProperty Name="Personnel" Relationship="TinyTechModel.FK_SailBody_Personnel" FromRole="SailBody" ToRole="Personnel" />
+          <NavigationProperty Name="People" Relationship="TinyTechModel.FK_SailBody_People" FromRole="SailBody" ToRole="People" />
           <NavigationProperty Name="SailDetail" Relationship="TinyTechModel.FK_SailDetail_SailBody" FromRole="SailBody" ToRole="SailDetail" />
         </EntityType>
         <EntityType Name="SailDetail">
@@ -1710,15 +1636,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BuyBody_Customer">
-          <End Type="TinyTechModel.Customer" Role="Customer" Multiplicity="1" />
+        <Association Name="FK_BuyBody_People">
+          <End Type="TinyTechModel.People" Role="People" Multiplicity="1" />
           <End Type="TinyTechModel.BuyBody" Role="BuyBody" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="People">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="BuyBody">
-              <PropertyRef Name="CustomerID" />
+              <PropertyRef Name="PeopleD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1772,51 +1698,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Customer_CustomerGroup">
-          <End Type="TinyTechModel.CustomerGroup" Role="CustomerGroup" Multiplicity="1" />
-          <End Type="TinyTechModel.Customer" Role="Customer" Multiplicity="*" />
+        <Association Name="FK_CityTemp_ProvinceTemp">
+          <End Type="TinyTechModel.ProvinceTemp" Role="ProvinceTemp" Multiplicity="1" />
+          <End Type="TinyTechModel.CityTemp" Role="CityTemp" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CustomerGroup">
+            <Principal Role="ProvinceTemp">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Customer_Personnel">
-          <End Type="TinyTechModel.Personnel" Role="Personnel" Multiplicity="1" />
-          <End Type="TinyTechModel.Customer" Role="Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personnel">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="VisitorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerActivity_Customer">
-          <End Type="TinyTechModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="TinyTechModel.CustomerActivity" Role="CustomerActivity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CustomerActivity">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SailBody_Customer">
-          <End Type="TinyTechModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="TinyTechModel.SailBody" Role="SailBody" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SailBody">
-              <PropertyRef Name="CustomerID" />
+            <Dependent Role="CityTemp">
+              <PropertyRef Name="ProvinceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2000,39 +1890,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Personnel_PersonnelType">
-          <End Type="TinyTechModel.PersonnelType" Role="PersonnelType" Multiplicity="1" />
-          <End Type="TinyTechModel.Personnel" Role="Personnel" Multiplicity="*" />
+        <Association Name="FK_People_PeopleGroup">
+          <End Type="TinyTechModel.PeopleGroup" Role="PeopleGroup" Multiplicity="1" />
+          <End Type="TinyTechModel.People" Role="People" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PersonnelType">
+            <Principal Role="PeopleGroup">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Personnel">
-              <PropertyRef Name="PersonnelTypeID" />
+            <Dependent Role="People">
+              <PropertyRef Name="GroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PersonnelActivity_Personnel">
-          <End Type="TinyTechModel.Personnel" Role="Personnel" Multiplicity="1" />
-          <End Type="TinyTechModel.PersonnelActivity" Role="PersonnelActivity" Multiplicity="*" />
+        <Association Name="FK_People_PeopleType">
+          <End Type="TinyTechModel.PeopleType" Role="PeopleType" Multiplicity="1" />
+          <End Type="TinyTechModel.People" Role="People" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personnel">
+            <Principal Role="PeopleType">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PersonnelActivity">
-              <PropertyRef Name="PersonnelID" />
+            <Dependent Role="People">
+              <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SailBody_Personnel">
-          <End Type="TinyTechModel.Personnel" Role="Personnel" Multiplicity="1" />
+        <Association Name="FK_PeopleActivity_People">
+          <End Type="TinyTechModel.People" Role="People" Multiplicity="1" />
+          <End Type="TinyTechModel.PeopleActivity" Role="PeopleActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PeopleActivity">
+              <PropertyRef Name="PeopleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SailBody_People">
+          <End Type="TinyTechModel.People" Role="People" Multiplicity="1" />
           <End Type="TinyTechModel.SailBody" Role="SailBody" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personnel">
+            <Principal Role="People">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="SailBody">
-              <PropertyRef Name="VisitorID" />
+              <PropertyRef Name="PeopleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2125,7 +2027,7 @@
             <EntityTypeMapping TypeName="TinyTechModel.BuyBody">
               <MappingFragment StoreEntitySet="BuyBody">
                 <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PeopleD" ColumnName="PeopleD" />
                 <ScalarProperty Name="BuyID" ColumnName="BuyID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -2157,6 +2059,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CityTemp">
+            <EntityTypeMapping TypeName="TinyTechModel.CityTemp">
+              <MappingFragment StoreEntitySet="CityTemp">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Currency">
             <EntityTypeMapping TypeName="TinyTechModel.Currency">
               <MappingFragment StoreEntitySet="Currency">
@@ -2168,71 +2081,6 @@
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="TinyTechModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="AllowedFactorCount" ColumnName="AllowedFactorCount" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="EconomicCode" ColumnName="EconomicCode" />
-                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CreateVisitorID" ColumnName="CreateVisitorID" />
-                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Special" ColumnName="Special" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="BlackList" ColumnName="BlackList" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="NumberInPath" ColumnName="NumberInPath" />
-                <ScalarProperty Name="PathID" ColumnName="PathID" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
-                <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
-                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerActivity">
-            <EntityTypeMapping TypeName="TinyTechModel.CustomerActivity">
-              <MappingFragment StoreEntitySet="CustomerActivity">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerGroup">
-            <EntityTypeMapping TypeName="TinyTechModel.CustomerGroup">
-              <MappingFragment StoreEntitySet="CustomerGroup">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ServerTime" ColumnName="ServerTime" />
-                <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
-                <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
-                <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
-                <ScalarProperty Name="ParrentID" ColumnName="ParrentID" />
-                <ScalarProperty Name="IsParrent" ColumnName="IsParrent" />
-                <ScalarProperty Name="DefaultSailPrice" ColumnName="DefaultSailPrice" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -2398,23 +2246,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Personnel">
-            <EntityTypeMapping TypeName="TinyTechModel.Personnel">
-              <MappingFragment StoreEntitySet="Personnel">
-                <ScalarProperty Name="FaildCheckPercent" ColumnName="FaildCheckPercent" />
-                <ScalarProperty Name="CashRewardPercent" ColumnName="CashRewardPercent" />
-                <ScalarProperty Name="SupervisorPercent" ColumnName="SupervisorPercent" />
-                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
-                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="TinyTechModel.People">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="AllowedFactorCount" ColumnName="AllowedFactorCount" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="EconomicCode" ColumnName="EconomicCode" />
+                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateVisitorID" ColumnName="CreateVisitorID" />
                 <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="PersonnelTypeID" ColumnName="PersonnelTypeID" />
+                <ScalarProperty Name="Special" ColumnName="Special" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="BlackList" ColumnName="BlackList" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="NumberInPath" ColumnName="NumberInPath" />
+                <ScalarProperty Name="PathID" ColumnName="PathID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Phone2" ColumnName="Phone2" />
                 <ScalarProperty Name="Phone1" ColumnName="Phone1" />
@@ -2424,21 +2283,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PersonnelActivity">
-            <EntityTypeMapping TypeName="TinyTechModel.PersonnelActivity">
-              <MappingFragment StoreEntitySet="PersonnelActivity">
+          <EntitySetMapping Name="PeopleActivity">
+            <EntityTypeMapping TypeName="TinyTechModel.PeopleActivity">
+              <MappingFragment StoreEntitySet="PeopleActivity">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="PersonnelID" ColumnName="PersonnelID" />
+                <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PersonnelType">
-            <EntityTypeMapping TypeName="TinyTechModel.PersonnelType">
-              <MappingFragment StoreEntitySet="PersonnelType">
-                <ScalarProperty Name="Active" ColumnName="Active" />
+          <EntitySetMapping Name="PeopleGroup">
+            <EntityTypeMapping TypeName="TinyTechModel.PeopleGroup">
+              <MappingFragment StoreEntitySet="PeopleGroup">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ServerTime" ColumnName="ServerTime" />
+                <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
+                <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
+                <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
+                <ScalarProperty Name="ParrentID" ColumnName="ParrentID" />
+                <ScalarProperty Name="IsParrent" ColumnName="IsParrent" />
+                <ScalarProperty Name="DefaultSailPrice" ColumnName="DefaultSailPrice" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeopleType">
+            <EntityTypeMapping TypeName="TinyTechModel.PeopleType">
+              <MappingFragment StoreEntitySet="PeopleType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -2454,6 +2331,16 @@
                 <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProvinceTemp">
+            <EntityTypeMapping TypeName="TinyTechModel.ProvinceTemp">
+              <MappingFragment StoreEntitySet="ProvinceTemp">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -2480,7 +2367,7 @@
               <MappingFragment StoreEntitySet="SailBody">
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
                 <ScalarProperty Name="SailID" ColumnName="SailID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

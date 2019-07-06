@@ -22,7 +22,7 @@ namespace TinyTech.Selecting
         private UI.Control.TextBox.TextBox txtRegionSearch;
         private UI.Control.Label.Label lblRegionSearch;
         private UI.Control.Label.Label lblHelp;
-        private ArrayList info;
+        private List<Region> info;
         private int CityID;
         private Container components = null;
         #endregion
@@ -36,7 +36,7 @@ namespace TinyTech.Selecting
             base.Dispose(disposing);
         }
 
-        public RegionSelect(ArrayList info_, int CityID_)
+        public RegionSelect(List<Region> info_, int CityID_)
         {
             InitializeComponent();
             info = info_;
@@ -207,8 +207,8 @@ namespace TinyTech.Selecting
         private void RegionSelect_Load(object sender, EventArgs e)
         {
             txtRegionSearch.Focus();
-            var RegionList = @class.GetRegion().Where(i => i.Active && i.CityID == CityID).ToList();
-            dgvRegion.DataSource = RegionListDataTable(RegionList);
+            var RegionList = @class.GetRegion(true).Where(i => i.CityID == CityID).ToList();
+            dgvRegion.DataSource = RegionList; //RegionListDataTable(RegionList);
             SetGridView();
         }
 
@@ -242,6 +242,11 @@ namespace TinyTech.Selecting
 
             dgvRegion.AutoGenerateColumns = false;
 
+        }
+
+        private void FillRegionList()
+        {
+            info.Add((Region)dgvRegion.CurrentRow?.DataBoundItem);
         }
 
         private void txtRegionSearch_KeyDown(object sender, KeyEventArgs e)
@@ -303,9 +308,7 @@ namespace TinyTech.Selecting
 
                     break;
                 case Keys.Enter when dgvRegion.Rows.Count > 0 && dgvRegion.CurrentRow != null:
-                    info.Add(dgvRegion.CurrentRow.Cells["ID"].Value);
-                    info.Add(dgvRegion.CurrentRow.Cells["Name"].Value);
-
+                    FillRegionList();
                     ParentForm?.Close();
                     break;
             }
@@ -323,8 +326,8 @@ namespace TinyTech.Selecting
         {
             try
             {
-                var regionList = @class.GetRegion().Where(i => i.Active && i.CityID == CityID && i.Name.Contains(txtRegionSearch.Text)).ToList();
-                dgvRegion.DataSource = RegionListDataTable(regionList);
+                var regionList = @class.GetRegion(true).Where(i => i.CityID == CityID && i.Name.Contains(txtRegionSearch.Text)).ToList();
+                dgvRegion.DataSource = regionList; //RegionListDataTable(regionList);
 
                 if (dgvRegion.Rows.Count != 0)
                 {
@@ -355,8 +358,7 @@ namespace TinyTech.Selecting
             switch (e.KeyCode)
             {
                 case Keys.Enter when dgvRegion.Rows.Count > 0:
-                    info.Add(dgvRegion.CurrentRow?.Cells["ID"].Value);
-                    info.Add(dgvRegion.CurrentRow?.Cells["Name"].Value);
+                    FillRegionList();
                     ParentForm?.Close();
                     break;
                 case Keys.ControlKey:
@@ -368,8 +370,7 @@ namespace TinyTech.Selecting
         private void dgvRegion_DoubleClick(object sender, EventArgs e)
         {
             if (dgvRegion.Rows.Count <= 0) return;
-            info.Add(dgvRegion.CurrentRow?.Cells["ID"].Value);
-            info.Add(dgvRegion.CurrentRow?.Cells["Name"].Value);
+            FillRegionList();
             ParentForm?.Close();
         }
 

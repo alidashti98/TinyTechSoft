@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using TinyTech.Connection;
 using TinyTech.UI.Control.MessageBox;
 using TinyTech.UI.Control.UIElement;
-using TinyTech.UI.UserControl;
 using TinyTech.Selecting;
 using UserControl = TinyTech.UI.Control.UIElement.UserControl;
 
@@ -534,8 +533,8 @@ namespace TinyTech.BasicInformation
 
         private void PathDefinition_Load(object sender, EventArgs e)
         {
-            var pathList = @class.GetPath().ToList();
-            dgvPath.DataSource = PathListDataTable(pathList);
+            var pathList = @class.GetPath(true).ToList();
+            dgvPath.DataSource = pathList; //PathListDataTable(pathList);
             SetGridView();
             txtPathID.Text = CalculateMaxId().ToString();
             chkProvince.Focus();
@@ -618,7 +617,7 @@ namespace TinyTech.BasicInformation
                 txtPathName.Focus();
                 return false;
             }
-            if (DB_Connection.Path.AsNoTracking().Count(i => i.Name.Equals(txtPathName.Text) && i.Active) > 0)
+            if (@class.GetPath(true).Count(i => i.Name.Equals(txtPathName.Text)) > 0)
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام مسير \"{txtPathName.Text}\" تكراري است!", "e");
                 txtPathName.Focus();
@@ -659,21 +658,21 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             PathDefinition_Load(null, null);
-            txtPathName.Clear();
-            txtDescription.Clear();
-            chkCityName.Checked = false;
-            chkProvince.Checked = false;
+            txtPathName.Text = txtDescription.Text = string.Empty;
+            chkCityName.Checked = chkProvince.Checked = false;
+
         }
 
         private void txtPathName_TextChanged(object sender, EventArgs e)
         {
-            var pathList = @class.GetPath().Where(i => i.Name.Contains(txtPathName.Text)).ToList();
-            dgvPath.DataSource = PathListDataTable(pathList);
+            var pathList = @class.GetPath(true).Where(i => i.Name.Contains(txtPathName.Text)).ToList();
+            dgvPath.DataSource = pathList; //PathListDataTable(pathList);
         }
 
         private void chkProvince_CheckedChanged(object sender, EventArgs e)
         {
             var provinceList = new List<Province>();
+            new UserControlLoader(new ProvinceSelect(provinceList), true, false, true);
 
             if (provinceList.Count() > 0)
             {
@@ -685,9 +684,7 @@ namespace TinyTech.BasicInformation
             {
                 txtProvinceName.Text = "انتخاب استان ...";
                 txtProvinceName.Tag = string.Empty;
-                chkRegionName.Checked = false;
-                chkCityName.Checked = false;
-                chkProvince.Checked = false;
+                chkRegionName.Checked = chkCityName.Checked = chkProvince.Checked = false;
                 var pathList = @class.GetPath(true).ToList();
                 dgvPath.DataSource = pathList; //PathListDataTable(pathList);
                 chkProvince.Focus();
@@ -701,20 +698,19 @@ namespace TinyTech.BasicInformation
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", "لطفا ابتدا استان را انتخاب كنيد !", "e");
                 chkProvince.Focus();
-                chkRegionName.Checked = false;
-                chkCityName.Checked = false;
+                chkRegionName.Checked = chkCityName.Checked = false;
                 return;
             }
 
             if (chkProvince.Checked && chkCityName.Checked)
             {
-                var cityArray = new ArrayList();
-                new UserControlLoader(new CitySelect(cityArray, int.Parse(txtProvinceName.Tag.ToString())), true, false, true);
+                var cityList = new List<City>();
+                new UserControlLoader(new CitySelect(cityList, int.Parse(txtProvinceName.Tag.ToString())), true, false, true);
 
-                if (cityArray.Count > 0)
+                if (cityList.Count > 0)
                 {
-                    txtCityName.Text = cityArray[1].ToString();
-                    txtCityName.Tag = cityArray[0].ToString();
+                    txtCityName.Text = cityList.FirstOrDefault().Name;
+                    txtCityName.Tag = cityList.FirstOrDefault().ID;
                     chkRegionName.Select();
 
                     //var PathList = @class.GetPath().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
@@ -725,10 +721,9 @@ namespace TinyTech.BasicInformation
                 {
                     txtCityName.Text = "انتخاب شهر ...";
                     txtCityName.Tag = string.Empty;
-                    chkRegionName.Checked = false;
-                    chkCityName.Checked = false;
-                    var pathList = @class.GetPath().ToList();
-                    dgvPath.DataSource = PathListDataTable(pathList);
+                    chkRegionName.Checked = chkCityName.Checked = false;
+                    var pathList = @class.GetPath(true).ToList();
+                    dgvPath.DataSource = pathList; //PathListDataTable(pathList);
                     chkProvince.Focus();
                     DisableForm();
                 }
@@ -738,8 +733,8 @@ namespace TinyTech.BasicInformation
                 txtCityName.Text = "انتخاب شهر ...";
                 txtCityName.Tag = string.Empty;
                 chkRegionName.Checked = false;
-                var pathList = @class.GetPath().ToList();
-                dgvPath.DataSource = PathListDataTable(pathList);
+                var pathList = @class.GetPath(true).ToList();
+                dgvPath.DataSource = pathList; //PathListDataTable(pathList);
                 DisableForm();
             }
         }
@@ -764,13 +759,13 @@ namespace TinyTech.BasicInformation
 
             if (chkProvince.Checked && chkCityName.Checked && chkRegionName.Checked)
             {
-                var regionArray = new ArrayList();
-                new UserControlLoader(new RegionSelect(regionArray, int.Parse(txtCityName.Tag.ToString())), true, false, true);
+                var regionList = new List<Region>();
+                new UserControlLoader(new RegionSelect(regionList, int.Parse(txtCityName.Tag.ToString())), true, false, true);
 
-                if (regionArray.Count > 0)
+                if (regionList.Count > 0)
                 {
-                    txtRegionName.Text = regionArray[1].ToString();
-                    txtRegionName.Tag = regionArray[0].ToString();
+                    txtRegionName.Text = regionList.FirstOrDefault().Name;
+                    txtRegionName.Tag = regionList.FirstOrDefault().ID;
                     txtPathName.Focus();
 
                     //var PathList = @class.GetPath().Where(i => i.Active && i.ProvinceID == int.Parse(txtProvinceName.Tag.ToString())).ToList();
@@ -782,8 +777,8 @@ namespace TinyTech.BasicInformation
                     txtRegionName.Text = "انتخاب منطقه ...";
                     txtRegionName.Tag = string.Empty;
                     chkRegionName.Checked = false;
-                    var pathList = @class.GetPath().ToList();
-                    dgvPath.DataSource = PathListDataTable(pathList);
+                    var pathList = @class.GetPath(true).ToList();
+                    dgvPath.DataSource = regionList; //PathListDataTable(pathList);
                     chkRegionName.Focus();
                     DisableForm();
                 }
@@ -792,8 +787,8 @@ namespace TinyTech.BasicInformation
             {
                 txtRegionName.Text = "انتخاب منطقه ...";
                 txtRegionName.Tag = string.Empty;
-                var PathList = @class.GetPath().ToList();
-                dgvPath.DataSource = PathListDataTable(PathList);
+                var pathList = @class.GetPath(true).ToList();
+                dgvPath.DataSource = pathList; //PathListDataTable(PathList);
                 DisableForm();
             }
         }

@@ -470,8 +470,7 @@ namespace TinyTech.BasicInformation
         private void RefreshForm()
         {
             ProvinceDefinition_Load(null, null);
-            txtProvinceName.Clear();
-            txtDescription.Clear();
+            txtProvinceName.Text = txtDescription.Text = string.Empty;
         }
 
         private void txtProvinceName_TextChanged(object sender, EventArgs e)

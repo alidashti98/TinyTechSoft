@@ -58,7 +58,7 @@
       <EntityTypeMapping TypeName="TinyTechModel.BuyBody">
         <MappingFragment StoreEntitySet="BuyBody">
           <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="PeopleD" ColumnName="PeopleD" />
           <ScalarProperty Name="BuyID" ColumnName="BuyID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -90,6 +90,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CityTemp">
+      <EntityTypeMapping TypeName="TinyTechModel.CityTemp">
+        <MappingFragment StoreEntitySet="CityTemp">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Currency">
       <EntityTypeMapping TypeName="TinyTechModel.Currency">
         <MappingFragment StoreEntitySet="Currency">
@@ -101,71 +112,6 @@
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Customer">
-      <EntityTypeMapping TypeName="TinyTechModel.Customer">
-        <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="AllowedFactorCount" ColumnName="AllowedFactorCount" />
-          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="EconomicCode" ColumnName="EconomicCode" />
-          <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="CreateVisitorID" ColumnName="CreateVisitorID" />
-          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Special" ColumnName="Special" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="BlackList" ColumnName="BlackList" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="Balance" ColumnName="Balance" />
-          <ScalarProperty Name="Credit" ColumnName="Credit" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="NumberInPath" ColumnName="NumberInPath" />
-          <ScalarProperty Name="PathID" ColumnName="PathID" />
-          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-          <ScalarProperty Name="CityID" ColumnName="CityID" />
-          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
-          <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
-          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CustomerActivity">
-      <EntityTypeMapping TypeName="TinyTechModel.CustomerActivity">
-        <MappingFragment StoreEntitySet="CustomerActivity">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CustomerGroup">
-      <EntityTypeMapping TypeName="TinyTechModel.CustomerGroup">
-        <MappingFragment StoreEntitySet="CustomerGroup">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ServerTime" ColumnName="ServerTime" />
-          <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
-          <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
-          <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
-          <ScalarProperty Name="ParrentID" ColumnName="ParrentID" />
-          <ScalarProperty Name="IsParrent" ColumnName="IsParrent" />
-          <ScalarProperty Name="DefaultSailPrice" ColumnName="DefaultSailPrice" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -331,23 +277,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Personnel">
-      <EntityTypeMapping TypeName="TinyTechModel.Personnel">
-        <MappingFragment StoreEntitySet="Personnel">
-          <ScalarProperty Name="FaildCheckPercent" ColumnName="FaildCheckPercent" />
-          <ScalarProperty Name="CashRewardPercent" ColumnName="CashRewardPercent" />
-          <ScalarProperty Name="SupervisorPercent" ColumnName="SupervisorPercent" />
-          <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
-          <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="TinyTechModel.People">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="AllowedFactorCount" ColumnName="AllowedFactorCount" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="EconomicCode" ColumnName="EconomicCode" />
+          <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreateVisitorID" ColumnName="CreateVisitorID" />
           <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="PersonnelTypeID" ColumnName="PersonnelTypeID" />
+          <ScalarProperty Name="Special" ColumnName="Special" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="BlackList" ColumnName="BlackList" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Balance" ColumnName="Balance" />
           <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NumberInPath" ColumnName="NumberInPath" />
+          <ScalarProperty Name="PathID" ColumnName="PathID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
           <ScalarProperty Name="Phone2" ColumnName="Phone2" />
           <ScalarProperty Name="Phone1" ColumnName="Phone1" />
@@ -357,21 +314,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PersonnelActivity">
-      <EntityTypeMapping TypeName="TinyTechModel.PersonnelActivity">
-        <MappingFragment StoreEntitySet="PersonnelActivity">
+    <EntitySetMapping Name="PeopleActivity">
+      <EntityTypeMapping TypeName="TinyTechModel.PeopleActivity">
+        <MappingFragment StoreEntitySet="PeopleActivity">
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="PersonnelID" ColumnName="PersonnelID" />
+          <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PersonnelType">
-      <EntityTypeMapping TypeName="TinyTechModel.PersonnelType">
-        <MappingFragment StoreEntitySet="PersonnelType">
-          <ScalarProperty Name="Active" ColumnName="Active" />
+    <EntitySetMapping Name="PeopleGroup">
+      <EntityTypeMapping TypeName="TinyTechModel.PeopleGroup">
+        <MappingFragment StoreEntitySet="PeopleGroup">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ServerTime" ColumnName="ServerTime" />
+          <ScalarProperty Name="ClientTime" ColumnName="ClientTime" />
+          <ScalarProperty Name="ServerDate" ColumnName="ServerDate" />
+          <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
+          <ScalarProperty Name="ParrentID" ColumnName="ParrentID" />
+          <ScalarProperty Name="IsParrent" ColumnName="IsParrent" />
+          <ScalarProperty Name="DefaultSailPrice" ColumnName="DefaultSailPrice" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeopleType">
+      <EntityTypeMapping TypeName="TinyTechModel.PeopleType">
+        <MappingFragment StoreEntitySet="PeopleType">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -387,6 +362,16 @@
           <ScalarProperty Name="ClientDate" ColumnName="ClientDate" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProvinceTemp">
+      <EntityTypeMapping TypeName="TinyTechModel.ProvinceTemp">
+        <MappingFragment StoreEntitySet="ProvinceTemp">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -413,7 +398,7 @@
         <MappingFragment StoreEntitySet="SailBody">
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
           <ScalarProperty Name="SailID" ColumnName="SailID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
