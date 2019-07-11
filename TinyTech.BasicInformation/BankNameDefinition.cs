@@ -35,6 +35,10 @@ namespace TinyTech.BasicInformation
         private UI.Control.TextBox.DateControl dateControlBankName;
         private UI.Control.Label.Label lblDate;
         private UI.Control.Label.Label lblBankNameName;
+        private UI.Control.Label.Label lblEditMode;
+        private string OldBankNameForEdit = string.Empty;
+        private bool EditMode = false;
+        private UI.Control.Button.DeleteButton btnDelete;
         private Container components = null;
         #endregion
 
@@ -58,6 +62,7 @@ namespace TinyTech.BasicInformation
             this.dgvBankName = new TinyTech.UI.Control.UIElement.DataGridView();
             this.pnlBankNameDefinition = new TinyTech.UI.Control.UIElement.Panel();
             this.groupBoxBankNameDefinition = new TinyTech.UI.Control.UIElement.GroupBox();
+            this.lblEditMode = new TinyTech.UI.Control.Label.Label();
             this.lblDate = new TinyTech.UI.Control.Label.Label();
             this.dateControlBankName = new TinyTech.UI.Control.TextBox.DateControl();
             this.txtBankNameName = new TinyTech.UI.Control.TextBox.TextBox();
@@ -70,6 +75,7 @@ namespace TinyTech.BasicInformation
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
             this.lblBankNameName = new TinyTech.UI.Control.Label.Label();
             this.pnlButtons = new TinyTech.UI.Control.UIElement.Panel();
+            this.btnDelete = new TinyTech.UI.Control.Button.DeleteButton();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBankName)).BeginInit();
             this.pnlBankNameDefinition.SuspendLayout();
@@ -106,6 +112,7 @@ namespace TinyTech.BasicInformation
             this.dgvBankName.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBankName.Size = new System.Drawing.Size(800, 360);
             this.dgvBankName.TabIndex = 1;
+            this.dgvBankName.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBankName_CellClick);
             // 
             // pnlBankNameDefinition
             // 
@@ -120,6 +127,7 @@ namespace TinyTech.BasicInformation
             // 
             // groupBoxBankNameDefinition
             // 
+            this.groupBoxBankNameDefinition.Controls.Add(this.lblEditMode);
             this.groupBoxBankNameDefinition.Controls.Add(this.lblDate);
             this.groupBoxBankNameDefinition.Controls.Add(this.dateControlBankName);
             this.groupBoxBankNameDefinition.Controls.Add(this.txtBankNameID);
@@ -136,6 +144,21 @@ namespace TinyTech.BasicInformation
             this.groupBoxBankNameDefinition.TabIndex = 0;
             this.groupBoxBankNameDefinition.TabStop = false;
             this.groupBoxBankNameDefinition.Text = "تعريف نام بانك";
+            // 
+            // lblEditMode
+            // 
+            this.lblEditMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEditMode.AutoSize = true;
+            this.lblEditMode.BackColor = System.Drawing.Color.Red;
+            this.lblEditMode.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F, System.Drawing.FontStyle.Bold);
+            this.lblEditMode.ForeColor = System.Drawing.Color.White;
+            this.lblEditMode.Location = new System.Drawing.Point(182, 59);
+            this.lblEditMode.Name = "lblEditMode";
+            this.lblEditMode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblEditMode.Size = new System.Drawing.Size(79, 20);
+            this.lblEditMode.TabIndex = 14;
+            this.lblEditMode.Text = "در حال ويرايش";
+            this.lblEditMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDate
             // 
@@ -160,9 +183,9 @@ namespace TinyTech.BasicInformation
             this.dateControlBankName.Location = new System.Drawing.Point(598, 24);
             this.dateControlBankName.Name = "dateControlBankName";
             this.dateControlBankName.NextControl = this.txtBankNameName;
-            this.dateControlBankName.ShamsiNow = "1397/06/14";
             this.dateControlBankName.NowShamsi8Character = "97/06/14";
             this.dateControlBankName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateControlBankName.ShamsiNow = "1397/06/14";
             this.dateControlBankName.Size = new System.Drawing.Size(120, 20);
             this.dateControlBankName.TabIndex = 0;
             this.dateControlBankName.Text = "dateControl1";
@@ -192,12 +215,12 @@ namespace TinyTech.BasicInformation
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Location = new System.Drawing.Point(518, 100);
+            this.txtDescription.Location = new System.Drawing.Point(381, 100);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(10);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NextControl = this.btnSave;
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.Size = new System.Drawing.Size(200, 28);
+            this.txtDescription.Size = new System.Drawing.Size(337, 28);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -209,7 +232,7 @@ namespace TinyTech.BasicInformation
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(173, 3);
+            this.btnSave.Location = new System.Drawing.Point(172, 3);
             this.btnSave.Margin = new System.Windows.Forms.Padding(10);
             this.btnSave.Name = "btnSave";
             this.btnSave.NextControl = this.btnRefresh;
@@ -227,7 +250,7 @@ namespace TinyTech.BasicInformation
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(88, 3);
+            this.btnRefresh.Location = new System.Drawing.Point(87, 3);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.NextControl = this.btnCancel;
@@ -244,7 +267,7 @@ namespace TinyTech.BasicInformation
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
             this.btnCancel.ForeColor = System.Drawing.Color.Gray;
-            this.btnCancel.Location = new System.Drawing.Point(3, 3);
+            this.btnCancel.Location = new System.Drawing.Point(2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.NextControl = this.dateControlBankName;
             this.btnCancel.Size = new System.Drawing.Size(81, 34);
@@ -317,6 +340,7 @@ namespace TinyTech.BasicInformation
             // pnlButtons
             // 
             this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnRefresh);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Controls.Add(this.btnSave);
@@ -324,8 +348,26 @@ namespace TinyTech.BasicInformation
             this.pnlButtons.Location = new System.Drawing.Point(6, 88);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pnlButtons.Size = new System.Drawing.Size(258, 40);
+            this.pnlButtons.Size = new System.Drawing.Size(341, 40);
             this.pnlButtons.TabIndex = 3;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.btnDelete.ForeColor = System.Drawing.Color.Red;
+            this.btnDelete.Location = new System.Drawing.Point(257, 3);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.NextControl = null;
+            this.btnDelete.Size = new System.Drawing.Size(81, 34);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "حذف";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // BankNameDefinition
             // 
@@ -349,7 +391,14 @@ namespace TinyTech.BasicInformation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            @tab.CloseTab(this);
+            if (!EditMode)
+            {
+                @tab.CloseTab(this);
+            }
+            else if (EditMode)
+            {
+                RefreshForm();
+            }
         }
 
         private DataTable BankNameListDataTable(List<BankName> BankNameList)
@@ -361,6 +410,7 @@ namespace TinyTech.BasicInformation
         private void ClearForm()
         {
             txtBankNameName.Text = txtDescription.Text = string.Empty;
+            SetEditMode(false);
         }
 
         private void BankNameDefinition_Load(object sender, EventArgs e)
@@ -420,7 +470,7 @@ namespace TinyTech.BasicInformation
             }
         }
 
-        private bool FormValidate()
+        private bool FormValidate(bool Edit)
         {
             if (string.IsNullOrWhiteSpace(txtBankNameName.Text))
             {
@@ -428,38 +478,70 @@ namespace TinyTech.BasicInformation
                 txtBankNameName.Focus();
                 return false;
             }
-            if (@class.GetBankName(true).Count(i => i.Name.Equals(txtBankNameName.Text.Trim())) > 0)
+            if (!Edit && (@class.GetBankName(true).Count(i => i.Name.Equals(txtBankNameName.Text.Trim())) > 0))
             {
                 CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام بانك \"{txtBankNameName.Text}\" تكراري است!", "e");
                 txtBankNameName.Focus();
                 return false;
             }
-
+            if (Edit && (@class.GetBankName(true).Count(i => i.Name.Equals(txtBankNameName.Text.Trim()) && i.Name != OldBankNameForEdit) > 0))
+            {
+                CustomMessageForm.CustomMessageBox.Show("اخطار !", $"نام بانك \"{txtBankNameName.Text}\" تكراري است!", "e");
+                txtBankNameName.Focus();
+                return false;
+            }
             return true;
+        }
+
+        private void SaveProcess(bool Edit)
+        {
+            if (FormValidate(Edit))
+            {
+                if (!Edit)
+                {
+                    var result = @class.BankNameDefinition(txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+
+                    if (result > 0)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"نام بانك \"{txtBankNameName.Text}\" با موفقيت ثبت شد", "i");
+                        MaxID_ = result;
+                        if (int.Parse(txtBankNameID.Text) != MaxID_)
+                        {
+                            CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد نام بانك به {MaxID_} تغيير يافت", "i");
+                        }
+                        RefreshForm();
+                    }
+                    else if (result == 0)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف نام بانك!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
+                    }
+                }
+                else if (Edit)
+                {
+                    bool result = @class.BankNameModify(int.Parse(txtBankNameID.Text), txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+                    if (result)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"ويرايش نام بانك با موفقيت انجام شد", "i");
+                        RefreshForm();
+                    }
+                    else if (!result)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در ويرايش نام بانك!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
+                    }
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (FormValidate())
+            if (lblEditMode.Visible)
             {
-                var result = @class.BankNameDefinition(txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
-
-                if (result > 0)
-                {
-                    CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"نام بانك \"{txtBankNameName.Text}\" با موفقيت ثبت شد", "i");
-                    MaxID_ = result;
-                    if (int.Parse(txtBankNameID.Text) != MaxID_)
-                    {
-                        CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد نام بانك به {MaxID_} تغيير يافت", "i");
-                    }
-                    RefreshForm();
-                }
-                else if (result == 0)
-                {
-                    CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف نام بانك!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
-                }
+                SaveProcess(true);
             }
-
+            else if (!lblEditMode.Visible)
+            {
+                SaveProcess(false);
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -477,6 +559,66 @@ namespace TinyTech.BasicInformation
         {
             var bankNameList = @class.GetBankName(true).Where(i => i.Name.Contains(txtBankNameName.Text)).ToList();
             dgvBankName.DataSource = bankNameList;//BankNameListDataTable(bankNameList);
+        }
+
+        private void SetEditMode(bool Status)
+        {
+            lblEditMode.Visible = btnDelete.Visible = Status;
+
+            if (Status)
+            {
+                BankName bankNameList = (BankName)dgvBankName.CurrentRow.DataBoundItem;
+                txtBankNameID.Text = bankNameList.ID.ToString();
+                txtBankNameName.Text = bankNameList.Name;
+                txtDescription.Text = bankNameList.Description;
+                OldBankNameForEdit = txtBankNameName.Text;
+                btnSave.Text = "ثبت تغييرات";
+                EditMode = true;
+            }
+            if (!Status)
+            {
+                OldBankNameForEdit = string.Empty;
+                btnSave.Text = "ثبت";
+                EditMode = false;
+            }
+        }
+
+        private void dgvBankName_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ConnectionClasses.CheckUserPermission(ConnectionInfo.LoggedInUserId, 1))
+            {
+                if (dgvBankName.DataSource != null && dgvBankName.SelectedRows.Count > 0)
+                {
+                    SetEditMode(true);
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            MessageBoxWarning.State = 0;
+            if (CustomMessageForm.CustomMessageBox.Show("خروج", "نام بانك مورد نظر حذف شود؟", "w") == DialogResult.Yes)
+            {
+                if (ConnectionClasses.CheckBeforeDelete(this.Name, int.Parse(txtBankNameID.Text)))
+                {
+                    bool Result = @class.BankNameDelete(int.Parse(txtBankNameID.Text), txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+
+                    if (Result)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"نام بانك مورد نظر با موفقيت حذف شد", "i");
+                        RefreshForm();
+                    }
+                    else if (!Result)
+                    {
+                        CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در حذف نام بانك!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
+                    }
+                }
+                else
+                {
+                    CustomMessageForm.CustomMessageBox.Show("اخطار!", "نام بانك انتخاب شده در حال حاضر در حال استفاده ميباشد و امكان حذف آن وجود ندارد!", "e");
+                }
+            }
+            MessageBoxWarning.State = 1;
         }
     }
 }

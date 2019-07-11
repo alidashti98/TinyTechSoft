@@ -851,6 +851,92 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool BankNameModify(int ID, string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankName = new BankName()
+                            {
+                                ID = ID,
+                                Name = name,
+                                Description = description,
+                                Active = true,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                            };
+                            dbConnection.BankName.AddOrUpdateExtension(bankName);
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool BankNameDelete(int ID, string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankName = new BankName()
+                            {
+                                ID = ID,
+                                Name = name,
+                                Description = description,
+                                Active = false,
+                                ClientDate = clientDate,
+                                ServerDate = serverDate,
+                                ClientTime = clientTime,
+                                ServerTime = serverTime,
+                                UserID = userID,
+                            };
+                            dbConnection.BankName.AddOrUpdateExtension(bankName);
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int PeopleGroupDefinition(string name, int defaultSailPrice, string description, int parrentID, string clientDate, string serverDate, string clientTime, string serverTime, int userID, bool isParrent = false) //Save Error => 0
         {
             try
@@ -1265,6 +1351,16 @@ namespace TinyTech.Connection
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
             }
+        }
+
+        public static bool CheckBeforeDelete(string FormName, int ID)
+        {
+            return true;
+        }
+
+        public static bool CheckUserPermission(int UserID, int FieldID)
+        {
+            return true;
         }
 
         #endregion
