@@ -765,6 +765,72 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool GoodsGroupModify(int id, string name, bool canNegative, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var goodsGroup = dbConnection.GoodsGroup.FirstOrDefault(i => i.ID == id && i.Active);
+                            goodsGroup.Name = name;
+                            goodsGroup.CanNegative = canNegative;
+                            goodsGroup.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool GoodsGroupDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var goodsGroup = dbConnection.GoodsGroup.FirstOrDefault(i => i.ID == id && i.Active);
+                            goodsGroup.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int GoodsUnitDefinition(string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
@@ -805,6 +871,71 @@ namespace TinyTech.Connection
             {
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
+            }
+        }
+
+        public bool GoodsUnitModify(int id, string name, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var goodsUnit = dbConnection.GoodsUnit.FirstOrDefault(i => i.ID == id && i.Active);
+                            goodsUnit.Name = name;
+                            goodsUnit.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool GoodsUnitDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var goodsUnit = dbConnection.GoodsUnit.FirstOrDefault(i => i.ID == id && i.Active);
+                            goodsUnit.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
             }
         }
 
@@ -851,7 +982,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public bool BankNameModify(int ID, string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID)
+        public bool BankNameModify(int id, string name, string description)
         {
             try
             {
@@ -861,19 +992,9 @@ namespace TinyTech.Connection
                     {
                         try
                         {
-                            var bankName = new BankName()
-                            {
-                                ID = ID,
-                                Name = name,
-                                Description = description,
-                                Active = true,
-                                ClientDate = clientDate,
-                                ServerDate = serverDate,
-                                ClientTime = clientTime,
-                                ServerTime = serverTime,
-                                UserID = userID,
-                            };
-                            dbConnection.BankName.AddOrUpdateExtension(bankName);
+                            var bankName = dbConnection.BankName.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankName.Name = name;
+                            bankName.Description = description;
                             dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return true;
@@ -894,7 +1015,7 @@ namespace TinyTech.Connection
             }
         }
 
-        public bool BankNameDelete(int ID, string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID)
+        public bool BankNameDelete(int id)
         {
             try
             {
@@ -904,19 +1025,8 @@ namespace TinyTech.Connection
                     {
                         try
                         {
-                            var bankName = new BankName()
-                            {
-                                ID = ID,
-                                Name = name,
-                                Description = description,
-                                Active = false,
-                                ClientDate = clientDate,
-                                ServerDate = serverDate,
-                                ClientTime = clientTime,
-                                ServerTime = serverTime,
-                                UserID = userID,
-                            };
-                            dbConnection.BankName.AddOrUpdateExtension(bankName);
+                            var bankName = dbConnection.BankName.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankName.Active = false;
                             dbConnection.BulkSaveChanges();
                             dbTran.Commit();
                             return true;
@@ -980,6 +1090,73 @@ namespace TinyTech.Connection
             {
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
+            }
+        }
+
+        public bool PeopleGroupModify(int id, string name, int defaultSailPrice, string description, int parrentID)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var peopleGroup = dbConnection.PeopleGroup.FirstOrDefault(i => i.ID == id && i.Active);
+                            peopleGroup.Name = name;
+                            peopleGroup.DefaultSailPrice = defaultSailPrice;
+                            peopleGroup.Description = description;
+                            peopleGroup.ParrentID = parrentID;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool PeopleGroupDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var peopleGroup = dbConnection.PeopleGroup.FirstOrDefault(i => i.ID == id && i.Active);
+                            peopleGroup.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
             }
         }
 
@@ -1069,6 +1246,71 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool ProvincepModify(int id, string name, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var province = dbConnection.Province.FirstOrDefault(i => i.ID == id && i.Active);
+                            province.Name = name;
+                            province.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool ProvinceDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var province = dbConnection.Province.FirstOrDefault(i => i.ID == id && i.Active);
+                            province.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int BankAccountDefinition(string bankAccountNumber, string bankAccountOwner, int bankNameID, string description, decimal debt, decimal crediting, string clientDate, string serverDate, string clientTime, string serverTime, int userID, string address, string branch, string phone1, string phone2, int accountTypeID) //Save Error => 0
         {
             try
@@ -1120,6 +1362,78 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool BankAccountpModify(int id, string bankAccountNumber, string bankAccountOwner, int bankNameID, string description, string address, string branch, string phone1, string phone2, int accountTypeID)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankAccount = dbConnection.BankAccount.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankAccount.AccountNumber = bankAccountNumber;
+                            bankAccount.AccountOwner = bankAccountOwner;
+                            bankAccount.BankNameID = bankNameID;
+                            bankAccount.Description = description;
+                            bankAccount.Address = address;
+                            bankAccount.Branch = branch;
+                            bankAccount.Phone1 = phone1;
+                            bankAccount.Phone2 = phone2;
+                            bankAccount.AccountTypeID = accountTypeID;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool BankAccountDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankAccount = dbConnection.BankAccount.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankAccount.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int BankAccountTypeDefinition(string name, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
@@ -1160,6 +1474,71 @@ namespace TinyTech.Connection
             {
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
+            }
+        }
+
+        public bool BankAccountTypeModify(int id, string name, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankAccountType = dbConnection.BankAccountType.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankAccountType.Name = name;
+                            bankAccountType.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool BankAccountTypeDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var bankAccountType = dbConnection.BankAccountType.FirstOrDefault(i => i.ID == id && i.Active);
+                            bankAccountType.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
             }
         }
 
@@ -1207,6 +1586,72 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool CityModify(int id, string name, int provinceId, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var city = dbConnection.City.FirstOrDefault(i => i.ID == id && i.Active);
+                            city.Name = name;
+                            city.ProvinceID = provinceId;
+                            city.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool CityDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var city = dbConnection.City.FirstOrDefault(i => i.ID == id && i.Active);
+                            city.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int RegionDefinition(string name, int cityId, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
@@ -1251,6 +1696,72 @@ namespace TinyTech.Connection
             }
         }
 
+        public bool RegionModify(int id, string name, int cityId, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var region = dbConnection.Region.FirstOrDefault(i => i.ID == id && i.Active);
+                            region.Name = name;
+                            region.CityID = cityId;
+                            region.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool RegionDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var region = dbConnection.Region.FirstOrDefault(i => i.ID == id && i.Active);
+                            region.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
         public int PathDefinition(string name, int regionId, string description, string clientDate, string serverDate, string clientTime, string serverTime, int userID) //Save Error => 0
         {
             try
@@ -1292,6 +1803,72 @@ namespace TinyTech.Connection
             {
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
+            }
+        }
+
+        public bool PathModify(int id, string name, int regionId, string description)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var path = dbConnection.Path.FirstOrDefault(i => i.ID == id && i.Active);
+                            path.Name = name;
+                            path.RegionID = regionId;
+                            path.Description = description;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool PathDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var path = dbConnection.Path.FirstOrDefault(i => i.ID == id && i.Active);
+                            path.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
             }
         }
 
@@ -1350,6 +1927,87 @@ namespace TinyTech.Connection
             {
                 MessageBox.Show(e.InnerException?.ToString());
                 return 0;
+            }
+        }
+
+        public bool CurrencyModify(int id, string name, string description, bool isDefault)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+
+                        if (isDefault)
+                        {
+                            var crList =
+        from cr in DB_Connection.Currency
+        where cr.IsDefault
+        select cr;
+
+                            foreach (Currency cr in crList)
+                            {
+                                cr.IsDefault = false;
+                            }
+                            DB_Connection.BulkSaveChanges();
+                        }
+
+                        try
+                        {
+                            var currency = dbConnection.Currency.FirstOrDefault(i => i.ID == id && i.Active);
+                            currency.Name = name;
+                            currency.Description = description;
+                            currency.IsDefault = isDefault;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
+            }
+        }
+
+        public bool CurrencyDelete(int id)
+        {
+            try
+            {
+                using (var dbConnection = new TinyTechEntities())
+                {
+                    using (var dbTran = dbConnection.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var currency = dbConnection.Currency.FirstOrDefault(i => i.ID == id && i.Active);
+                            currency.Active = false;
+                            dbConnection.BulkSaveChanges();
+                            dbTran.Commit();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            dbTran.Rollback();
+                            MessageBox.Show(e.InnerException?.ToString());
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException?.ToString());
+                return false;
             }
         }
 

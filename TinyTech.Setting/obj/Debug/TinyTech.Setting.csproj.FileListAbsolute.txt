@@ -40,6 +40,7 @@ D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\Z.EntityFramewor
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\EntityFramework.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\EntityFramework.SqlServer.xml
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\bin\Debug\Z.EntityFramework.Extensions.xml
+D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csprojResolveAssemblyReference.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.Properties.Resources.resources
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.GenerateResource.cache
 D:\Project\TinyTechSoft\TinyTechSoft\TinyTech.Setting\obj\Debug\TinyTech.Setting.csproj.CoreCompileInputs.cache

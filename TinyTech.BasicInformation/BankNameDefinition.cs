@@ -518,7 +518,7 @@ namespace TinyTech.BasicInformation
                 }
                 else if (Edit)
                 {
-                    bool result = @class.BankNameModify(int.Parse(txtBankNameID.Text), txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+                    bool result = @class.BankNameModify(int.Parse(txtBankNameID.Text), txtBankNameName.Text, txtDescription.Text);
                     if (result)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"ويرايش نام بانك با موفقيت انجام شد", "i");
@@ -534,11 +534,11 @@ namespace TinyTech.BasicInformation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (lblEditMode.Visible)
+            if (EditMode)
             {
                 SaveProcess(true);
             }
-            else if (!lblEditMode.Visible)
+            else if (!EditMode)
             {
                 SaveProcess(false);
             }
@@ -601,7 +601,7 @@ namespace TinyTech.BasicInformation
             {
                 if (ConnectionClasses.CheckBeforeDelete(this.Name, int.Parse(txtBankNameID.Text)))
                 {
-                    bool Result = @class.BankNameDelete(int.Parse(txtBankNameID.Text), txtBankNameName.Text, txtDescription.Text, dateControlBankName.ShamsiValue(), ConnectionClasses.DateServer.ReturnDateServer(), DateTime.Now.ToString("HH:mm:ss"), ConnectionClasses.DateServer.ServerTime(), ConnectionInfo.LoggedInUserId);
+                    bool Result = @class.BankNameDelete(int.Parse(txtBankNameID.Text));
 
                     if (Result)
                     {
@@ -615,7 +615,7 @@ namespace TinyTech.BasicInformation
                 }
                 else
                 {
-                    CustomMessageForm.CustomMessageBox.Show("اخطار!", "نام بانك انتخاب شده در حال حاضر در حال استفاده ميباشد و امكان حذف آن وجود ندارد!", "e");
+                    CustomMessageForm.CustomMessageBox.Show("اخطار !", "نام بانك انتخاب شده در حال حاضر در حال استفاده ميباشد و امكان حذف آن وجود ندارد!", "e");
                 }
             }
             MessageBoxWarning.State = 1;
