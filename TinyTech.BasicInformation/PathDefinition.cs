@@ -186,6 +186,7 @@ namespace TinyTech.BasicInformation
             this.dateControlPath.BackColor = System.Drawing.Color.White;
             this.dateControlPath.CanGoBackward = true;
             this.dateControlPath.CanGoForward = false;
+            this.dateControlPath.Enabled = false;
             this.dateControlPath.Location = new System.Drawing.Point(575, 27);
             this.dateControlPath.Name = "dateControlPath";
             this.dateControlPath.NextControl = this.chkProvince;
@@ -203,6 +204,7 @@ namespace TinyTech.BasicInformation
             this.chkProvince.AutoSize = true;
             this.chkProvince.Location = new System.Drawing.Point(639, 57);
             this.chkProvince.Name = "chkProvince";
+            this.chkProvince.NextControl = null;
             this.chkProvince.Size = new System.Drawing.Size(56, 24);
             this.chkProvince.TabIndex = 1;
             this.chkProvince.Text = "استان";
@@ -215,6 +217,7 @@ namespace TinyTech.BasicInformation
             this.chkRegionName.AutoSize = true;
             this.chkRegionName.Location = new System.Drawing.Point(639, 128);
             this.chkRegionName.Name = "chkRegionName";
+            this.chkRegionName.NextControl = null;
             this.chkRegionName.Size = new System.Drawing.Size(58, 24);
             this.chkRegionName.TabIndex = 3;
             this.chkRegionName.Text = "منطقه";
@@ -260,6 +263,7 @@ namespace TinyTech.BasicInformation
             this.chkCityName.AutoSize = true;
             this.chkCityName.Location = new System.Drawing.Point(649, 93);
             this.chkCityName.Name = "chkCityName";
+            this.chkCityName.NextControl = null;
             this.chkCityName.Size = new System.Drawing.Size(46, 24);
             this.chkCityName.TabIndex = 2;
             this.chkCityName.Text = "شهر";
@@ -627,7 +631,7 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -637,7 +641,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"مسير \"{txtPathName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtPathID.Text) != MaxID_)
+                    if (int.Parse(txtPathID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد مسير به {MaxID_} تغيير يافت", "i");
                     }
@@ -648,6 +652,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف مسير!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

@@ -57,13 +57,13 @@ namespace TinyTech.BasicInformation
             this.dgvBankAccountType = new TinyTech.UI.Control.UIElement.DataGridView();
             this.pnlBankAccountTypeDefinition = new TinyTech.UI.Control.UIElement.Panel();
             this.groupBoxBankAccountTypeDefinition = new TinyTech.UI.Control.UIElement.GroupBox();
-            this.btnSave = new TinyTech.UI.Control.Button.SaveButton();
-            this.btnRefresh = new TinyTech.UI.Control.Button.RefreshButton();
-            this.btnCancel = new TinyTech.UI.Control.Button.CancelButton();
+            this.lblDate = new TinyTech.UI.Control.Label.Label();
             this.dateControlBankAccountType = new TinyTech.UI.Control.TextBox.DateControl();
             this.txtBankAccountTypeName = new TinyTech.UI.Control.TextBox.TextBox();
             this.txtDescription = new TinyTech.UI.Control.TextBox.TextBox();
-            this.lblDate = new TinyTech.UI.Control.Label.Label();
+            this.btnSave = new TinyTech.UI.Control.Button.SaveButton();
+            this.btnRefresh = new TinyTech.UI.Control.Button.RefreshButton();
+            this.btnCancel = new TinyTech.UI.Control.Button.CancelButton();
             this.txtBankAccountTypeID = new TinyTech.UI.Control.TextBox.NumericTextBoxWithSeperator();
             this.lblBankAccountTypeID = new TinyTech.UI.Control.Label.Label();
             this.lblDescription = new TinyTech.UI.Control.Label.Label();
@@ -136,6 +136,71 @@ namespace TinyTech.BasicInformation
             this.groupBoxBankAccountTypeDefinition.TabStop = false;
             this.groupBoxBankAccountTypeDefinition.Text = "تعريف نوع حساب";
             // 
+            // lblDate
+            // 
+            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.lblDate.Location = new System.Drawing.Point(717, 24);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblDate.Size = new System.Drawing.Size(40, 20);
+            this.lblDate.TabIndex = 13;
+            this.lblDate.Text = "تاريخ :";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dateControlBankAccountType
+            // 
+            this.dateControlBankAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateControlBankAccountType.BackColor = System.Drawing.Color.White;
+            this.dateControlBankAccountType.CanGoBackward = true;
+            this.dateControlBankAccountType.CanGoForward = false;
+            this.dateControlBankAccountType.Enabled = false;
+            this.dateControlBankAccountType.Location = new System.Drawing.Point(584, 24);
+            this.dateControlBankAccountType.Name = "dateControlBankAccountType";
+            this.dateControlBankAccountType.NextControl = this.txtBankAccountTypeName;
+            this.dateControlBankAccountType.NowShamsi8Character = "97/06/14";
+            this.dateControlBankAccountType.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateControlBankAccountType.ShamsiNow = "1397/06/14";
+            this.dateControlBankAccountType.Size = new System.Drawing.Size(120, 20);
+            this.dateControlBankAccountType.TabIndex = 0;
+            this.dateControlBankAccountType.Text = "dateControl1";
+            this.dateControlBankAccountType.Value10Cahracter = null;
+            // 
+            // txtBankAccountTypeName
+            // 
+            this.txtBankAccountTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBankAccountTypeName.BackColor = System.Drawing.Color.White;
+            this.txtBankAccountTypeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBankAccountTypeName.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.txtBankAccountTypeName.ForeColor = System.Drawing.Color.Black;
+            this.txtBankAccountTypeName.Location = new System.Drawing.Point(504, 57);
+            this.txtBankAccountTypeName.Margin = new System.Windows.Forms.Padding(10);
+            this.txtBankAccountTypeName.Name = "txtBankAccountTypeName";
+            this.txtBankAccountTypeName.NextControl = this.txtDescription;
+            this.txtBankAccountTypeName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtBankAccountTypeName.Size = new System.Drawing.Size(200, 28);
+            this.txtBankAccountTypeName.TabIndex = 1;
+            this.txtBankAccountTypeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBankAccountTypeName.TextChanged += new System.EventHandler(this.BankAccountTypeName_TextChanged);
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
+            this.txtDescription.ForeColor = System.Drawing.Color.Black;
+            this.txtDescription.Location = new System.Drawing.Point(504, 96);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(10);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.NextControl = this.btnSave;
+            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDescription.Size = new System.Drawing.Size(200, 28);
+            this.txtDescription.TabIndex = 2;
+            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -187,70 +252,6 @@ namespace TinyTech.BasicInformation
             this.btnCancel.Text = "انصراف";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // dateControlBankAccountType
-            // 
-            this.dateControlBankAccountType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateControlBankAccountType.BackColor = System.Drawing.Color.White;
-            this.dateControlBankAccountType.CanGoBackward = true;
-            this.dateControlBankAccountType.CanGoForward = false;
-            this.dateControlBankAccountType.Location = new System.Drawing.Point(584, 24);
-            this.dateControlBankAccountType.Name = "dateControlBankAccountType";
-            this.dateControlBankAccountType.NextControl = this.txtBankAccountTypeName;
-            this.dateControlBankAccountType.NowShamsi8Character = "97/06/14";
-            this.dateControlBankAccountType.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateControlBankAccountType.ShamsiNow = "1397/06/14";
-            this.dateControlBankAccountType.Size = new System.Drawing.Size(120, 20);
-            this.dateControlBankAccountType.TabIndex = 0;
-            this.dateControlBankAccountType.Text = "dateControl1";
-            this.dateControlBankAccountType.Value10Cahracter = null;
-            // 
-            // txtBankAccountTypeName
-            // 
-            this.txtBankAccountTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBankAccountTypeName.BackColor = System.Drawing.Color.White;
-            this.txtBankAccountTypeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBankAccountTypeName.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.txtBankAccountTypeName.ForeColor = System.Drawing.Color.Black;
-            this.txtBankAccountTypeName.Location = new System.Drawing.Point(504, 57);
-            this.txtBankAccountTypeName.Margin = new System.Windows.Forms.Padding(10);
-            this.txtBankAccountTypeName.Name = "txtBankAccountTypeName";
-            this.txtBankAccountTypeName.NextControl = this.txtDescription;
-            this.txtBankAccountTypeName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBankAccountTypeName.Size = new System.Drawing.Size(200, 28);
-            this.txtBankAccountTypeName.TabIndex = 1;
-            this.txtBankAccountTypeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBankAccountTypeName.TextChanged += new System.EventHandler(this.BankAccountTypeName_TextChanged);
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescription.BackColor = System.Drawing.Color.White;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescription.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Location = new System.Drawing.Point(504, 96);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(10);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.NextControl = this.btnSave;
-            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.Size = new System.Drawing.Size(200, 28);
-            this.txtDescription.TabIndex = 2;
-            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblDate
-            // 
-            this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDate.AutoSize = true;
-            this.lblDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate.Font = new System.Drawing.Font("IRANSans(FaNum)", 9F);
-            this.lblDate.Location = new System.Drawing.Point(717, 24);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDate.Size = new System.Drawing.Size(40, 20);
-            this.lblDate.TabIndex = 13;
-            this.lblDate.Text = "تاريخ :";
-            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtBankAccountTypeID
             // 
@@ -438,7 +439,7 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -448,7 +449,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"نوع حساب \"{txtBankAccountTypeName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtBankAccountTypeID.Text) != MaxID_)
+                    if (int.Parse(txtBankAccountTypeID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد نوع حساب به {MaxID_} تغيير يافت", "i");
                     }
@@ -459,7 +460,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف نوع حساب!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

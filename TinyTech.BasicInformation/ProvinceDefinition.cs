@@ -157,6 +157,7 @@ namespace TinyTech.BasicInformation
             this.dateControlProvince.BackColor = System.Drawing.Color.White;
             this.dateControlProvince.CanGoBackward = true;
             this.dateControlProvince.CanGoForward = false;
+            this.dateControlProvince.Enabled = false;
             this.dateControlProvince.Location = new System.Drawing.Point(563, 27);
             this.dateControlProvince.Name = "dateControlProvince";
             this.dateControlProvince.NextControl = this.txtProvinceName;
@@ -443,7 +444,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"استان \"{txtProvinceName.Text.Trim()}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtProvinceID.Text) != MaxID_)
+                    if (int.Parse(txtProvinceID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد استان به {MaxID_} تغيير يافت", "i");
                     }

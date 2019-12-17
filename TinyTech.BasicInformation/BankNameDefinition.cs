@@ -180,6 +180,7 @@ namespace TinyTech.BasicInformation
             this.dateControlBankName.BackColor = System.Drawing.Color.White;
             this.dateControlBankName.CanGoBackward = true;
             this.dateControlBankName.CanGoForward = false;
+            this.dateControlBankName.Enabled = false;
             this.dateControlBankName.Location = new System.Drawing.Point(598, 24);
             this.dateControlBankName.Name = "dateControlBankName";
             this.dateControlBankName.NextControl = this.txtBankNameName;
@@ -505,7 +506,7 @@ namespace TinyTech.BasicInformation
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"نام بانك \"{txtBankNameName.Text}\" با موفقيت ثبت شد", "i");
                         MaxID_ = result;
-                        if (int.Parse(txtBankNameID.Text) != MaxID_)
+                        if (int.Parse(txtBankNameID.Value.ToString()) != MaxID_)
                         {
                             CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد نام بانك به {MaxID_} تغيير يافت", "i");
                         }

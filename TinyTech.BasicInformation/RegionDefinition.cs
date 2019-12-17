@@ -176,6 +176,7 @@ namespace TinyTech.UI.UserControl
             this.dateControlRegion.BackColor = System.Drawing.Color.White;
             this.dateControlRegion.CanGoBackward = true;
             this.dateControlRegion.CanGoForward = false;
+            this.dateControlRegion.Enabled = false;
             this.dateControlRegion.Location = new System.Drawing.Point(585, 27);
             this.dateControlRegion.Name = "dateControlRegion";
             this.dateControlRegion.NextControl = this.chkProvince;
@@ -193,6 +194,7 @@ namespace TinyTech.UI.UserControl
             this.chkProvince.AutoSize = true;
             this.chkProvince.Location = new System.Drawing.Point(649, 60);
             this.chkProvince.Name = "chkProvince";
+            this.chkProvince.NextControl = null;
             this.chkProvince.Size = new System.Drawing.Size(56, 24);
             this.chkProvince.TabIndex = 1;
             this.chkProvince.Text = "استان";
@@ -205,6 +207,7 @@ namespace TinyTech.UI.UserControl
             this.chkCityName.AutoSize = true;
             this.chkCityName.Location = new System.Drawing.Point(659, 98);
             this.chkCityName.Name = "chkCityName";
+            this.chkCityName.NextControl = null;
             this.chkCityName.Size = new System.Drawing.Size(46, 24);
             this.chkCityName.TabIndex = 2;
             this.chkCityName.Text = "شهر";
@@ -561,7 +564,7 @@ namespace TinyTech.UI.UserControl
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -571,7 +574,7 @@ namespace TinyTech.UI.UserControl
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"منطقه \"{txtRegionName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtRegionID.Text) != MaxID_)
+                    if (int.Parse(txtRegionID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد منطقه به {MaxID_} تغيير يافت", "i");
                     }
@@ -582,6 +585,11 @@ namespace TinyTech.UI.UserControl
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف منطقه!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

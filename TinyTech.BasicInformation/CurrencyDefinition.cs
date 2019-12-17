@@ -213,6 +213,7 @@ namespace TinyTech.BasicInformation
             this.dateControlCurrency.BackColor = System.Drawing.Color.White;
             this.dateControlCurrency.CanGoBackward = true;
             this.dateControlCurrency.CanGoForward = false;
+            this.dateControlCurrency.Enabled = false;
             this.dateControlCurrency.Location = new System.Drawing.Point(584, 24);
             this.dateControlCurrency.Name = "dateControlCurrency";
             this.dateControlCurrency.NextControl = this.txtCurrencyName;
@@ -493,7 +494,7 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -503,7 +504,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"واحد پول \"{txtCurrencyName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtCurrencyID.Text) != MaxID_)
+                    if (int.Parse(txtCurrencyID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد واحد پول به {MaxID_} تغيير يافت", "i");
                     }
@@ -514,7 +515,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف واحد پول!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

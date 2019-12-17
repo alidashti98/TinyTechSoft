@@ -157,6 +157,7 @@ namespace TinyTech.BasicInformation
             this.dateControlGoodsUnit.BackColor = System.Drawing.Color.White;
             this.dateControlGoodsUnit.CanGoBackward = true;
             this.dateControlGoodsUnit.CanGoForward = false;
+            this.dateControlGoodsUnit.Enabled = false;
             this.dateControlGoodsUnit.Location = new System.Drawing.Point(567, 27);
             this.dateControlGoodsUnit.Name = "dateControlGoodsUnit";
             this.dateControlGoodsUnit.NextControl = this.txtGoodsUnitName;
@@ -433,7 +434,7 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -443,7 +444,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"واحد كالا \"{txtGoodsUnitName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtGoodsUnitID.Text) != MaxID_)
+                    if (int.Parse(txtGoodsUnitID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد واحد كالا به {MaxID_} تغيير يافت", "i");
                     }
@@ -454,7 +455,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف واحد كالا!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

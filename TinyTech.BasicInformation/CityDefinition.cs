@@ -168,6 +168,7 @@ namespace TinyTech.BasicInformation
             this.dateControlCity.BackColor = System.Drawing.Color.White;
             this.dateControlCity.CanGoBackward = true;
             this.dateControlCity.CanGoForward = false;
+            this.dateControlCity.Enabled = false;
             this.dateControlCity.Location = new System.Drawing.Point(565, 27);
             this.dateControlCity.Name = "dateControlCity";
             this.dateControlCity.NextControl = this.chkProvince;
@@ -506,7 +507,7 @@ namespace TinyTech.BasicInformation
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveProcess()
         {
             if (FormValidate())
             {
@@ -516,7 +517,7 @@ namespace TinyTech.BasicInformation
                 {
                     CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"شهر \"{txtCityName.Text}\" با موفقيت ثبت شد", "i");
                     MaxID_ = result;
-                    if (int.Parse(txtCityID.Text) != MaxID_)
+                    if (int.Parse(txtCityID.Value.ToString()) != MaxID_)
                     {
                         CustomMessageForm.CustomMessageBox.Show("پيغام سيستم", $"كد شهر به {MaxID_} تغيير يافت", "i");
                     }
@@ -527,7 +528,11 @@ namespace TinyTech.BasicInformation
                     CustomMessageForm.CustomMessageBox.Show("خطا !", $"خطا در تعريف شهر!\n\nلطفا جهت بررسي مشكل با پشتيباني تماس بگيريد", "e");
                 }
             }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveProcess();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

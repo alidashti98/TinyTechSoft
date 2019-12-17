@@ -325,7 +325,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemRegion,
             this.ToolStripMenuItemPath});
             this.ToolStripMenuItemLocation.Name = "ToolStripMenuItemLocation";
-            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemLocation.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemLocation.Text = "مكان";
             // 
             // ToolStripMenuItemProvince
@@ -362,7 +362,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemPeopleGroup,
             this.ToolStripMenuItemPeople});
             this.ToolStripMenuItemPeopleMenu.Name = "ToolStripMenuItemPeopleMenu";
-            this.ToolStripMenuItemPeopleMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemPeopleMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemPeopleMenu.Text = "طرف حساب";
             // 
             // ToolStripMenuItemPeopleGroup
@@ -386,7 +386,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemGoods,
             this.ToolStripMenuItemGoodsBarcode});
             this.ToolStripMenuItemGoodsMenu.Name = "ToolStripMenuItemGoodsMenu";
-            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemGoodsMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemGoodsMenu.Text = "كالا";
             // 
             // ToolStripMenuItemGoodsUnit
@@ -424,7 +424,7 @@ namespace TinyTech.Main
             this.ToolStripMenuItemAccount,
             this.ToolStripMenuItemCheckBook});
             this.ToolStripMenuItemBankMenu.Name = "ToolStripMenuItemBankMenu";
-            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(135, 24);
+            this.ToolStripMenuItemBankMenu.Size = new System.Drawing.Size(180, 24);
             this.ToolStripMenuItemBankMenu.Text = "بانك";
             // 
             // ToolStripMenuItemCurrency
