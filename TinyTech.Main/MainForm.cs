@@ -621,6 +621,7 @@ namespace TinyTech.Main
             SetColor();
             SetUserAndFiscalYearInfo();
             lblCustomText.Text = string.Empty;
+            FormSizeChange("Max");
         }
 
         private void SetUserAndFiscalYearInfo()
@@ -741,19 +742,34 @@ namespace TinyTech.Main
             tab.AddNewTab(tabControlMain, bankAccountDefinition);
         }
 
-        private void FormSizeChange()
+        private void FormSizeChange(string status = "")
         {
-            if (this.Size != MinimumSize)
+            if (status == "")
+            {
+                if (this.Size != MinimumSize)
+                {
+                    this.Size = MinimumSize;
+                    this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
+                    this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
+                    this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Max;
+                }
+                else if (this.Size == MinimumSize)
+                {
+                    Bounds = Screen.PrimaryScreen.WorkingArea;
+                    this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
+                }
+            }
+            else if (status == "Max")
+            {
+                Bounds = Screen.PrimaryScreen.WorkingArea;
+                this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
+            }
+            else if (status == "Min")
             {
                 this.Size = MinimumSize;
                 this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
                 this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
                 this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Max;
-            }
-            else if (this.Size == MinimumSize)
-            {
-                Bounds = Screen.PrimaryScreen.WorkingArea;
-                this.pictureBoxMaximize.Image = global::TinyTech.Main.Properties.Resources.Restore;
             }
         }
 
@@ -825,6 +841,6 @@ namespace TinyTech.Main
             SwitchUser();
         }
 
-        
+
     }
 }
