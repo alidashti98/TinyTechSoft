@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<TinyTech>
-  <Connection>
-	<Server>Ali-Dashti\SQL2014</Server>
-	<Database>TinyTech</Database>
-  </Connection>
-</TinyTech>
